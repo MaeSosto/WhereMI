@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="it">
+
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/script.js"></script>  
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- collegamento al css della paginata di login turista -->
+    <link rel="stylesheet" type="text/css" href="css/WhereMI-LoginTurista.css">
+    <title>WhereMI - Login Turista</title>
+</head>
+<body>
+<!-- barra intestazione WhereMI -->
+
+  <nav class="navbar navbar-dark bg-dark">
+      <a href="javascript:history.back()"><font color= white>&#8592</font> Indietro </a> <!-- link che permette di tornare alla paginata precedente -->
+	  <a class="navbar-brand text-white text-right"  href="WhereMIprincipale.html">WhereMI</a>
+  </nav>
+
+<!-- inizio fase Login -->
+    <div id="logreg-forms">
+        <form class="form-signin">
+            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Accedi </h1>
+            
+            <input type="email" id="inputEmail" class="form-control" placeholder="Indirizzo e-mail" required="" autofocus="">
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+            
+            <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Accedi </button>
+            <a href="#" id="forgot_pswd">Password dimenticata?</a>
+            <hr>
+            <!-- <p>Don't have an account!</p>  -->
+            <button class="btn btn-primary btn-block" type="button" id="btn-signup"><i class="fas fa-user-plus"></i> Crea un nuovo account </button>
+            </form>
+
+            <form action="/reset/password/" class="form-reset">
+                <input type="email" id="resetEmail" class="form-control" placeholder="Indirizzo e-mail" required="" autofocus="">
+                <button class="btn btn-primary btn-block" type="submit">Cambia password</button>
+                <a href="#" id="cancel_reset"><i class="fas fa-angle-left"></i> Indietro </a>
+            </form>
+            
+            <form action="/signup/" class="form-signup">
+                <div class="social-login">
+                    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Registrati</h1>
+                </div>
+                <hr style="border: 1px solid#DCDCDC" />
+                <p>Scegli tipo di account:</p>
+                <select class="minimal">
+                        <option >Turista</option>
+                        <option >Guida</option>
+                        
+                      </select>
+                      <hr style="border: 1px solid#DCDCDC" />
+
+                <p>Inserisci i tuoi dati:</p>
+                
+                <input type="text" id="user-name" class="form-control" placeholder="Full name" required="" autofocus="">
+                <input type="email" id="user-email" class="form-control" placeholder="Email address" required autofocus="">
+                <input type="password" id="user-pass" class="form-control" placeholder="Password" required autofocus="">
+                <input type="password" id="user-repeatpass" class="form-control" placeholder="Repeat Password" required autofocus="">
+
+                <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> Registrati</button>
+                
+                
+                <a href="#" id="cancel_signup"><i class="fas fa-angle-left"></i> Indietro </a>
+            </form>
+
+            
+            <br>
+            
+    </div>
+
+    
+</body>
+</html>
