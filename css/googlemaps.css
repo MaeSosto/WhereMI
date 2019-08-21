@@ -91,22 +91,6 @@
       flex-grow: 1;
 }
 
-.inner-form .input-field.third-wrap {
-  width: 50px;
-  height: 50px;
-}
-
-.inner-form .input-field.third-wrap .search {
-  height: 100%;
-  width: 100%;
-  white-space: nowrap;
-  color: #fff;
-  border: 0;
-  cursor: pointer;
-  background: #fff;
-  transition: all .2s ease-out, color .2s ease-out;
-}
-
 
 .inner-form .input-field.first-wrap .button {
   height: 100%;
@@ -119,23 +103,11 @@
   transition: all .2s ease-out, color .2s ease-out;
 }
 
-.inner-form .input-field.third-wrap .search svg {
-  width: 16px;
-}
-
-.inner-form .input-field.third-wrap .search:hover {
-  background: 	#f2f2f2;
-}
 
 .inner-form .input-field.first-wrap .button:hover {
   background: 	#f2f2f2;
 }
 
-.inner-form .input-field.third-wrap .search:focus {
-  outline: 0;
-  box-shadow: none;
-
-}
 
 @media screen and (max-width: 992px) {  /*quando la grandezza dello schermo è minore di 992px fa questo*/
   .inner-form .input-field {

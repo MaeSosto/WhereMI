@@ -7,13 +7,18 @@
       // parameter when you first load the API. For example:
       // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
       
+      navigator.geolocation.getCurrentPosition(displayLocation);
 
+     function displayLocation(position){
+        var lonlat = [position.coords.latitude, position.coords.longitude];
+      }
 
       function initAutocomplete() {
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 32, lng: 12},
           zoom: 13,
-          mapTypeId: 'roadmap'
+          mapTypeId: 'roadmap',
+          fullscreenControl: false
           
         });
 
@@ -79,7 +84,43 @@
 
     
 
+ /***********MENU MAPPA ***********/   
+
+ $(document).ready(function(){
 
 
-      
+    $("#button").click(function(){
+        $("#menu").toggle(500);
+  });
+ 
+ 
+  $("#closebtn").click(function(){
+    $("#menu").toggle(500);
+});
+
+   
+
+})
+
+
+    
+function toggleResetPswd(e){
+    e.preventDefault();
+    $('#logreg-forms .form-signin').toggle() // display:block or none
+    $('#logreg-forms .form-reset').toggle() // display:block or none
+}
+
+function toggleSignUp(e){
+    e.preventDefault();
+    $('#logreg-forms .form-signin').toggle(); // display:block or none
+    $('#logreg-forms .form-signup').toggle(); // display:block or none
+}
+
+$(()=>{
+    // Login Register Form
+    $('#logreg-forms #forgot_pswd').click(toggleResetPswd);
+    $('#logreg-forms #cancel_reset').click(toggleResetPswd);
+    $('#logreg-forms #btn-signup').click(toggleSignUp);
+    $('#logreg-forms #cancel_signup').click(toggleSignUp);
+})
     
