@@ -1,8 +1,8 @@
 .map {
   position: absolute;
   z-index: 0;
-  height: 99%; 
-  width: 99%;  
+  height: 100%; 
+  width: 100%;  
   background: #eee;
  }
 

@@ -7,20 +7,26 @@
       // parameter when you first load the API. For example:
       // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
       
-      navigator.geolocation.getCurrentPosition(displayLocation);
+      navigator.geolocation.getCurrentPosition(initAutocomplete);
 
-     function displayLocation(position){
-        var lonlat = [position.coords.latitude, position.coords.longitude];
-      }
+     
 
-      function initAutocomplete() {
+      function initAutocomplete(position) {
+        var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 32, lng: 12},
-          zoom: 13,
+          center: coords,
+          zoom: 17,
           mapTypeId: 'roadmap',
           fullscreenControl: false
           
         });
+
+        var marker = new google.maps.Marker({
+          position: coords
+      });
+
+      marker.setMap(map);
 
         // Create the search box and link it to the UI element.
         var input = document.getElementById('search');
