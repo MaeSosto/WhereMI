@@ -1,3 +1,3 @@
 <?php
-	header("location: login.html");
+	header("location: /HTML/whereami.html");
 ?>

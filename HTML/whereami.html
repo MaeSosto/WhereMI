@@ -1,13 +1,13 @@
 
 <html>
   <head>
-    <link rel="stylesheet" href="css/googlemaps.css">
+    <link rel="stylesheet" href="../css/whereami.css">
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"
     integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
     crossorigin="anonymous"></script> <!--jquery-->
 
-    <script type="text/javascript" src="googlemaps.js"></script> <!--link to the script-->
+    <script type="text/javascript" src="../Javascript/whereami.js"></script> <!--link to the script-->
     
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAisQVJRCJqUAW-wICyJbshSxg_jPL-Y-A&libraries=places&callback=initAutocomplete"
     async defer></script> <!-- Maps Javascript API-->
@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" /> <!--stili della barra di ricerca-->
 
 
-  </head>
+  </head> 
 
   <body>
     <div class="map" id="map"></div>
@@ -28,7 +28,7 @@
               <!--tasto menù-->
               <div class="input-field first-wrap">   
                   <button class="button" id="button" type="button" >
-                  <img src="images/menu.png" class="menuimage">
+                  <img src="../images/menu.png" class="menuimage">
                 </button>
               </div>
               <!--sezione ricerca-->
@@ -40,7 +40,7 @@
   
           <div id="menu" class="menu">
               <a href="javascript:void(0)" class="closebtn" id="closebtn" >&times;</a>
-              <a href="WhereMI-LoginTuristaIT.html">Accedi</a>
+              <a href="login.html">Accedi</a>
               <a href="#">Home</a>
               <a href="#">Informazioni</a>
               <a href="#">Sviluppatori</a>
