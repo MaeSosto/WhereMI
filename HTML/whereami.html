@@ -1,51 +1,39 @@
-
 <html>
   <head>
+    <!--Link to CSS-->
     <link rel="stylesheet" href="../css/whereami.css">
+    <!-- Link to the script-->
+    <script type="text/javascript" src="../Javascript/whereami.js"></script>    
+    <!-- Maps Javascript API-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAisQVJRCJqUAW-wICyJbshSxg_jPL-Y-A&libraries=places&callback=initAutocomplete" async defer></script> 
+    <!--stili della barra di ricerca-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" /> 
+  
+  </head>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-    crossorigin="anonymous"></script> <!--jquery-->
+  <body class="body">
+    <div class="header">
 
-    <script type="text/javascript" src="../Javascript/whereami.js"></script> <!--link to the script-->
+      <!-- BARRA DI RICERCA-->
+      
+      <div class="inner-form">
+        <div class="input-field second-wrap"> 
+          <input id="search" type="text" placeholder="Cerca.." />
+        </div>
+      </div>
+
+        <div class="header-text">     Where Am I ?</div>
+    </div>
     
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAisQVJRCJqUAW-wICyJbshSxg_jPL-Y-A&libraries=places&callback=initAutocomplete"
-    async defer></script> <!-- Maps Javascript API-->
-
- 
-
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" /> <!--stili della barra di ricerca-->
-
-
-  </head> 
-
-  <body>
+    
+    
     <div class="map" id="map"></div>
 
-     <!--Barra di ricerca-->
-     <form>
-            <div class="inner-form">
-              <!--tasto menù-->
-              <div class="input-field first-wrap">   
-                  <button class="button" id="button" type="button" >
-                  <img src="../images/menu.png" class="menuimage">
-                </button>
-              </div>
-              <!--sezione ricerca-->
-              <div class="input-field second-wrap"> 
-                <input id="search" type="text" placeholder="Cerca.." />
-              </div>
-            </div>
-          </form>
-  
-          <div id="menu" class="menu">
-              <a href="javascript:void(0)" class="closebtn" id="closebtn" >&times;</a>
-              <a href="login.html">Accedi</a>
-              <a href="#">Home</a>
-              <a href="#">Informazioni</a>
-              <a href="#">Sviluppatori</a>
-              
-            </div>
-    
+    <div class="footer">
+      <div>        <a href="#">Informazioni</a>
+      </div>
+      <div class="firma">
+        Sosto, Vicenzi, Diachuk</div>
+    </div>
   </body>
 </html>
