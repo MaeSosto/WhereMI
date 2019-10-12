@@ -7,33 +7,65 @@
     <!-- Maps Javascript API-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAisQVJRCJqUAW-wICyJbshSxg_jPL-Y-A&libraries=places&callback=initAutocomplete" async defer></script> 
     <!--stili della barra di ricerca-->
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" /> 
-  
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <!--LOGIN GOOGLE-->
+
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
   </head>
 
-  <body class="body">
+
+
+  <body class="body ">
+  <div class="conteiner">
+
     <div class="header">
 
       <!-- BARRA DI RICERCA-->
       
-      <div class="inner-form">
-        <div class="input-field second-wrap"> 
+      <div class="inner-form col-md-4">
+        <div class="input-field second-wrap col-sm-1">
           <input id="search" type="text" placeholder="Cerca.." />
         </div>
       </div>
 
-        <div class="header-text">     Where Am I ?</div>
+      <!-- LOGIN BUTTON-->
+
+      <div  class="g-signin2 col-md-4" data-onsuccess="onSignIn"></div>
+
+      <!-- TESTO -->
+
+        <div class="header-text col-md-4">     Where Am I ?</div>
+
     </div>
-    
+  </div>
     
     
     <div class="map" id="map"></div>
 
+
+
     <div class="footer">
+
       <div>        <a href="#">Informazioni</a>
       </div>
+
       <div class="firma">
         Sosto, Vicenzi, Diachuk</div>
     </div>
   </body>
 </html>
+
+
