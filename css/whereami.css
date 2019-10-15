@@ -1,6 +1,15 @@
-
+.bar{
+  position: absolute;
+  z-index: 1;
+  height: 81%;
+  width: 45%;
+  background: red;
+  margin-top: 1%;
+  margin-left: 1%;
+  margin-bottom: 1%;
+  visibility: hidden;
+}
 .body{
-
   font-family: "Roboto";
   margin: 0;
 }
@@ -35,6 +44,7 @@
 
 
 .map {
+
 
   z-index: 0;
   height: 85%;
