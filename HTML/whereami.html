@@ -1,71 +1,77 @@
 <html>
-  <head>
-    <!--Link to CSS-->
-    <link rel="stylesheet" href="../css/whereami.css">
-    <!-- Link to the script-->
-    <script type="text/javascript" src="../Javascript/whereami.js"></script>    
-    <!-- Maps Javascript API-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAisQVJRCJqUAW-wICyJbshSxg_jPL-Y-A&libraries=places&callback=initAutocomplete" async defer></script> 
-    <!--stili della barra di ricerca-->
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
-    <!--LOGIN GOOGLE-->
+<head>
 
-    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta charset="utf-8">
+  <meta name="wiewport" content="width=device-width, initial-scale=1">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <!--Link to CSS-->
+
+  <!-- Link to the script-->
+  <script type="text/javascript" src="../Javascript/whereami.js"></script>
+  <!-- Maps Javascript API-->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAisQVJRCJqUAW-wICyJbshSxg_jPL-Y-A&libraries=places&callback=initAutocomplete" async defer></script>
+  <!--stili della barra di ricerca-->
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+  <!--LOGIN GOOGLE-->
+
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="600073852662-5n0m5i3aldi5dprhoossca8k5p6hno72.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/whereami.css">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
 
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <!-- Latest compiled JavaScript -->
 
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
-  </head>
+</head>
 
 
 
-  <body class="body ">
-  <div class="conteiner">
+<body class="body">
 
-    <div class="header">
+<div class="header">
 
-      <!-- BARRA DI RICERCA-->
-      
-      <div class="inner-form col-md-4">
-        <div class="input-field second-wrap col-sm-1">
-          <input id="search" type="text" placeholder="Cerca.." />
-        </div>
-      </div>
+  <!-- BARRA DI RICERCA-->
 
-      <!-- LOGIN BUTTON-->
-
-      <div  class="g-signin2 col-md-4" data-onsuccess="onSignIn"></div>
-
-      <!-- TESTO -->
-
-        <div class="header-text col-md-4">     Where Am I ?</div>
-
+  <div class="inner-form">
+    <div class="input-field second-wrap col-sm-1">
+      <input id="search" type="text" placeholder="Cerca.." />
     </div>
   </div>
-    
-    
-    <div class="map" id="map"></div>
 
 
+  <!-- LOGIN BUTTON
 
-    <div class="footer">
+<input id="search" type="text" placeholder="Cerca.." />
+  <div  class="size g-signin2 col-lg-4" data-onsuccess="onSignIn"></div>
 
-      <div>        <a href="#">Informazioni</a>
-      </div>
+   TESTO-->
 
-      <div class="firma">
-        Sosto, Vicenzi, Diachuk</div>
-    </div>
-  </body>
+</div>
+
+
+<div class="map" id="map">
+
+</div>
+
+
+<div class="footer dropup">
+
+  <div class="col-md-4">    <a href="#">Informazioni</a>    </div>
+
+  <div class="firma col-md-4">    Sosto, Vicenzi, Diachuk</div>
+</div>
+
+</body>
 </html>
-
-
