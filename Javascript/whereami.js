@@ -15,13 +15,13 @@
         var map = new google.maps.Map(document.getElementById('map'), {
           center: coords,
           zoom: 17,
-          mapTypeId: 'roadmap',
-          fullscreenControl: false
+          mapTypeId: 'roadmap'
           
         });
-
+        
         var marker = new google.maps.Marker({
-          position: coords
+          position: coords,
+          
       });
 
       marker.setMap(map);
@@ -86,8 +86,9 @@
         });
       }
 
-    
 
+
+     
  /*********** LOGIN BUTTON ***********/
 
         function onSignIn(googleUser) {
@@ -108,8 +109,85 @@
    
 
 
+ /******** AUDIO  ********/
+
+ var player;
+
+ function onYouTubeIframeAPIReady() {
+
+ $("#playbutton").click(toggleAudio); //se clicchi sul pulsante chiama toogleAudio
+
+ player = new YT.Player('youtube-player', { //lega il player al div "youtube-player"
+  height: '0',
+  width: '0',
+  videoId: "-Jqz3GQWhJY", //url del video (stringa a 11 caratteri, dopo youtube.com/watch?v=)
+  playerVars: {
+    autoplay: 0,
+    loop: 1,
+  },
+});
 
 
-    
+function toggleAudio() {
+  if ( player.getPlayerState() == 1 || player.getPlayerState() == 3 ) {
+    player.pauseVideo(); 
+  } else {
+    player.playVideo(); 
+  } 
+} 
+ }
 
-    
+
+
+ /*
+ var player;
+  function onYouTubeIframeAPIReady() {
+
+    var tubediv = document.getElementById("youtube-audio");
+    tubediv.innerHTML = '<img id="youtube-icon" src=""/><div id="youtube-player"></div>';
+    tubediv.style.cssText = 'width:150px;margin:2em auto;cursor:pointer;cursor:hand;display:none';
+    tubediv.onclick = toggleAudio;
+
+    player = new YT.Player('youtube-player', {
+      height: '0',
+      width: '0',
+      videoId: tubediv.dataset.video,
+      playerVars: {
+        autoplay: tubediv.dataset.autoplay,
+        loop: tubediv.dataset.loop,
+      },
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange 
+      } 
+    });
+  } 
+
+  function togglePlayButton(play) {    
+    document.getElementById("youtube-icon").src = play ? "https://i.imgur.com/IDzX9gL.png" : "https://i.imgur.com/quyUPXN.png";
+  }
+
+  function toggleAudio() {
+    if ( player.getPlayerState() == 1 || player.getPlayerState() == 3 ) {
+      player.pauseVideo(); 
+      togglePlayButton(false);
+    } else {
+      player.playVideo(); 
+      togglePlayButton(true);
+    } 
+  } 
+
+  function onPlayerReady(event) {
+    player.setPlaybackQuality("small");
+    document.getElementById("youtube-audio").style.display = "block";
+    togglePlayButton(player.getPlayerState() !== 5);
+  }
+
+  function onPlayerStateChange(event) {
+    if (event.data === 0) {
+      togglePlayButton(false); 
+    }
+  }
+
+
+*/
