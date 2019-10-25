@@ -39,13 +39,26 @@
 
 <div class="header">
 
-  <!-- BARRA DI RICERCA-->
+  <!-- BARRA DI RICERCA
 
   <div class="inner-form">
     <div class="input-field second-wrap col-sm-1">
       <input id="search" type="text" placeholder="Cerca.." />
     </div>
   </div>
+-->
+
+  <form id="calculate-route" name="calculate-route" action="#" method="get">
+
+    <input type="text" id="from" name="from" required="required" placeholder="An address" size="30" />
+
+    <input type="text" id="to" name="to" required="required" placeholder="Another address" size="30" />
+
+    <input type="submit" />
+
+  </form>
+  <input type="button" id="set-position" value="reset" />
+  <input type="button" id="reset-map" value="reset" />
 
 
   <!-- LOGIN BUTTON
