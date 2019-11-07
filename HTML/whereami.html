@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> <!--includo libreria jquery tramite CDN, niente download-->
+<!--Api youtube audio-->
+<script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -29,8 +31,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   
-<!--Api youtube audio-->
-  <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
+
 </head>
 
 
@@ -60,6 +61,10 @@
   <input type="button" id="set-position" value="reset" />
   <input type="button" id="reset-map" value="reset" />
 
+  <button type="button" onclick="showPlayerDiv(true)">show</button>   <!--button temporaneo per controllare funzionamento-->
+  <button type="button" onclick="showPlayerDiv(false)">hide</button>  <!--button temporaneo per controllare funzionamento-->
+  <a href="editor.html">Editor</a> <!--link all'editor-->
+
 
   <!-- LOGIN BUTTON
 
@@ -71,12 +76,25 @@
 </div>
 
 
-<div class="bar" id= "bar">
-    <button type="button" id="playbutton">Play</button>
-    <div id="youtube-player"></div>
- 
-  
 
+<!--FINESTRA CON PLAYER E AUDIO-->
+<div class="bar" id= "bar">
+
+  <div class="imagediv">
+    <img src="">
+  </div>
+  <div class="buttonsdiv">
+      <button type="button" id="backbutton" >indietro</button><button type="button" id="playbutton" value="play">play</button><button type="button" id="nextbutton">avanti</button> <button type="button" id="skipbutton">skip</button>
+      <div id="youtube-player"></div>
+  </div>
+  
+      <div class="col-lg-4" style="background: blue; height: 15%; border-bottom: 1px solid #e2e2e2;"><button type="button" id="video1button" >url video</button></div>
+      <div class="col-lg-8" style="background: chocolate; height: 15%; border-bottom: 1px solid #e2e2e2;"> name </div>
+      <div class="col-lg-4" style="background: blue; height: 15%; border-bottom: 1px solid #e2e2e2;"><button type="button" id="video2button">url video</button></div>
+      <div class="col-lg-8" style="background: chocolate; height: 15%; border-bottom: 1px solid #e2e2e2;"> name </div>
+  
+   
+            
 </div>
 
 <div class="map" id="map"></div>

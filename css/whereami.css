@@ -1,15 +1,4 @@
 
-.bar{
-  position: absolute;
-  z-index: -1;
-  height: 87%;
-  width: 45%;
-  background: red;
-  margin-top: 1%;
-  margin-left: 1%;
-  margin-bottom: 1%;
-  
-}
 .body{
   font-family: "Roboto";
   margin: 0;
@@ -194,7 +183,27 @@ a:hover {
   .footer{
     height: 0;
   }
+}
 
+/**FINESTRA CON PLAYER E AUDIO**/
+.bar{
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  height: 87%;
+  width: 40%;
+  background: grey;
+  margin-top: 1%;
+  margin-left: 1%;
+  margin-bottom: 1%;
+  overflow-y: auto;
+  
+}
+.imagediv{
+  height: 15%;
+}
 
-
+.buttonsdiv{
+  text-align: center;
+  background: chartreuse;
 }
