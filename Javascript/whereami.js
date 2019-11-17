@@ -238,70 +238,75 @@ var player;
 
 function onYouTubeIframeAPIReady() {
 
-$("#playbutton").click(toggleAudio); //se clicchi sul pulsante chiama toogleAudio
+    $("#playbutton").click(toggleAudio); //se clicchi sul pulsante chiama toogleAudio
 
-player = new YT.Player('youtube-player', { //lega il player al div "youtube-player"
- height: '0',
- width: '0',
- videoId: urlvideo[0], //url del video (stringa a 11 caratteri, dopo youtube.com/watch?v=)
- playerVars: {
-   autoplay: 0,
-   loop: 0,
- },
-});
+    player = new YT.Player('youtube-player', { //lega il player al div "youtube-player"
+    height: '0',
+    width: '0',
+    videoId: urlvideo[0], //url del video (stringa a 11 caratteri, dopo youtube.com/watch?v=)
+    playerVars: {
+      autoplay: 0,
+      loop: 0,
+    },
+    });
 
 
-function toggleAudio() {
-    if ( player.getPlayerState() == 1 || player.getPlayerState() == 3 ) {
-      player.pauseVideo(); 
-      togglePlayButton(false);
-    } else {
-      player.playVideo(); 
-      togglePlayButton(true);
+    function toggleAudio() {
+            if ( player.getPlayerState() == 1 || player.getPlayerState() == 3 ) {
+              player.pauseVideo(); 
+              togglePlayButton(false);
+            } else {
+              player.playVideo(); 
+              togglePlayButton(true);
+              } 
     } 
-  } 
+
+    function togglePlayButton(play) {    
+      document.getElementById("playbutton").innerHTML = play ? "pause" : "play";
+    }
+  
+
+
+      $("#video1button").click(function(){
+        player.loadVideoById(urlvideo[0]);
+        player.playVideo;
+        togglePlayButton(true);
+      }); 
+
+      $("#video2button").click(function(){
+        player.loadVideoById(urlvideo[1]);
+        player.playVideo;
+        togglePlayButton(true);
+      }); 
+
+      $("#nextbutton").click(function(){
+      var index = urlvideo.indexOf(player.getVideoData()['video_id']);  //prendo l'indice del video che è in esecuzione
+        if (index == urlvideo.length-1){ //se siamo sull'ultimo video
+          player.loadVideoById(urlvideo[0]);
+        }
+        else{
+          player.loadVideoById(urlvideo[index+1]);
+        }
+        player.playVideo;
+        togglePlayButton(true);
+      }); 
+
+      $("#backbutton").click(function(){
+        var index = urlvideo.indexOf(player.getVideoData()['video_id']);
+        if (index-1<0){ //se siamo sul primo video
+          player.loadVideoById(urlvideo[0]);
+        }
+        else{
+          player.loadVideoById(urlvideo[index-1]);
+        }
+        player.playVideo;
+        togglePlayButton(true);
+      }); 
 } 
 
 
 
-function togglePlayButton(play) {    
-    document.getElementById("playbutton").innerHTML = play ? "pause" : "play";
-  }
 
-  $("#video1button").click(function(){
-    player.loadVideoById(urlvideo[0]);
-    player.playVideo;
-    togglePlayButton(true);
-  }); 
-
-  $("#video2button").click(function(){
-    player.loadVideoById(urlvideo[1]);
-    player.playVideo;
-    togglePlayButton(true);
-  }); 
-
-  $("#nextbutton").click(function(){
-   var index = urlvideo.indexOf(player.getVideoData()['video_id']);  //prendo l'indice del video che è in esecuzione
-    if (index == urlvideo.length-1){ //se siamo sull'ultimo video
-      player.loadVideoById(urlvideo[0]);
-    }
-    else{
-      player.loadVideoById(urlvideo[index+1]);
-    }
-    player.playVideo;
-    togglePlayButton(true);
-  }); 
-
-  $("#backbutton").click(function(){
-    var index = urlvideo.indexOf(player.getVideoData()['video_id']);
-    if (index-1<0){ //se siamo sul primo video
-      player.loadVideoById(urlvideo[0]);
-    }
-    else{
-      player.loadVideoById(urlvideo[index-1]);
-    }
-    player.playVideo;
-    togglePlayButton(true);
-  }); 
+ 
 
 

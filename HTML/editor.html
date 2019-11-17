@@ -1,24 +1,75 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>MediaCapture and Streams API</title>
     <meta name="viewport" content="width=device-width">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> <!--includo libreria jquery tramite CDN, niente download-->
+    
    
 </head>
 <body>
     
         
-        <p><button id="btnStart">START RECORDING</button><br/>
-        <button id="btnStop">STOP RECORDING</button></p>
-        
-        <audio controls style="width: 0px; height: 0px;"></audio> 
-        
-        <audio id="vid2" controls></audio>
-        
-        <!-- could save to canvas and do image manipulation and saving too -->
+    <input type="file" accept="audio/*" capture id="recorder"> <!--scegli file da pc-->
     
-    <script>
+
+      <div><button id="btnStart">Registra</button></div>  
+      <button id="btn">carica</button>
+
         
+        
+        <audio controls style="width: 0px; height: 0px;"></audio> <!-- tag dove viene registrato l'audio-->
+        
+        <audio id="aud2" style="visibility: hidden;" controls></audio> <!-- tag dove viene visualizzato l'audio-->
+
+
+        <button type="button" class="btn btn-default btn-sm" id="authorize_button" style="display: none; font-size: 14px">
+          <span class="glyphicon glyphicon-log-in" ></span> Sign-in with Google
+        </button>
+  
+        <button type="button" class="btn btn-default btn-sm" id="signout_button" style="display: none; font-size: 14px">
+          <span class="glyphicon glyphicon-log-in"></span> Sign-out
+        </button>
+      
+     
+  
+  <!-- container -->
+  <main role="main" class="container">
+    <div class="row" >
+      <div class="col-lg-4" id="audioPanel">
+        <h1 id="titleRecPlayer">Registra clip audio</h1>
+        <p id="message"></p>
+        <div>
+          <button class="btn btn-success" id="rec">Rec</button>
+          <button class="btn btn-warning" id="pause" disabled>Pause</button>
+          <button class="btn btn-danger" id="stop" disabled>Stop</button><br/><br/>
+          <audio class="hidden" id="player" controls></audio><br/>
+          <h3 id="labelAzioni" class="font-weight-bold hidden"></h3><br/><br/>
+          <button class="btn btn-dark hidden" id="salva">Salva</button>
+          <button id="buttonLogin" class="btn btn-dark hidden" onclick="handleClientLoad()">Login</button>
+          <button class="btn btn-dark hidden" id="update">Upload YouTube </button><br/><br/>
+        </div>
+      </body>
+        <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()">
+        </script>
+    <script>
+
+
+    function showAudio(show){   //mostra o nasconde il tag audio
+        var audio=document.getElementById('aud2');
+        if (show==true) {
+            audio.style.visibility='visible';
+        }else{
+            audio.style.visibility='hidden';
+        }
+
+    }
+
+    function toggleRegistra(registra) {    // cambia tasto registra
+      document.getElementById("btnStart").innerHTML = registra ? "Registra" : "Stop";
+    }
+
+
+
         let constraintObj = { 
             audio: true, 
             video: false 
@@ -66,44 +117,242 @@
             
             //add listeners for saving audio/audio
             let start = document.getElementById('btnStart');
-            let stop = document.getElementById('btnStop');
-            let vidSave = document.getElementById('vid2');
+            let vidSave = document.getElementById('aud2');
             let mediaRecorder = new MediaRecorder(mediaStreamObj);
             let chunks = [];
-            
+            var started= false;
+
+
             start.addEventListener('click', (ev)=>{
-                mediaRecorder.start();
-                console.log(mediaRecorder.state);
+                if (started==false){
+                    mediaRecorder.start();
+                    started=true;
+                    toggleRegistra(false);
+                    showAudio(false);
+                    
+                }else{
+                    mediaRecorder.stop();
+                    started=false;
+                    toggleRegistra(true);
+                    showAudio(true);
+                }
+                
             })
-            stop.addEventListener('click', (ev)=>{
-                mediaRecorder.stop();
-                console.log(mediaRecorder.state);
-            });
             mediaRecorder.ondataavailable = function(ev) {
-                chunks.push(ev.data);
+                chunks.push(ev.data); //salvo dati ricevuti in array
+                console.log(ev.data);
             }
             mediaRecorder.onstop = (ev)=>{
-                let blob = new Blob(chunks, { 'type' : 'audio/mp4;' });
+                let blob = new Blob(chunks, { 'type' : 'audio/mp4;' }); //passo l'array all'oggetto blob che li salva nella variabile
                 chunks = [];
                 let audioURL = window.URL.createObjectURL(blob);
                 vidSave.src = audioURL;
             }
         })
-        .catch(function(err) { 
-            console.log(err.name, err.message); 
-        });
+    
+
+
+        ///////////AUDIO DA PC////////
         
-        /*********************************
-        getUserMedia returns a Promise
-        resolve - returns a MediaStream Object
-        reject returns one of the following errors
-        AbortError - generic unknown cause
-        NotAllowedError (SecurityError) - user rejected permissions
-        NotFoundError - missing media track
-        NotReadableError - user permissions given but hardware/OS error
-        OverconstrainedError - constraint audio settings preventing
-        TypeError - audio: false, audio: false
-        *********************************/
-    </script>
-</body>
+        const recorder = document.getElementById('recorder');
+        const player = document.getElementById('player'); //non c'è
+    
+      recorder.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        const url = URL.createObjectURL(file);
+
+        // Do something with the audio file.
+        player.src = url;
+      });
+
+
+
+
+
+
+
+
+
+      ///////////////CARICAMENTO YOUTUBE////////////////
+     
+  
+  
+//const API_KEY = "AIzaSyARgIB-2zTsZcy7IoYDUWlXu0a7yQDOj9s";
+//const CLIENT_ID = "840091091157-fitfqdv3e84ivdh1fj0on6s1ganlu1eo.apps.googleusercontent.com";
+
+/* work online
+const API_KEY = "AIzaSyBcTEce_U3Ho-Ua4SiUmOvo0tPDzWkuBd4";
+const CLIENT_ID = "899661843536-gl9bsjpnqbjkcddj1e8167o6e6anpmrd.apps.googleusercontent.com";
+ */
+
+//CODICI funzionanti per upload YT + backup per esaurimento quote (error 403 - youtube.quota)
+const API_KEY = "AIzaSyAisQVJRCJqUAW-wICyJbshSxg_jPL-Y-A";
+const CLIENT_ID = "600073852662-s43ta0ecr4b2i384uovdegtujmche6v6.apps.googleusercontent.com";
+
+
+// Array of API discovery doc URLs for APIs used by the quickstart
+var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/people/v1/rest"];
+
+// Authorization scopes required by the API; multiple scopes can be
+// included, separated by spaces.
+var SCOPES = "https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube";
+
+var authorizeButton = document.getElementById('authorize_button');
+var signoutButton = document.getElementById('signout_button');
+var utenteButton = document.getElementById('buttonLogin');
+var update = document.getElementById('update');
+
+/*function f() {
+  alert("fai login");
+
+}*/
+/**
+ *  On load, called to load the auth2 library and API client library.
+ */
+function handleClientLoad() {
+    gapi.load('client:auth2', initClient);
+}
+
+/**
+ *  Initializes the API client library and sets up sign-in state
+ *  listeners.
+ */
+function initClient() {
+    gapi.client.init({
+        apiKey: API_KEY,
+        clientId: CLIENT_ID,
+        discoveryDocs: DISCOVERY_DOCS,
+        scope: SCOPES
+    }).then(function () {
+        // Listen for sign-in state changes.
+        //alert("Sign-in successful");
+        gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+        // Handle the initial sign-in state.
+        updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+        authorizeButton.onclick = handleAuthClick;
+        signoutButton.onclick = handleSignoutClick;
+        if(utenteButton){utenteButton.onclick = handleAuthClick;}
+    },  function(err) { console.error("Error loading GAPI client for API", err); });
+}
+
+/**
+ *  Called when the signed in status changes, to update the UI
+ *  appropriately. After a sign-in, the API is called.
+ */
+function updateSigninStatus(isSignedIn) {
+    if (isSignedIn) {
+        authorizeButton.style.display = 'none';
+        signoutButton.style.display = 'block';
+       
+        //Elementi statici presenti solo nel editor
+        if(utenteButton||update){
+          utenteButton.style.display='none';
+          update.disabled=false;
+        }
+        //document.getElementById("update").display = 'initial';
+        //document.getElementById("update").disabled = false;
+    }
+    else {
+        authorizeButton.style.display = 'block';
+        signoutButton.style.display = 'none';
+        if(utenteButton||update){
+          utenteButton.style.display='none';
+          update.disabled=true;
+        } 
+       
+    }
+}
+
+/**
+ *  Sign in the user upon button click.
+ */
+function handleAuthClick(event) {
+    if(gapi.auth2.getAuthInstance().isSignedIn.get())
+    {
+        alert("Sei già loggato");
+        if(utenteButton||update){
+          utenteButton.style.display='none';
+          update.disabled=false;
+        } 
+    }
+    else{
+        gapi.auth2.getAuthInstance().signIn();
+    }
+}
+
+/**
+ *  Sign out the user upon button click.
+ */
+function handleSignoutClick(event) {
+    gapi.auth2.getAuthInstance().signOut();
+}
+
+/*
+  // user profile data
+  function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    var name = progile.getName();
+    // console.log('ID: ' + profile.getId());
+    // console.log('Name: ' + profile.getName());
+    // console.log('Image URL: ' + profile.getImageUrl());
+    // console.log('Email: ' + profile.getEmail());
+  }
+*/
+
+window.uploadToYoutube =  async function(urlClip,titolo,metadati,descrizioneClip){
+    //Ottieni clip video da URL (hosted cloudinary.com)
+    let response = await fetch(urlClip);
+    var rawData = await response.blob();
+    rawData.type = 'video/mp4';
+
+    console.log("Preparo invio dati a Youtube (API)",rawData);
+    uploadRawFile(rawData,titolo,metadati,descrizioneClip);
+    return true;
+}
+
+async function uploadRawFile (videoclip,titolo,metadatiClip,descrizioneClip) {
+  var token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token;
+  var params = {
+    snippet: {
+        categoryId: 27,
+        title: titolo,
+        description: metadatiClip + "%%%" + descrizioneClip,
+        tags: [metadatiClip]
+    },
+    status: {
+        privacyStatus: 'public',
+        embeddable: true
+    }
+  };
+
+  //Building request
+  var request = new FormData();
+  var metadatiYoutube = new Blob([JSON.stringify(params)], {type: 'application/json'});
+  request.append('video', metadatiYoutube);
+  request.append('mediaBody', videoclip);
+
+  var okUpload;
+  //Upload via API youtube (POST)
+  $.ajax({
+    method: 'POST',
+    url: 'https://www.googleapis.com/upload/youtube/v3/videos?access_token=' + encodeURIComponent(token) + '&part=snippet,status',
+    data: request,
+    cache: false,
+    contentType: false,
+    processData: false,
+  })
+    .done(function(response) {
+      console.log("Caricamento completato! YouTube:",response)
+      return true;
+    })
+    .fail(function(response){
+      var errors = response.responseJSON.error.errors[0];
+      console.log("Errore API per Upload YT!",errors);
+      return false;
+    });
+}
+  
+  </script>
+
 </html>
