@@ -184,7 +184,6 @@ a:hover {
     height: 0;
   }
 }
-
 /**FINESTRA CON PLAYER E AUDIO**/
 .bar{
   visibility: hidden;
@@ -206,4 +205,20 @@ a:hover {
 .buttonsdiv{
   text-align: center;
   background: chartreuse;
+}
+
+.form_col{
+  max-width: 100px;
+}
+
+.form_filtro{
+  /* margin: 20px; */
+}
+
+.form_row{
+  margin: 0px !important;
+}
+
+.form_container{
+  width: auto;
 }
