@@ -1,9 +1,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-  <!--includo libreria jquery tramite CDN, niente download-->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> <!--includo libreria jquery tramite CDN, niente download-->
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -16,12 +14,12 @@
 <body>
 
 
-  <input type="file" accept="audio/*" capture id="recorder">
+  <input type="file" accept="video/*" capture id="recorder">
   <!--scegli file da pc-->
 
 
   <div><button id="btnStart">Registra</button></div>
-  <button id="btn">carica</button>
+ 
 
 
 
@@ -30,32 +28,12 @@
   <audio id="aud2" style="visibility: hidden;" controls></audio> <!-- tag dove viene visualizzato l'audio-->
 
 
-  <button type="button" class="btn btn-default btn-sm" id="authorize_button" style="display: none; font-size: 14px">
-    <span class="glyphicon glyphicon-log-in"></span> Sign-in with Google
-  </button>
+  <button type="button"  id="authorize_button" > Sign-in with Google</button>
 
   <button type="button" class="btn btn-default btn-sm" id="signout_button" style="display: none; font-size: 14px">
     <span class="glyphicon glyphicon-log-in"></span> Sign-out
   </button>
-
-
-
-  <!-- container -->
-  <main role="main" class="container">
-    <div class="row">
-      <div class="col-lg-4" id="audioPanel">
-        <h1 id="titleRecPlayer">Registra clip audio</h1>
-        <p id="message"></p>
-        <div>
-          <button class="btn btn-success" id="rec">Rec</button>
-          <button class="btn btn-warning" id="pause" disabled>Pause</button>
-          <button class="btn btn-danger" id="stop" disabled>Stop</button><br /><br />
-          <audio class="hidden" id="player" controls></audio><br />
-          <h3 id="labelAzioni" class="font-weight-bold hidden"></h3><br /><br />
-          <button class="btn btn-dark hidden" id="salva">Salva</button>
-          <button id="buttonLogin" class="btn btn-dark hidden" onclick="handleClientLoad()">Login</button>
-          <button class="btn btn-dark hidden" id="update">Upload YouTube </button><br /><br />
-        </div>
+ <button type="button" id="upload">Carica</button>
 
         <div class="contenitore container">
           <div class="row">
@@ -242,10 +220,7 @@
           </div>
         </div>
 
-        <!--Link to JS-->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-        </script>
+       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
           integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
         </script>

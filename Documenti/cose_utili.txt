@@ -1,6 +1,0 @@
-Google Places: https://cloud.google.com/maps-platform/places/?hl=it
-ti permette di gestire i punti d'interesse vicini a te
-
-Google Routes: https://cloud.google.com/maps-platform/routes/?hl=it
-ti permette di creare dei percosi da diversi punti di destinazione
-

@@ -147,14 +147,14 @@ navigator.mediaDevices.getUserMedia(constraintObj)
 ///////////AUDIO DA PC////////
 
 const recorder = document.getElementById('recorder');
-const player = document.getElementById('player'); //non c'è
+//const player = document.getElementById('player'); //non c'è
 
 recorder.addEventListener('change', function (e) {
     const file = e.target.files[0];
     const url = URL.createObjectURL(file);
 
     // Do something with the audio file.
-    player.src = url;
+   recorder.src = url;
 });
 
 
@@ -179,7 +179,7 @@ const CLIENT_ID = "899661843536-gl9bsjpnqbjkcddj1e8167o6e6anpmrd.apps.googleuser
 
 //CODICI funzionanti per upload YT + backup per esaurimento quote (error 403 - youtube.quota)
 const API_KEY = "AIzaSyAisQVJRCJqUAW-wICyJbshSxg_jPL-Y-A";
-const CLIENT_ID = "600073852662-s43ta0ecr4b2i384uovdegtujmche6v6.apps.googleusercontent.com";
+const CLIENT_ID = "600073852662-qiaidgofjs1bt8dpd1jgm3tbk72sdlej.apps.googleusercontent.com";
 
 
 // Array of API discovery doc URLs for APIs used by the quickstart
@@ -281,24 +281,13 @@ function handleSignoutClick(event) {
     gapi.auth2.getAuthInstance().signOut();
 }
 
-/*
-  // user profile data
-  function onSignIn(googleUser) {
-    var profile = googleUser.getBasicProfile();
-    var name = progile.getName();
-    // console.log('ID: ' + profile.getId());
-    // console.log('Name: ' + profile.getName());
-    // console.log('Image URL: ' + profile.getImageUrl());
-    // console.log('Email: ' + profile.getEmail());
-  }
-*/
+
 
 window.uploadToYoutube = async function (urlClip, titolo, metadati, descrizioneClip) {
     //Ottieni clip video da URL (hosted cloudinary.com)
     let response = await fetch(urlClip);
     var rawData = await response.blob();
     rawData.type = 'video/mp4';
-
     console.log("Preparo invio dati a Youtube (API)", rawData);
     uploadRawFile(rawData, titolo, metadati, descrizioneClip);
     return true;
@@ -329,6 +318,8 @@ async function uploadRawFile(videoclip, titolo, metadatiClip, descrizioneClip) {
 
     var okUpload;
     //Upload via API youtube (POST)
+
+    
     $.ajax({
             method: 'POST',
             url: 'https://www.googleapis.com/upload/youtube/v3/videos?access_token=' + encodeURIComponent(token) +
@@ -347,4 +338,37 @@ async function uploadRawFile(videoclip, titolo, metadatiClip, descrizioneClip) {
             console.log("Errore API per Upload YT!", errors);
             return false;
         });
+
+        
+/*
+       var r = new XMLHttpRequest(); 
+       var url= "https://www.googleapis.com/upload/youtube/v3/videos?access_token=" + encodeURIComponent(token) +
+       "&part=snippet,status";
+
+       r.open("POST", url, true);
+       r.onreadystatechange = function () {
+           if (r.readyState != 4 || r.status != 200) return; 
+           console.log(r.responseText);
+       };
+       r.send(request);
+*/
 }
+
+var titolo = "mani in alto, questa è una prova";
+openLocationCode = "questa è la posizione ";
+scopo = "questo è lo scopo";
+metadatiClip = openLocationCode +":"+scopo;
+var descrizioneClip = "questa è la descrizione";
+
+
+$("#upload").click(uploadYoutube);
+
+
+
+ async function uploadYoutube(){
+    var success = await window.uploadToYoutube(recorder.src, titolo, metadatiClip, descrizioneClip); //recorder è quello del file importato dal pc
+    if(success){
+        alert("caricato");
+    }
+}
+ 
