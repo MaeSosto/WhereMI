@@ -47,9 +47,11 @@ function formchk() {
 function showAudio(show) { //mostra o nasconde il tag audio
     var audio = document.getElementById('aud2');
     if (show == true) {
-        audio.style.visibility = 'visible';
+        // audio.style.visibility = 'visible';
+        audio.style.display = 'block';
     } else {
-        audio.style.visibility = 'hidden';
+        // audio.style.visibility = 'hidden';
+        audio.style.display = 'nonw';
     }
 
 }
@@ -154,7 +156,7 @@ recorder.addEventListener('change', function (e) {
     const url = URL.createObjectURL(file);
 
     // Do something with the audio file.
-   recorder.src = url;
+    recorder.src = url;
 });
 
 
@@ -319,7 +321,7 @@ async function uploadRawFile(videoclip, titolo, metadatiClip, descrizioneClip) {
     var okUpload;
     //Upload via API youtube (POST)
 
-    
+
     $.ajax({
             method: 'POST',
             url: 'https://www.googleapis.com/upload/youtube/v3/videos?access_token=' + encodeURIComponent(token) +
@@ -339,25 +341,25 @@ async function uploadRawFile(videoclip, titolo, metadatiClip, descrizioneClip) {
             return false;
         });
 
-        
-/*
-       var r = new XMLHttpRequest(); 
-       var url= "https://www.googleapis.com/upload/youtube/v3/videos?access_token=" + encodeURIComponent(token) +
-       "&part=snippet,status";
 
-       r.open("POST", url, true);
-       r.onreadystatechange = function () {
-           if (r.readyState != 4 || r.status != 200) return; 
-           console.log(r.responseText);
-       };
-       r.send(request);
-*/
+    /*
+           var r = new XMLHttpRequest(); 
+           var url= "https://www.googleapis.com/upload/youtube/v3/videos?access_token=" + encodeURIComponent(token) +
+           "&part=snippet,status";
+
+           r.open("POST", url, true);
+           r.onreadystatechange = function () {
+               if (r.readyState != 4 || r.status != 200) return; 
+               console.log(r.responseText);
+           };
+           r.send(request);
+    */
 }
 
 var titolo = "mani in alto, questa è una prova";
 openLocationCode = "questa è la posizione ";
 scopo = "questo è lo scopo";
-metadatiClip = openLocationCode +":"+scopo;
+metadatiClip = openLocationCode + ":" + scopo;
 var descrizioneClip = "questa è la descrizione";
 
 
@@ -365,10 +367,16 @@ $("#upload").click(uploadYoutube);
 
 
 
- async function uploadYoutube(){
+async function uploadYoutube() {
     var success = await window.uploadToYoutube(recorder.src, titolo, metadatiClip, descrizioneClip); //recorder è quello del file importato dal pc
-    if(success){
+    if (success) {
         alert("caricato");
     }
 }
- 
+
+//  RESPONSIVE HEADER
+$('ul.nav li.dropdown').hover(function () {
+    $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+}, function () {
+    $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+});

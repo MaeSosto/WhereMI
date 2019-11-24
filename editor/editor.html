@@ -1,42 +1,98 @@
+<html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> <!--includo libreria jquery tramite CDN, niente download-->
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+      <!-- FONT-FAMILY -->
+      <link href="https://fonts.googleapis.com/css?family=Alatsi&display=swap" rel="stylesheet">
   <!--Link to CSS-->
   <link rel="stylesheet" href="../css/editor.css">
+  <link rel="stylesheet" href="../css/whereami.css">
 
 </head>
 
-<body>
-
-
-  <input type="file" accept="video/*" capture id="recorder">
+<body >
+    <div>
+        <div>
+            <nav class="navbar navbar-inverse" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        </button>
+                        <div class="flex-center">
+                            <a href="../index.html"><img class="logo" src="../img/logo.png"> <span class="logo-text">Where MI</span></a>
+                        </div>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li > <a style="color: white;
+                                font-size: 20px;
+                                margin-top: 9px;" href="../index.html">Home</a></li>
+                            <!-- <a class="button" href="#popup1">Sign in</a> -->
+                            <!-- <button type="button"  id="authorize_button" > Sign-in with Google</button> -->
+                            <!-- SIGN IN POPUP -->
+                            <!-- <div id="popup1" class="overlay">
+                                <div class="popup">
+                                  
+                                  <a class="close" href="#">&times;</a>
+                                  <div class="content">
+                                     
+                                       <button type="button"  id="authorize_button" class="btn btn-Google btn-lg"> Google+</button>
+                                  </div>
+                                </div>
+                                </div> -->
+                            <li>
+                                <button style="display: none;" type="button" id="authorize_button"
+                                    class="btn btn-Google btn-lg google-button">Sign in with Google+</button>
+                                <button type="button" class="btn btn-default btn-sm" id="signout_button"
+                                    style="display: none; font-size: 14px; margin-top:17px;">
+                                <span class="glyphicon glyphicon-log-in"></span> Sign-out
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container-fluid -->
+            </nav>
+           <div class="container">
+  
   <!--scegli file da pc-->
 
+         
 
-  <div><button id="btnStart">Registra</button></div>
  
 
+<div class="row">
+<div class="col-md-6 register-section">
+  <div class="block-center">
+      <div>Seleziona audio localmente</div>
+    <input class="search-directions carica-file" type="file" accept="video/*" capture id="recorder">
+     <div>Oppure</div>
+   <div> <button class="search-directions register" id="btnStart"><img class="microfone" src="../img/microphone.png"> Registra</button></div>
+    <audio controls style="width: 0px; height: 0px;"></audio> <!-- tag dove viene registrato l'audio-->
+  <audio id="aud2" style="display: none;" controls></audio> <!-- tag dove viene visualizzato l'audio-->
+  <button class="search-directions  upload-audio" type="button" id="upload"><img class="microfone" src="../img/upload.png">Carica</button>
+  </div>
+  
+</div>
 
-
-  <audio controls style="width: 0px; height: 0px;"></audio> <!-- tag dove viene registrato l'audio-->
-
-  <audio id="aud2" style="visibility: hidden;" controls></audio> <!-- tag dove viene visualizzato l'audio-->
-
-
-  <button type="button"  id="authorize_button" > Sign-in with Google</button>
+  <!-- <button type="button"  id="authorize_button" > Sign-in with Google</button>
 
   <button type="button" class="btn btn-default btn-sm" id="signout_button" style="display: none; font-size: 14px">
     <span class="glyphicon glyphicon-log-in"></span> Sign-out
-  </button>
- <button type="button" id="upload">Carica</button>
-
-        <div class="contenitore container">
-          <div class="row">
+  </button> -->
+ 
+          <div class="col-md-6 form-content">
             <form>
               <h3>Inserisci le informazioni per salvare la nuova clip</h3>
               <div class="form-group">
@@ -219,14 +275,19 @@
             </form>
           </div>
         </div>
+</div>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
           integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
         </script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
           integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
         </script>
+        <!-- SIGN IN WITH GOOGLE -->
         <script type="text/javascript" src="../Javascript/editor.js"></script>
         <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
           onreadystatechange="if (this.readyState === 'complete') this.onload()">
