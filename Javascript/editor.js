@@ -1,6 +1,21 @@
-var Andriy = "geoloc:";
-
+var audSave = document.getElementById('aud2');
 var titolo, scopo, lingua, categoria, descrizione, audience, dettagli;
+
+
+var openLocationCode = "da fare";
+titolo = document.getElementById("titolo").value;
+descrizione = document.getElementById("descrizione").value;
+scopo = document.getElementById("scopo").value;
+lingua = document.getElementById("lingua").value;
+categoria = document.getElementById("categoria").value;
+audience = document.getElementById("audience").value;
+dettagli = document.getElementById("dettagli").value;
+
+
+var metadatiClip = openLocationCode + ":" + titolo + ":" + descrizione + ":" + scopo + ":" + lingua + ":" + categoria + ":" + audience + ":" + dettagli;
+var descrizioneClip = "questa è la descrizione";
+
+
 
 // Controllo sullo slider
 var slider = document.getElementById("dettagli");
@@ -11,45 +26,15 @@ slider.oninput = function () {
 }
 
 
-function printVal() {
-    console.log("Titolo: " + titolo);
-    console.log("Descrizione: " + descrizione);
-    console.log("Scopo: " + scopo);
-    console.log("Lingua: " + lingua);
-    console.log("Categoria: " + categoria);
-    console.log("Audience: " + audience);
-    console.log("Dettagli: " + dettagli);
-
-    Andriy = Andriy + scopo + ":" + lingua + ":" + categoria + "[:A+" + audience + "][:P+" + dettagli + "]";
-    console.log(Andriy);
-    return false;
-}
-
-function formchk() {
-    if ((titolo != "") && (descrizione != "")) {
-        console.log("non lo so mica");
-        titolo = document.getElementById("titolo").value;
-        descrizione = document.getElementById("descrizione").value;
-        scopo = document.getElementById("scopo").value;
-        lingua = document.getElementById("lingua").value;
-        categoria = document.getElementById("categoria").value;
-        audience = document.getElementById("audience").value;
-        dettagli = document.getElementById("dettagli").value;
-
-        printVal();
-        return false;
-    } else {
-        console.log("Ci sono dei valori vuoti che vanno riempiti")
-    }
-
-}
 
 function showAudio(show) { //mostra o nasconde il tag audio
     var audio = document.getElementById('aud2');
     if (show == true) {
-        audio.style.visibility = 'visible';
+        // audio.style.visibility = 'visible';
+        audio.style.display = 'block';
     } else {
-        audio.style.visibility = 'hidden';
+        // audio.style.visibility = 'hidden';
+        audio.style.display = 'none';
     }
 
 }
@@ -62,13 +47,9 @@ function toggleRegistra(registra) { // cambia tasto registra
 
 let constraintObj = {
     audio: true,
-    video: false
+    video: true
 };
-// width: 1280, height: 720  -- preference only
-// facingMode: {exact: "user"}
-// facingMode: "environment"
 
-//handle older browsers that might implement getUserMedia in some way
 if (navigator.mediaDevices === undefined) {
     navigator.mediaDevices = {};
     navigator.mediaDevices.getUserMedia = function (constraintObj) {
@@ -107,7 +88,7 @@ navigator.mediaDevices.getUserMedia(constraintObj)
 
         //add listeners for saving audio/audio
         let start = document.getElementById('btnStart');
-        let vidSave = document.getElementById('aud2');
+        
         let mediaRecorder = new MediaRecorder(mediaStreamObj);
         let chunks = [];
         var started = false;
@@ -133,12 +114,12 @@ navigator.mediaDevices.getUserMedia(constraintObj)
             console.log(ev.data);
         }
         mediaRecorder.onstop = (ev) => {
-            let blob = new Blob(chunks, {
-                'type': 'audio/mp4;'
+             let blob = new Blob(chunks, {
+                'type': 'video/*;'
             }); //passo l'array all'oggetto blob che li salva nella variabile
             chunks = [];
             let audioURL = window.URL.createObjectURL(blob);
-            vidSave.src = audioURL;
+            audSave.src = audioURL;
         }
     })
 
@@ -147,14 +128,14 @@ navigator.mediaDevices.getUserMedia(constraintObj)
 ///////////AUDIO DA PC////////
 
 const recorder = document.getElementById('recorder');
-//const player = document.getElementById('player'); //non c'è
+
 
 recorder.addEventListener('change', function (e) {
     const file = e.target.files[0];
     const url = URL.createObjectURL(file);
 
     // Do something with the audio file.
-   recorder.src = url;
+    recorder.src = url;
 });
 
 
@@ -169,15 +150,6 @@ recorder.addEventListener('change', function (e) {
 
 
 
-//const API_KEY = "AIzaSyARgIB-2zTsZcy7IoYDUWlXu0a7yQDOj9s";
-//const CLIENT_ID = "840091091157-fitfqdv3e84ivdh1fj0on6s1ganlu1eo.apps.googleusercontent.com";
-
-/* work online
-const API_KEY = "AIzaSyBcTEce_U3Ho-Ua4SiUmOvo0tPDzWkuBd4";
-const CLIENT_ID = "899661843536-gl9bsjpnqbjkcddj1e8167o6e6anpmrd.apps.googleusercontent.com";
- */
-
-//CODICI funzionanti per upload YT + backup per esaurimento quote (error 403 - youtube.quota)
 const API_KEY = "AIzaSyAisQVJRCJqUAW-wICyJbshSxg_jPL-Y-A";
 const CLIENT_ID = "600073852662-qiaidgofjs1bt8dpd1jgm3tbk72sdlej.apps.googleusercontent.com";
 
@@ -194,13 +166,7 @@ var signoutButton = document.getElementById('signout_button');
 var utenteButton = document.getElementById('buttonLogin');
 var update = document.getElementById('update');
 
-/*function f() {
-  alert("fai login");
 
-}*/
-/**
- *  On load, called to load the auth2 library and API client library.
- */
 function handleClientLoad() {
     gapi.load('client:auth2', initClient);
 }
@@ -293,6 +259,7 @@ window.uploadToYoutube = async function (urlClip, titolo, metadati, descrizioneC
     return true;
 }
 
+
 async function uploadRawFile(videoclip, titolo, metadatiClip, descrizioneClip) {
     var token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token;
     var params = {
@@ -319,7 +286,7 @@ async function uploadRawFile(videoclip, titolo, metadatiClip, descrizioneClip) {
     var okUpload;
     //Upload via API youtube (POST)
 
-    
+
     $.ajax({
             method: 'POST',
             url: 'https://www.googleapis.com/upload/youtube/v3/videos?access_token=' + encodeURIComponent(token) +
@@ -339,36 +306,27 @@ async function uploadRawFile(videoclip, titolo, metadatiClip, descrizioneClip) {
             return false;
         });
 
-        
-/*
-       var r = new XMLHttpRequest(); 
-       var url= "https://www.googleapis.com/upload/youtube/v3/videos?access_token=" + encodeURIComponent(token) +
-       "&part=snippet,status";
 
-       r.open("POST", url, true);
-       r.onreadystatechange = function () {
-           if (r.readyState != 4 || r.status != 200) return; 
-           console.log(r.responseText);
-       };
-       r.send(request);
-*/
+
 }
 
-var titolo = "mani in alto, questa è una prova";
-openLocationCode = "questa è la posizione ";
-scopo = "questo è lo scopo";
-metadatiClip = openLocationCode +":"+scopo;
-var descrizioneClip = "questa è la descrizione";
+
 
 
 $("#upload").click(uploadYoutube);
 
 
 
- async function uploadYoutube(){
-    var success = await window.uploadToYoutube(recorder.src, titolo, metadatiClip, descrizioneClip); //recorder è quello del file importato dal pc
-    if(success){
+async function uploadYoutube() {
+    var success = await window.uploadToYoutube(audSave.src || recorder.src, titolo, metadatiClip, descrizioneClip);
+    if (success) {
         alert("caricato");
     }
 }
- 
+
+//  RESPONSIVE HEADER
+$('ul.nav li.dropdown').hover(function () {
+    $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+}, function () {
+    $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+});

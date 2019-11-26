@@ -1,16 +1,27 @@
 
-     /**************SETTAGGIO MAPPA*************/
+    
      
-     if(navigator.geolocation){ //controllo se è presente la geolocalizzazione
+    //  if(navigator.geolocation){ //controllo se è presente la geolocalizzazione
+    //       navigator.geolocation.getCurrentPosition(initAutocomplete);
+    //   }else{
+    //       console.log('position not available'); //messaggio di errore se non è presente
+    //   }
+
+
+ /**************SETTAGGIO MAPPA*************/
+
+    // funzione pr l'inizializazione delle coordinate
+
+      function initCoords() {
+        if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(initAutocomplete);
-      }else{
-          console.log('position not available'); //messaggio di errore se non è presente
+        } else {
+          showError("Your browser does not support Geolocation!");
+        }
       }
-      
 
       function initAutocomplete(position) {
         var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
         var map = new google.maps.Map(document.getElementById('map'), {
           center: coords,
           zoom: 17,
@@ -303,10 +314,3 @@ function onYouTubeIframeAPIReady() {
         togglePlayButton(true);
       }); 
 } 
-
-
-
-
- 
-
-
