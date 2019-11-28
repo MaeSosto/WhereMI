@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="886c0a95-cf51-4cda-8d69-3e6db420a349" name="Default Changelist" comment="" />
+    <list default="true" id="1888dd3a-280e-49e7-9f0b-12584de9d815" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +16,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1S6iEvVjdPLSSGfVTQN8ZZW3UkO" />
+  <component name="ProjectId" id="1UA5BGeYKenrNgITh5zYs6QQeMl" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -38,13 +38,13 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="886c0a95-cf51-4cda-8d69-3e6db420a349" name="Default Changelist" comment="" />
-      <created>1570890337944</created>
+      <changelist id="1888dd3a-280e-49e7-9f0b-12584de9d815" name="Default Changelist" comment="" />
+      <created>1574786421590</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1570890337944</updated>
-      <workItem from="1570890340510" duration="3655000" />
-      <workItem from="1571957834176" duration="7129000" />
+      <updated>1574786421590</updated>
+      <workItem from="1574786424024" duration="11814000" />
+      <workItem from="1574954999672" duration="4155000" />
     </task>
     <servers />
   </component>
@@ -56,7 +56,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

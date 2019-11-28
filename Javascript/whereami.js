@@ -21,193 +21,106 @@
       }
 
       function initAutocomplete(position) {
-        var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: coords,
-          zoom: 17,
-          mapTypeId: 'roadmap',
-          disableDefaultUI: true
-          
-        });
-        
-        var marker = new google.maps.Marker({
-          position: coords,
-          
-      });
+          var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+          var directionsRenderer = new google.maps.DirectionsRenderer;
+          var directionsService = new google.maps.DirectionsService;
+          var geocoder = new google.maps.Geocoder();
+          var map=creamappa(coords);
+          var marker=creaMarker(coords);
 
           marker.setMap(map);
-          var input = document.getElementById('search');
-          var searchBox = new google.maps.places.SearchBox(input);
-          map.controls.push(input);
 
-          // Bias the SearchBox results towards current map's viewport.
-          map.addListener('bounds_changed', function() {
-              searchBox.setBounds(map.getBounds());
-          });
-
-          var markers = [];
-          // Listen for the event fired when the user selects a prediction and retrieve
-          // more details for that place.
-          searchBox.addListener('places_changed', function() {
-              var places = searchBox.getPlaces();
-
-              if (places.length == 0) {
-                  return;
-              }
-
-              // Clear out the old markers.
-              markers.forEach(function(marker) {
-                  marker.setMap(null);
+          function geocodeAddress(geocoder, resultsMap) {
+              marker.setMap(null);
+              var address = document.getElementById('pos').value;
+              geocoder.geocode({'address': address}, function (results) {
+                  resultsMap.setCenter(results[0].geometry.location);
+                  marker = new google.maps.Marker({
+                      map: resultsMap,
+                      position: results[0].geometry.location,
+                      draggable:true
+                  });
               });
-              markers = [];
-
-              // For each place, get the icon, name and location.
-              var bounds = new google.maps.LatLngBounds();
-              places.forEach(function(place) {
-                  if (!place.geometry) {
-                      console.log("Returned place contains no geometry");
-                      return;
-                  }
-                  var icon = {
-                      url: place.icon,
-                      size: new google.maps.Size(71, 71),
-                      origin: new google.maps.Point(0, 0),
-                      anchor: new google.maps.Point(17, 34),
-                      scaledSize: new google.maps.Size(25, 25)
-                  };
-
-                  // Create a marker for each place.
-                  markers.push(new google.maps.Marker({
-                      map: map,
-                      icon: icon,
-                      title: place.name,
-                      position: place.geometry.location
-                  }));
-
-                  if (place.geometry.viewport) {
-                      // Only geocodes have viewport.
-                      bounds.union(place.geometry.viewport);
-                  } else {
-                      bounds.extend(place.geometry.location);
-                  }
-              });
-              map.fitBounds(bounds);
-          });
-
-
-    /*********************NAVIGAZIONE**************************/
-
-          function calculateRoute(from, to) {
-
-              var myOptions = {
-                  zoom: 10,
-                  center: coords,
-                  mapTypeId: google.maps.MapTypeId.ROADMAP
-              };
-              // Draw the map
-              var mapObject = new google.maps.Map(document.getElementById("map"), myOptions);
-
-              var directionsService = new google.maps.DirectionsService();
-              var directionsRequest = {
-                  origin: from,
-                  destination: to,
-                  travelMode: google.maps.DirectionsTravelMode.DRIVING,
-                  unitSystem: google.maps.UnitSystem.METRIC
-              };
-              directionsService.route(
-                  directionsRequest,
-                  function(response, status)
-                  {
-                      if (status == google.maps.DirectionsStatus.OK)
-                      {
-                          new google.maps.DirectionsRenderer({
-                              map: mapObject,
-                              directions: response
-                          });
-                      }
-                      else
-                          $("#error").append("Unable to retrieve your route<br />");
-                  }
-              );
+              showBar(false);
+              return(marker)
           }
 
-          $(document).ready(function () {
-              // If the browser supports the Geolocation API
-              if (typeof navigator.geolocation == "undefined") {
-                  $("#error").text("Your browser doesn't support the Geolocation API");
-                  return;
-              }
+          directionsRenderer.setMap(map);
+          //directionsRenderer.setPanel(document.getElementById('right-panel'));
 
-              $("#from-link, #to-link").click(function (event) {
-                  event.preventDefault();
-                  var addressId = this.id.substring(0, this.id.indexOf("-"));
 
-                  navigator.geolocation.getCurrentPosition(function (position) {
-                          var geocoder = new google.maps.Geocoder();
-                          geocoder.geocode({
-                                  "location": new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
-                              },
-                              function (results, status) {
-                                  if (status == google.maps.GeocoderStatus.OK)
-                                      $("#" + addressId).val(results[0].formatted_address);
-                                  else
-                                      $("#error").append("Unable to retrieve your address<br />");
-                              });
-                      },
-                      function (positionError) {
-                          $("#error").append("Error: " + positionError.message + "<br />");
-                      },
-                      {
-                          enableHighAccuracy: true,
-                          timeout: 10 * 1000 // 10 seconds
-                      });
-              });
-              /**************** invio della funzione per creare la strada**************/
+          compiler(end,map);
+          compiler(pos,map);
 
-              $("#calculate-route").submit(function (event) {
-                  event.preventDefault();
-                  calculateRoute($("#from").val(), $("#to").val());
-              });
+          document.getElementById('end').addEventListener('change', function () {
+              calculateAndDisplayRoute(directionsService, directionsRenderer,marker)
+          });
 
-              /**************tasto per resettare la mappa*****************/
+          document.getElementById('pos').addEventListener('change', function() {
+              marker=geocodeAddress(geocoder, map,marker);
+          });
 
-              $("#reset-map").click(function () {
-                   map = new google.maps.Map(document.getElementById('map'), {
-                      center: coords,
-                      zoom: 17,
-                      mapTypeId: 'roadmap'
-
-                  });
-                   marker = new google.maps.Marker({
-                      position: coords,
-
-                  });
-
-                  marker.setMap(map);
-              });
+          document.getElementById('reset-map').addEventListener('click',function () {
+                map=creamappa(marker.position);
+                marker=creaMarker(marker.position)
+                marker.setMap(map);
           })
-
-          $("#set-position").click(function () {
-              
-              map = new google.maps.Map(document.getElementById('map'), {
-                  center: coords,
-                  zoom: 17,
-                  mapTypeId: 'roadmap'
-
-              });
-              marker = new google.maps.Marker({
-                  position: coords,
-
-              });
-          })
-
-
-
-///////////////////////////////////////////////////////////////////////////
-        // Create the search box and link it to the UI element.
-
       }
 
+
+    function calculateAndDisplayRoute(directionsService, directionsRenderer,marker) {
+          marker.setMap(null);
+        var end = document.getElementById('end').value;
+        directionsService.route({
+            origin:marker.position,
+            destination: end,
+            travelMode: 'WALKING'
+        }, function(response, status) {
+            if (status === 'OK') {
+                directionsRenderer.setDirections(response);
+            } else{}
+        });
+
+    }
+
+
+
+    function compiler(input,map) {
+
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls.push(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function () {
+            searchBox.setBounds(map.getBounds());
+        });
+
+        searchBox.addListener('places_changed', function () {
+            var places = searchBox.getPlaces();
+
+            if (places.length == 0) {
+                return;
+            }
+
+        })
+    }
+
+    function creamappa(coords){
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 11,
+            center: coords,
+        });
+        return(map);
+    }
+
+    function creaMarker(coords) {
+        var marker=new google.maps.Marker({
+            position: coords,
+            draggable: true
+        });
+        return marker;
+    }
 
 
      
@@ -232,6 +145,7 @@
 
 
 /**********FINESTRA PLAYER E AUDIO **********/
+
 function showPlayerDiv(show){   //mostra o nasconde la finestra del player e audio
   var bar=document.getElementById('bar');
   if (show==true) {
@@ -241,6 +155,21 @@ function showPlayerDiv(show){   //mostra o nasconde la finestra del player e aud
   }
 
 }
+
+    function showBar(show){   //mostra o nasconde la finestra del player e audio
+
+        var bottone=document.getElementById('set-position');
+        var barra=document.getElementById('pos');
+        if (show==true) {
+            bottone.style.visibility='hidden';
+            barra.style.visibility='visible';
+        }else{
+            bottone.style.visibility='visible';
+            barra.style.visibility='hidden';
+        }
+
+    }
+
  
 var urlvideo = ["FV-AmtffJpI", "1Z72j3W3eAc"]; //array con id dei video da riprodurre, creare funzione per popolarlo
 var player;

@@ -3,6 +3,7 @@ var titolo, scopo, lingua, categoria, descrizione, audience, dettagli;
 
 
 var openLocationCode = "da fare";
+
 titolo = document.getElementById("titolo").value;
 descrizione = document.getElementById("descrizione").value;
 scopo = document.getElementById("scopo").value;

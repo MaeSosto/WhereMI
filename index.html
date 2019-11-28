@@ -1,10 +1,9 @@
 <html>
     <head>
-    </script>
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <!--includo libreria jquery tramite CDN, niente download-->
         <!--Api youtube audio-->
         <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
@@ -65,12 +64,13 @@
                                 <!-- <li> <button type="button" onclick="showPlayerDiv(false)">hide</button></li> -->
                                 <li class="active remove-position">
                                     <div class="wrap">
-                                        <div class="search">
-                                            <input id="search" type="text" type="text" class="searchTerm"
-                                                placeholder="Where do you want to go?">
-                                            <button type="submit" class="searchButton">
-                                            <i class="fa fa-search"></i>
-                                            </button>
+                                        <div class="direction flex-center">
+
+                                                <input class="search-directions" type="text" id="end" name="to" required="required" placeholder="Dove vuoi andare?"
+                                                       size="30" />
+
+                                            <input value="Go" class="search-directions" type="submit" />
+
                                         </div>
                                         <div>
                                            
@@ -123,19 +123,13 @@
                     </div>
                     <!-- /.container-fluid -->
                 </nav>
-                <div class="container">
-                    <div class="direction flex-center"> <label>From<input class="search-directions" type="text" id="from"
-                        name="from" required="required" placeholder="Partenza" size="30" />
-                        </label> <label>To
-                        <input class="search-directions" type="text" id="to" name="to" required="required" placeholder="Arrivo"
-                            size="30" />
-                        </label>
-                        <input value="Go" class="search-directions" type="submit" />
-                    </div>
+                <div class="container" >
                     <div class="set-buttons space-between">
-                        <input class="search-directions" type="button" id="set-position" value="Set position" />
-                        <button class="search-directions add-margin-top" type="button"
-                            onclick="showPlayerDiv(true)">Clips</button>
+                        <button class="search-directions" type="button" id="set-position" onclick="showBar(true)" value="Set position">Set position</button>
+                               <input class="search-directions-extra" type="text"  id="pos"
+                               required="required" placeholder="sposta marker" size="30" />
+
+                        <button class="search-directions add-margin-top" type="button" onclick="showPlayerDiv(true)">Clips</button>
                         <input class="search-directions" type="button" id="reset-map" value="Reset map" />
                     </div>
                     <div id="map" class="map"></div>

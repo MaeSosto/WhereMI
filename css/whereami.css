@@ -21,7 +21,10 @@ body {
   min-height: 700px;
 }
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-
+.navbar{
+border-radius: 0;
+  min-height: 72px;
+}
 body{
   /* background: #f2f2f2; */
   background-image: url('https://cdn.pixabay.com/photo/2017/08/17/07/47/travel-2650303_1280.jpg') ;
@@ -370,6 +373,23 @@ a:hover {
     text-align: left;
 }
 .search-directions{
+  z-index: 10;
+  visibility: visible;
+  position: relative;
+  color: black;
+  height: 36px;
+  border: 3px solid #04b4cc;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 6px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.search-directions-extra{
+  position: absolute;
+  visibility: hidden;
+  color: black;
   height: 36px;
   border: 3px solid #04b4cc;
   padding-left: 12px;
