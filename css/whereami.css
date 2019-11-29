@@ -34,6 +34,7 @@ body{
 }
 .container{
   margin-bottom: 60px;
+  overflow: hidden;
 }
 .search {
   width: 100%;
@@ -293,11 +294,11 @@ a:hover {
   visibility: hidden;
   position: absolute;
   z-index: 1;
-  height: 79%;
+  height: 100%;
   width: 40%;
   background: white;
-  overflow-y: auto;
-  top: 61px;
+  overflow: auto;
+  top: 72px;
   border-top-right-radius: 23px;
   
 }
@@ -349,6 +350,7 @@ a:hover {
 }
 .form_container{
   width: auto;
+  overflow: hidden;
 }
 @media (min-width: 360px) {
 .login-button {

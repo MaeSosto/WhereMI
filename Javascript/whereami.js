@@ -39,7 +39,8 @@
                   marker = new google.maps.Marker({
                       map: resultsMap,
                       position: results[0].geometry.location,
-                      draggable:true
+                      draggable:true,
+                      id: "marker"
                   });
               });
               showBar(false);
@@ -58,28 +59,36 @@
           });
 
           document.getElementById('pos').addEventListener('change', function() {
+
               marker=geocodeAddress(geocoder, map,marker);
+              marker.setMap(map);
           });
 
           document.getElementById('reset-map').addEventListener('click',function () {
-                map=creamappa(marker.position);
-                marker=creaMarker(marker.position)
-                marker.setMap(map);
-          })
+             map.setCenter(marker.position);
+          });
+
+          google.maps.event.addListener(marker, 'dragend', function() {
+              marker.setPosition(marker.getPosition());
+
+      });
+
       }
 
 
     function calculateAndDisplayRoute(directionsService, directionsRenderer,marker) {
-          marker.setMap(null);
         var end = document.getElementById('end').value;
         directionsService.route({
             origin:marker.position,
             destination: end,
-            travelMode: 'WALKING'
+            travelMode: 'WALKING',
+            
         }, function(response, status) {
             if (status === 'OK') {
                 directionsRenderer.setDirections(response);
-            } else{}
+            } else{
+                console.log(status);
+            }
         });
 
     }
@@ -117,7 +126,8 @@
     function creaMarker(coords) {
         var marker=new google.maps.Marker({
             position: coords,
-            draggable: true
+            draggable: true,
+            id: "marker"
         });
         return marker;
     }

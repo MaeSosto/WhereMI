@@ -129,10 +129,14 @@
                                <input class="search-directions-extra" type="text"  id="pos"
                                required="required" placeholder="sposta marker" size="30" />
 
-                        <button class="search-directions add-margin-top" type="button" onclick="showPlayerDiv(true)">Clips</button>
+                        <button class="search-directions " type="button" onclick="showPlayerDiv(true)">Clips</button>
                         <input class="search-directions" type="button" id="reset-map" value="Reset map" />
                     </div>
-                    <div id="map" class="map"></div>
+                    <div id="map" class="map">
+                        <div id="route">
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -359,8 +363,7 @@
                     type="button" id="video2button">url video</button></div>
                 <div class="col-lg-8" style="background: chocolate; height: 15%; border-bottom: 1px solid #e2e2e2;"> name </div>
             </div>
-        </div>
-        <!-- LOGIN SCRIPTS -->
+        </div>        <!-- LOGIN SCRIPTS -->
         <script type="text/javascript" src="Javascript/login.js"></script>
         <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
             onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
