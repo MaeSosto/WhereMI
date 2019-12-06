@@ -35,18 +35,12 @@
 
           marker.setMap(map);
 
-          function geocodeAddress(geocoder, resultsMap,marker) {
+          function geocodeAddress(geocoder, resultsMap) {
               marker.setMap(null);
               var address = document.getElementById('pos').value;
               geocoder.geocode({'address': address}, function (results) {
                   resultsMap.setCenter(results[0].geometry.location);
-                   marker = new google.maps.Marker({
-                      map: resultsMap,
-                      position: results[0].geometry.location,
-                      draggable:true,
-                      animation: google.maps.Animation.DROP,
-                      id: "marker"
-                  });
+                  marker.setPosition(results[0].geometry.location)
               });
               showBar(false);
               return(marker)
@@ -92,6 +86,7 @@
 
           document.getElementById('reset-map').addEventListener('click',function () {
              map.setCenter(marker.position);
+             map.setZoom(15)
           });
 
           google.maps.event.addListener(marker, 'dragend', function() {
@@ -100,11 +95,6 @@
       });
 
       }
-
-
-
-
-
 
     function compiler(input,map) {
 
