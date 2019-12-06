@@ -20,6 +20,9 @@
         }
       }
 
+
+
+
       function initAutocomplete(position) {
           var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
@@ -27,24 +30,43 @@
           var directionsService = new google.maps.DirectionsService;
           var geocoder = new google.maps.Geocoder();
           var map=creamappa(coords);
+
           var marker=creaMarker(coords);
 
           marker.setMap(map);
 
-          function geocodeAddress(geocoder, resultsMap) {
+          function geocodeAddress(geocoder, resultsMap,marker) {
               marker.setMap(null);
               var address = document.getElementById('pos').value;
               geocoder.geocode({'address': address}, function (results) {
                   resultsMap.setCenter(results[0].geometry.location);
-                  marker = new google.maps.Marker({
+                   marker = new google.maps.Marker({
                       map: resultsMap,
                       position: results[0].geometry.location,
                       draggable:true,
+                      animation: google.maps.Animation.DROP,
                       id: "marker"
                   });
               });
               showBar(false);
               return(marker)
+          }
+
+          function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+              var end = document.getElementById('end').value;
+              directionsService.route({
+                  origin:marker.position,
+                  destination: end,
+                  travelMode: 'WALKING',
+
+              }, function(response, status) {
+                  if (status === 'OK') {
+                      directionsRenderer.setDirections(response);
+                  } else{
+                      console.log(status);
+                  }
+              });
+
           }
 
           directionsRenderer.setMap(map);
@@ -53,13 +75,17 @@
 
           compiler(end,map);
           compiler(pos,map);
+          compiler(newMarker,map);
+
+          document.getElementById('newMarker').addEventListener('change', function () {
+            StorageMarker(geocoder,map);
+          });
 
           document.getElementById('end').addEventListener('change', function () {
               calculateAndDisplayRoute(directionsService, directionsRenderer,marker)
           });
 
           document.getElementById('pos').addEventListener('change', function() {
-
               marker=geocodeAddress(geocoder, map,marker);
               marker.setMap(map);
           });
@@ -76,22 +102,7 @@
       }
 
 
-    function calculateAndDisplayRoute(directionsService, directionsRenderer,marker) {
-        var end = document.getElementById('end').value;
-        directionsService.route({
-            origin:marker.position,
-            destination: end,
-            travelMode: 'WALKING',
-            
-        }, function(response, status) {
-            if (status === 'OK') {
-                directionsRenderer.setDirections(response);
-            } else{
-                console.log(status);
-            }
-        });
 
-    }
 
 
 
@@ -117,7 +128,7 @@
 
     function creamappa(coords){
         var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 11,
+            zoom: 15,
             center: coords,
         });
         return(map);
@@ -127,11 +138,43 @@
         var marker=new google.maps.Marker({
             position: coords,
             draggable: true,
+            animation: google.maps.Animation.DROP,
             id: "marker"
         });
         return marker;
     }
+    function stampaMarker(marker,map) {
+        marker.setMap(map);
+    }
 
+
+    function StorageMarker(geocoder,map){
+        var nome= document.getElementById('newMarker').value;
+        var marker=addressconverter(geocoder,map,nome);
+        var titolo = document.getElementById("titolo").value;
+        var descrizione = document.getElementById("descrizione").value;
+        var scopo = document.getElementById("scopo").value;
+        var lingua = document.getElementById("lingua").value;
+        var categoria = document.getElementById("categoria").value;
+        var audience = document.getElementById("audience").value;
+        var dettagli = document.getElementById("dettagli").value;
+
+        Luogo(marker,lingua,audience,dettagli,descrizione,scopo,titolo,categoria)
+    }
+
+    function addressconverter(geocoder,resultsMap,address) {
+
+        var results=geocoder.geocode({'address': address});
+        function x(results) {
+            var marker;
+            resultsMap.setCenter(results[0].geometry.location);
+            marker=creaMarker(results[0].geometry.location)
+            return marker
+        }
+
+        return x(results);
+
+    }
 
      
  /*********** LOGIN BUTTON ***********/
@@ -252,4 +295,183 @@ function onYouTubeIframeAPIReady() {
         player.playVideo;
         togglePlayButton(true);
       }); 
-} 
+}
+
+    class Luogo{
+
+        constructor(marker,lingua,audience,dettagli,descrizione,scopo,titolo,categoria) {
+            this.marker = Marker
+            this.lingua = lingua
+            this.audience = audience
+            this.dettagli = dettagli
+            this.descrizione = descrizione
+            this.scopo=scopo
+            this.titolo=titolo
+            this.categoria=categoria
+
+        }
+
+        getaudience(){
+            return this.audience;
+        }
+        getlingua(){
+            return this.lingua
+        }
+        getdettagli(){
+            return this.dettagli;
+        }
+        getmarker(){
+            return this.marker;
+        }
+        getdescrizione(){
+            return this.descrizione;
+        }
+        getscopo(){
+            return this.scopo
+        }
+        gettitolo(){
+            return this.titolo
+        }
+        getcategoria(){
+            return this.categoria
+        }
+   }
+
+
+   /*************** FILTRO e creazione Luoghi **************/
+   /*
+    //var marker=creaMarker(coords);
+    var arra=new Array();
+    var c;
+    //var nome= document.getElementById('newMarker').value;
+    //var marker=addressconverter(geocoder,map,nome);
+
+    function b(){
+        var titolo = document.getElementById("titolo").value;
+        var descrizione = document.getElementById("descrizione").value;
+        var scopo = document.getElementById("scopo").value;
+        var lingua = document.getElementById("lingua").value;
+        var categoria = document.getElementById("categoria").value;
+        var audience = document.getElementById("audience").value;
+        var dettagli = document.getElementById("dettagli").value;
+
+        return (c=new Luogo(2,lingua,audience,dettagli,descrizione,scopo,titolo,categoria))
+
+    }
+
+    document.getElementById('clicca').addEventListener('click', function(){
+            x=b();
+            arra.push(x)
+            console.log(arra[0].getmarker()+arra[0].gettitolo()+arra[0].getdescrizione()+arra[0].getlingua())
+
+        }
+
+    );
+
+
+    function addressconverter(geocoder,resultsMap,address) {
+
+        var results=geocoder.geocode({'address': address});
+        function x(results) {
+            var marker;
+            resultsMap.setCenter(results[0].geometry.location);
+            marker=creaMarker(results[0].geometry.location)
+            return marker
+        }
+
+        return x(results);
+
+    }
+
+    function filter(input){
+        var y=arra.length;
+        var controllo=0
+        var foo=new Array()
+        for (var i=0;i<y;i++){
+
+            controllo=0
+            if(arra[i].getlingua()==input.getlingua()&&controllo==0){
+                foo.push(arra[i])
+                controllo++;
+            }
+            if(arra[i].getscopo()==input.getscopo()&&controllo==0){
+                foo.push(arra[i])
+                controllo++;
+            }
+            if(arra[i].getaudience()==input.getaudience()&&controllo==0){
+                foo.push(arra[i])
+                controllo++;
+            }
+            if(arra[i].getdettagli()==input.getdettagli()&&controllo==0){
+                foo.push(arra[i])
+                controllo++;
+            }
+            if(arra[i].getcategoria()==input.getcategoria()&&controllo==0){
+                foo.push(arra[i])
+                controllo++;
+            }
+
+
+        }
+        return foo;
+    }
+
+    function displayfilter(input,map) {
+        var y = input.length;
+
+        for (var i = 0; i < y; i++) {
+            stampaMarker(input[i].getmarker().map);
+        }
+    }
+
+    function resetFilter(input){
+        var y = input.length;
+
+        for (var i = 0; i < y; i++) {
+            input[i].getmarker().setMap(null);
+        }
+        input=[];
+    }
+
+
+    class Luogo{
+
+        constructor(marker,lingua,audience,dettagli,descrizione,scopo,titolo,categoria) {
+            this.marker = marker
+            this.lingua = lingua
+            this.audience = audience
+            this.dettagli = dettagli
+            this.descrizione = descrizione
+            this.scopo=scopo
+            this.titolo=titolo
+            this.categoria=categoria
+
+        }
+
+        getaudience(){
+            return this.audience;
+        }
+        getlingua(){
+            return this.lingua
+        }
+        getdettagli(){
+            return this.dettagli;
+        }
+        getmarker (){
+            return this.marker
+        }
+        getdescrizione(){
+            return this.descrizione;
+        }
+        getscopo(){
+            return this.scopo
+        }
+        gettitolo(){
+            return this.titolo
+        }
+        getcategoria(){
+            return this.categoria
+        }
+    }
+
+    */

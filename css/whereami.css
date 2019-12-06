@@ -139,12 +139,22 @@ nav {
 
 
 .map {
-
-
   z-index: 0;
   height: 92%;
   width: 100%;
   background: #eee;
+}
+.structure{
+
+}
+.route {
+
+  z-index: 9999;
+  position: relative;
+  width: 30%;
+  height: 50%;
+  background: white;
+  float: right;
 }
 
 
@@ -293,7 +303,7 @@ a:hover {
 .bar{
   visibility: hidden;
   position: absolute;
-  z-index: 1;
+  z-index: 20;
   height: 100%;
   width: 40%;
   background: white;
