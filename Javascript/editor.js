@@ -2,19 +2,9 @@ var audSave = document.getElementById('aud2');
 var titolo, scopo, lingua, categoria, descrizione, audience, dettagli;
 
 
-var openLocationCode = "da fare";
-
-titolo = document.getElementById("titolo").value;
-descrizione = document.getElementById("descrizione").value;
-scopo = document.getElementById("scopo").value;
-lingua = document.getElementById("lingua").value;
-categoria = document.getElementById("categoria").value;
-audience = document.getElementById("audience").value;
-dettagli = document.getElementById("dettagli").value;
 
 
-var metadatiClip = openLocationCode + ":" + titolo + ":" + descrizione + ":" + scopo + ":" + lingua + ":" + categoria + ":" + audience + ":" + dettagli;
-var descrizioneClip = "questa è la descrizione";
+
 
 
 
@@ -319,6 +309,20 @@ $("#upload").click(uploadYoutube);
 
 
 async function uploadYoutube() {
+    
+var openLocationCode = "da fare";
+titolo = document.getElementById("titolo").value;
+descrizione = document.getElementById("descrizione").value;
+scopo = document.getElementById("scopo").value;
+lingua = document.getElementById("lingua").value;
+categoria = document.getElementById("categoria").value;
+audience = document.getElementById("audience").value;
+dettagli = document.getElementById("dettagli").value;
+
+
+var metadatiClip = openLocationCode + ":" + titolo + ":" + descrizione + ":" + scopo + ":" + lingua + ":" + categoria + ":" + audience + ":" + dettagli;
+
+
     var success = await window.uploadToYoutube(audSave.src || recorder.src, titolo, metadatiClip, descrizioneClip);
     if (success) {
         alert("caricato");

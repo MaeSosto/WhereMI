@@ -13,13 +13,20 @@
       <executable />
     </execution>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1UA5BGeYKenrNgITh5zYs6QQeMl" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../marker" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -44,7 +51,8 @@
       <option name="presentableId" value="Default" />
       <updated>1574786421590</updated>
       <workItem from="1574786424024" duration="11814000" />
-      <workItem from="1574954999672" duration="12976000" />
+      <workItem from="1574954999672" duration="27610000" />
+      <workItem from="1575492356403" duration="18959000" />
     </task>
     <servers />
   </component>
