@@ -3,6 +3,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> <!--includo libreria jquery tramite CDN, niente download-->
+ 
+<!--Youtube audio api--> 
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -78,10 +81,10 @@
       <div>Seleziona audio localmente</div>
     <input class="search-directions carica-file" type="file" accept="video/*" capture id="recorder">
      <div>Oppure</div>
-   <div> <button class="search-directions register" id="btnStart"><img class="microfone" src="../img/microphone.png"> Registra</button></div>
+   <div> <button class="search-directions register" id="btnStart" ><img class="microfone" src="../img/microphone.png">Registra</button></div>
     <audio controls style="width: 0px; height: 0px;"></audio> <!-- tag dove viene registrato l'audio-->
   <audio id="aud2" style="display: none;" controls></audio> <!-- tag dove viene visualizzato l'audio-->
-  <button class="search-directions  upload-audio" type="button" id="upload"><img class="microfone" src="../img/upload.png">Carica</button>
+  <button type="button" id="prova" >Video Salvati</button>
   </div>
   
 </div>
@@ -92,7 +95,7 @@
     <span class="glyphicon glyphicon-log-in"></span> Sign-out
   </button> -->
  
-          <div class="col-md-6 form-content">
+          <div class="col-md-6 form-content" id="metadatiupload" style="display: none;">
             <form>
               <h3>Inserisci le informazioni per salvare la nuova clip</h3>
               <div class="form-group">
@@ -270,10 +273,19 @@
                 <input type="range" class="form-control-range slider" id="dettagli" min="1" max="5" value="3">
               </div>
               <div>
-                <button type="button" class="btn btn-primary" id ="invia">Invia</button>
+                <button type="button" class="btn btn-primary" id="salva">Salva</button>
+                <button class="search-directions  upload-audio" type="button" id="upload"><img class="microfone" src="../img/upload.png">Carica</button>
+  
               </div>
             </form>
           </div>
+        </div>
+
+        <div id="videosalvati" style="display: block; background: red;">
+          <div id="youtube-player2"></div> <!--player invisibile che riproduce video salvati-->
+          <ul id="videosalvatilist"></ul> <!--lista video salvati-->
+
+
         </div>
 </div>
 </div>
