@@ -1,4 +1,10 @@
-.form-content{
+html {
+    height: 100%;
+  }
+  body {
+    min-height: 100%;
+  }
+  .form-content{
     background-color: #00000082;
     padding: 20px;
 }

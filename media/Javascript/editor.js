@@ -127,8 +127,8 @@ recorder.addEventListener('change', function (e) {
 
 ///////////////INIT CLIENT E CARICAMENTO YOUTUBE////////////////
 
-const API_KEY = "AIzaSyAisQVJRCJqUAW-wICyJbshSxg_jPL-Y-A";
-const CLIENT_ID = "600073852662-qiaidgofjs1bt8dpd1jgm3tbk72sdlej.apps.googleusercontent.com";
+// const API_KEY = "AIzaSyAisQVJRCJqUAW-wICyJbshSxg_jPL-Y-A";
+// const CLIENT_ID = "600073852662-qiaidgofjs1bt8dpd1jgm3tbk72sdlej.apps.googleusercontent.com";
 
 // Array of API discovery doc URLs for APIs used by the quickstart
 var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/people/v1/rest"];
@@ -222,6 +222,7 @@ function handleAuthClick(event) {
  */
 function handleSignoutClick(event) {
 	gapi.auth2.getAuthInstance().signOut();
+	window.location.replace("../../index.html");
 }
 
 
@@ -327,7 +328,6 @@ async function uploadYoutubePrivate() {
 		alert("caricato");
 	}
 }
-
 
 window.uploadToYoutubePrivate = async function (urlClip, titolo, metadati) {
 	//Ottieni clip video da URL (hosted cloudinary.com)

@@ -1,7 +1,6 @@
 <html>
 
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -47,10 +46,53 @@
               </div>
             </div>
             -->
+            <!-- <nav class="navbar navbar-expand-lg nav-personal-style ">
+                    <div class="flex-center">
+                            <img class="logo" src="../media/img/logo.png"> <a class="navbar-brand" href="#">Where MI</a>
+                        </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                  
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav mr-auto" style="margin:auto">
+                        <li class="nav-item active">
+                                <div class="direction flex-center">
 
-    <div>
-        <nav class="navbar navbar-inverse" role="navigation">
-            <div class="container-fluid">
+                                        <input class="search-directions" type="text" id="end" name="to" required="required"
+                                            placeholder="Dove vuoi andare?" size="30" />
+    
+                                        <input value="Go" class="search-directions" type="submit" />
+    
+                                    </div>
+                        </li>
+                      </ul>
+                     
+                        <ul class="nav navbar-nav navbar-right">
+                                <li id="userStatus">
+                                    <a style="color: white;
+                                            font-size: 20px;
+                                            margin-top: 9px;" href="../media/html/editor.html">Editor</a>
+                              
+                                <li>
+                                    <button style="display: none; " type="button" id="authorize_button"
+                                        class="btn btn-Google btn-lg google-button">Sign in with Google+</button>
+                                    <button type="button" class="btn btn-default btn-sm" id="signout_button"
+                                        style="display: none; font-size: 14px; margin-top:17px;">
+                                        <span class="glyphicon glyphicon-log-in"></span> Sign-out
+                                    </button>
+                                </li>
+                            </ul>
+                    </div>
+                  </nav> -->
+    <a href="#gotofilter">
+     <div class="fixed-filter-button applied">
+        <svg class="svg-inline--fa fa-filter fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="filter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+            <path fill="currentColor" d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"></path></svg><!-- <i class="fas fa-filter"></i> --></div>
+        </a>
+        <div class="background-image">
+         <nav class="navbar navbar-inverse" role="navigation">
+            <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse"
                         data-target="#bs-example-navbar-collapse-1">
@@ -59,7 +101,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <div class="flex-center">
+                    <div class="flex-center left-on-mobile">
                         <img class="logo" src="../media/img/logo.png"> <a class="navbar-brand" href="#">Where MI</a>
                     </div>
                 </div>
@@ -128,6 +170,7 @@
             </div>
             <!-- /.container-fluid -->
         </nav>
+       
         <div class="container">
             <div class="set-buttons space-between">
                 <button class="search-directions" type="button" id="set-position" onclick="showBar(true)"
@@ -141,17 +184,168 @@
                 <button class="search-directions " type="button" onclick="showPlayerDiv(true)">Clips</button>
                 <input class="search-directions" type="button" id="reset-map" value="Reset map" />
             </div>
-
-
             <div id="map" class="map">
             </div>
-
-
         </div>
     </div>
 
+    <div class="hide-on-mobile">
+        <svg style="position: absolute;
+                 left: 50%;
+                 top: 43%; fill: #ffffff;" id="more-arrows hide-on-mobile">
+                <polygon class="arrow-top" points="37.6,27.9 1.8,1.3 3.3,0 37.6,25.3 71.9,0 73.7,1.3 "/>
+                <polygon class="arrow-middle" points="37.6,45.8 0.8,18.7 4.4,16.4 37.6,41.2 71.2,16.4 74.5,18.7 "/>
+                <polygon class="arrow-bottom" points="37.6,64 0,36.1 5.1,32.8 37.6,56.8 70.4,32.8 75.5,36.1 "/>
+            </svg>
+        </div>
 
+<div class="container">
+    <div class="row m-5 filter-block">
+     <h3 id="gotofilter" style="text-align: center">Filtra clip per: </h3>
+     
+     <!-- <div class="col">
+         <div>
+         <div class="input-group-prepend">
+                <label class="input-group-text" for="selectDetail">Scopo</label>
+            </div>
+           
+            <div class="form-group">
+                <div class="form-check form-check">
+                        <input class="form-check-input" type="radio" name="scopo" id="scopo" value="all"
+                            checked>
+                        <label class="form-check-label" for="scopo">All</label>
+                    </div>
+                    <div class="form-check form-check">
+                        <input class="form-check-input" type="radio" name="scopo" id="scopo" value="come">
+                        <label class="form-check-label" for="scopo">Come</label>
+                    </div>
+                    <div class="form-check form-check">
+                        <input class="form-check-input" type="radio" name="scopo" id="scopo" value="perche">
+                        <label class="form-check-label" for="scopo">Perché</label>
+                    </div>
+                    <div class="form-check form-check">
+                        <input class="form-check-input" type="radio" name="scopo" id="scopo" value="cosa">
+                        <label class="form-check-label" for="scopo">Cosa</label>
+                    </div>
+             </div>
+            </div>
+        </div> -->
+        <div class="col-md-3">
+                <div >
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="selectDetail">Detail [<span id="num_dettagli"></span>]</label>
+                    </div>
+                    <select id="selectDetail" class="form-control">
+                            <option value="1" selected="">Normale(1)</option>
+                            <option value="2">Approfondito(2)</option>
+                            <option value="3">Molto Approfondito(3)</option>
+                            <option value="4">Poema esagerato(4)</option>
+                    </select>
+                    <!-- <div class="col form_col">
+                            
+                            <input type="range" class="form-control-range slider" id="dettagli" min="1" max="5" value="3">
+                    </div> -->
+                </div>
+        </div>
+    </div>
+    <div class="row m-5 filter-block">
+    <div class="col-md-3">
+                <div>
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="selectCategoria"> Categoria </label>
+                    </div>
+                    <select id="categoria" class="form-control">
+                            <option value=all selected="selected">All</option>
+                            <option value=nat>Natura</option>
+                            <option value=art>Arte</option>
+                            <option value=his>Storia</option>
+                            <option value=flk>Folklore</option>
+                            <option value=mod>Cultura moderna</option>
+                            <option value=rel>Religione</option>
+                            <option value=cui>Cucina e drink</option>
+                            <option value=spo>Sport</option>
+                            <option value=mus>Musica</option>
+                            <option value=mov>Film</option>
+                            <option value=fas>Moda</option>
+                            <option value=shp>Shopping</option>
+                            <option value=tec>Tecnologia</option>
+                            <option value=pop>Cult, pop e gossip</option>
+                            <option value=prs>Esperienze personali</option>
+                            <option value=oth>Altro</option>
+                    </select>
+                </div>
+        </div>
+          
+        <div class="col-md-3">
+                <div>
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="selectDetail">Language</label>
+                    </div>
+                    <select id="selectDetail" class="form-control">
+                            <option value="ita" selected="">Italiano</option>
+                        <option value="eng">Inglese</option>
+                        <option value="deu">Tedesco</option>
+                        <option value="fra">Francese</option>
+                        <option value="esp">Spagnolo</option>
+                    </select>
+                </div>
+        </div>
+     
+        <div class="col-md-3">
+                <div>
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="selectAudience">Audience</label>
+                    </div>
+                    <select id="selectAudience" class="form-control">
+                            <option value="gen" selected="">Generico</option>
+                            <option value="pre">Pre-scolare</option>
+                            <option value="elm">Elementari</option>
+                            <option value="mid">Scuola media</option>
+                            <option value="scl">Specializzato</option>
+                </select>
+                </div>
+        </div>
+        <div class="col-md-3" style="text-align: center">
+            <button class="btn btn-primary waves-effect waves-light" style="margin-top: 6%" onclick="SendFiltro()" id="btn_Filter">Filtra!</button>
+        </div>
+
+    </div>
+
+
+        <div class="row">
+            <!-- TODO: ADD THE ARRAY THAT GIVES THE LOOPS OFF DATA  -->
+                <div class="col-md-3 mb-2">
+                        <div class="card h-100"> <!--h-100 setta la stessa altezza a tutte le card -->
+                             <div class="card-body" id="TvLSlvx3LbMheader" style="background-color: #34456a;">
+                                <div style="display:flex; justify-content: space-between">
+                               <h4> <a class="card-title" style="color: white" href="https://www.google.com/search?q=+Torre degli Asinelli"><strong>Torre degli Asinelli</strong></a> </h4> 
+                                 <a  href="#map" class="float-right"><i class="fas fa-map-marked-alt fa-2x" aria-hidden="true"></i></a></div>
+                                 <p class="card-text" id="description" style="color: white;">The two towers, Bologna's commonly recognised symbol, are strategically placed at the entry point in the city of the ancient Via Emilia (Aemilian Way). </p>
+                             </div>
+                             
+                             <ul class="list-group list-group-flush">
+                                 <li class="list-group-item"><strong>Purpose: </strong>how</li>
+                                 <li class="list-group-item"><strong>Language: </strong>English</li>
+                                 <li class="list-group-item"><strong>Content: </strong>History</li>
+                                 <li class="list-group-item"><strong>Audience: </strong>Scuola primaria</li>
+                                 <li class="list-group-item"><strong>Detail: </strong>5</li>
+                             </ul>
+
+                             <div class="card-footer text-center">
+                                   <button  id="backbutton"  title="Previous" class="audio-buttons previus"><i class="fa fa-backward" aria-hidden="true"></i></button>
+                                   <button  id="playbutton"  title="Play" class="audio-buttons "><i class="fa fa-play" aria-hidden="true"></i></button>
+                                   <button  id="pausebutton"  title="Pause" class="pause audio-buttons "><i class="fa fa-pause" aria-hidden="true"></i></button>
+                                   <!-- <button  type="button" id="skipbutton">skip</button> -->
+                                   <button  title="Next" id="nextbutton" class="audio-buttons  next"><i class="fa fa-fast-forward" aria-hidden="true"></i></button>
+                                   <div id="youtube-player"></div>
+                             </div>                                   
+                        </div>
+                   </div>
+                
+               </div>
+    </div>
     <!--FINESTRA CON PLAYER E AUDIO-->
+       <!-- TODO: DELETE AFTERALL -->
     <div class="bar" id="bar">
         <div class="container form_container">
             <button type="button" class="close" onclick="showPlayerDiv(false)"> × </button>
@@ -328,7 +522,6 @@
                 </div>
                 <div class="row form_row">
                     <div class="col form_col">
-                        <label for="dettagli">Dettagli [<span id="num_dettagli"></span>]</label>
                         <input type="range" class="form-control-range slider" id="dettagli" min="1" max="5" value="3">
                     </div>
                     <div class="col form_col">
@@ -341,8 +534,8 @@
             </div>
             <div class="buttonsdiv">
                 <button type="button" id="backbutton">indietro</button><button type="button"
-                    id="playbutton">play</button><button type="button" id="nextbutton">avanti</button> <button
-                    type="button" id="skipbutton">skip</button>
+                    id="playbutton">play</button><button type="button" id="nextbutton">avanti</button>
+           <button type="button" id="skipbutton">skip</button>
 
                 <div id="youtube-player"></div>
             </div>

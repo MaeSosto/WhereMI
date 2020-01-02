@@ -220,6 +220,7 @@ var player;
 function onYouTubeIframeAPIReady() {
 
 	$("#playbutton").click(toggleAudio); //se clicchi sul pulsante chiama toogleAudio
+	$("#pausebutton").click(toggleAudio); //se clicchi sul pulsante chiama toogleAudio
 
 	player = new YT.Player('youtube-player', { //lega il player al div "youtube-player"
 		height: '0',
@@ -242,9 +243,9 @@ function onYouTubeIframeAPIReady() {
 		}
 	}
 
-	function togglePlayButton(play) {
-		document.getElementById("playbutton").innerHTML = play ? "pause" : "play";
-	}
+	// function togglePlayButton(play) {
+	// 	document.getElementById("playbutton").innerHTML = play ? "pause" : "play";
+	// }
 
 
 	$("#video1button").click(function () {
