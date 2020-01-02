@@ -18,6 +18,8 @@ function initCoords() {
 }
 
 
+
+
 function initAutocomplete(position) {
 	var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
@@ -26,9 +28,17 @@ function initAutocomplete(position) {
 	var geocoder = new google.maps.Geocoder();
 	var map = creamappa(coords);
 
+	
+	//marker della tua posizione
 	var marker = creaMarker(coords);
-
 	marker.setMap(map);
+
+	//marker dei luoghi 
+	var luoghi=getJson();	
+	for (let luogo in luoghi){
+		cord= new google.maps.LatLng(luoghi[luogo].coord.lat, luoghi[luogo].coord.long);
+		stampaMarker(creaMarker2(cord), map);
+	}
 
 	function geocodeAddress(geocoder, resultsMap) {
 		marker.setMap(null);
@@ -120,13 +130,28 @@ function creamappa(coords) {
 	});
 	return (map);
 }
+function creaMarker2(coords) { //crea marker dei luoghi
+	var marker = new google.maps.Marker({
+		position: coords,
+		draggable: false,
+		animation: google.maps.Animation.DROP,
+		id: "marker",
+		icon: {
+			url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+		  }
+	});
+	return marker;
+}
 
-function creaMarker(coords) {
+function creaMarker(coords) { //crea marker posizione
 	var marker = new google.maps.Marker({
 		position: coords,
 		draggable: true,
 		animation: google.maps.Animation.DROP,
-		id: "marker"
+		id: "marker",
+		icon: {
+			url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+		  }
 	});
 	return marker;
 }
@@ -321,6 +346,18 @@ class Luogo {
 	getcategoria() {
 		return this.categoria
 	}
+}
+
+function getJson(){ //funzione che ritorna il json con i luoghi
+	var Path="/config/general.json";
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", Path, false);
+    xmlhttp.send();
+    if (xmlhttp.status==200) {
+      var rresult = JSON.parse(xmlhttp.responseText);
+	}
+	
+	return rresult;
 }
 
 
