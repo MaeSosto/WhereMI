@@ -1,3 +1,5 @@
+
+
 var audSave = document.getElementById('aud2'); //tag dove viene salvato l'audio registrato
 var titolo, scopo, lingua, categoria, descrizione, audience, dettagli;
 var player;
@@ -236,29 +238,29 @@ async function uploadYoutube() {
 	categoria = document.getElementById("categoria").value;
 	audience = document.getElementById("audience").value;
 	dettagli = document.getElementById("dettagli").value;
-
+	var latlong = ["34.2341","32.4234"];
 
 	var metadatiClip = openLocationCode + ":" + titolo + ":" + descrizione + ":" + scopo + ":" + lingua + ":" + categoria + ":" + audience + ":" + dettagli;
 
 
-	var success = await window.uploadToYoutube(audSave.src || recorder.src, titolo, metadatiClip);
+	var success = await window.uploadToYoutube(audSave.src || recorder.src, titolo, metadatiClip, latlong);
 	if (success) {
 		alert("caricato");
 	}
 }
 
-window.uploadToYoutube = async function (urlClip, titolo, metadati) {
+window.uploadToYoutube = async function (urlClip, titolo, metadati, latlong) {
 	//Ottieni clip video da URL (hosted cloudinary.com)
 	let response = await fetch(urlClip);
 	var rawData = await response.blob();
 	rawData.type = 'video/mp4';
 	console.log("Preparo invio dati a Youtube (API)", rawData);
-	uploadRawFile(rawData, titolo, metadati);
+	uploadRawFile(rawData, titolo, metadati, latlong);
 	return true;
 }
 
 
-async function uploadRawFile(videoclip, titolo, metadatiClip) {
+async function uploadRawFile(videoclip, titolo, metadatiClip, latlong) {
 	var token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token;
 	var params = {
 		snippet: {
@@ -295,6 +297,7 @@ async function uploadRawFile(videoclip, titolo, metadatiClip) {
 		})
 		.done(function (response) {
 			console.log("Caricamento completato! YouTube:", response)
+			isPresente(latlong[0], latlong[1], response.id);
 			return true;
 		})
 		.fail(function (response) {
@@ -388,11 +391,95 @@ async function uploadRawFilePrivate(videoclip, titolo, metadatiClip) {
 
 }
 
+/////aggiorna JSON e carica video
+
+
+function getCoords(code){ // converte plus code in coordinate
+	var urlCodereverse = "https://plus.codes/api?address=" + code+ "&ekey=AIzaSyAisQVJRCJqUAW-wICyJbshSxg_jPL-Y-A"; //URL API di OLC(Plus code)
+	let stringa=[];
+	$.ajax({
+		type: "GET",
+		async: false,
+		url: urlCodereverse,
+		success: function(code){
+			console.log(code);
+			stringa[0] = code.plus_code.geometry.location.lat;
+			stringa[1] = code.plus_code.geometry.location.lng;
+		}
+	 });
+	 
+	return stringa;
+}
+
+
+function getOLC(lat, long){ // converte coordinate in plus code
+	var urlCodereverse = "https://plus.codes/api?address=" + lat +","+ long + "&ekey=AIzaSyAisQVJRCJqUAW-wICyJbshSxg_jPL-Y-A"; //URL API di OLC(Plus code)
+	let stringa="prova";
+	$.ajax({
+		type: "GET",
+		async: false,
+		url: urlCodereverse,
+		success: function(code){
+			console.log(code);
+			stringa = code.plus_code.global_code;
+		}
+	 });
+	 
+	return stringa;
+}
+
+
+
+function aggiornaJson(oggetto){ //funzione che aggiorna il json con il nuovo oggetto
+	$.ajax({
+		type: "POST",
+		url: "/config/general.json",
+		data: oggetto,
+	 });
+
+}
+
+var check = null; // controllo per la funzione
+
+function isPresente(lat, long, urlvideo){ //funzione che controlla se quel luogo esiste già e aggiunge i dati di conseguenza
+	var luoghi=getJson();
+	
+	for(let luogo in luoghi){
+		
+		if (luoghi[luogo].coord.lat==lat && luoghi[luogo].coord.lat==long){
+			check= luogo; // salvo il luogo dove inserire i dati
+		}
+	}
+		
+	if (check=!null){
+		insertHere(check, urlvideo); 
+	}
+	else{
+		creaNuovo(lat, long, urlvideo);
+	}
+	check=null;
+}
+
+
+function insertHere(check, urlvideo){
+	var luoghi = getJson();
+	luoghi[check].video.push(urlvideo);
+	aggiornaJson(luoghi);
+}
+
+function creaNuovo(lat, long, urlvideo){
+	var luoghi = getJson();
+	var code = getOLC(lat, long);
+	luoghi[code].coord.lat=lat;
+	luoghi[code].coord.long=long;
+	luoghi[code].video.push(urlvideo);
+	aggiornaJson();
+	
+}
 
 $("#upload").click(function () {
 	divMetadati.style.display = 'none';
 	uploadYoutube();
-
 });
 
 $("#salva").click(function () {
@@ -402,6 +489,7 @@ $("#salva").click(function () {
 
 
 function getPlaylist() {
+
 	$("#videosalvatilist").html(''); //elimino contenuto lista prima di caricarla
 
 	var token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token;
@@ -418,6 +506,8 @@ function getPlaylist() {
 			})
 		}
 	)
+
+
 }
 
 
@@ -465,6 +555,9 @@ function getVids(videos) { //funzione che crea la lista di video salvati
 								$("#" + listId).remove();
 								$("#" + playId).remove();
 								$("#" + caricaId).remove();
+
+
+								///////QUI E' DA AGGIUNGERE LA FUNZIONE CHE AGGIUNGE I DATI AL JSON 
 							})
 					}
 				}
@@ -475,7 +568,8 @@ function getVids(videos) { //funzione che crea la lista di video salvati
 }
 $("#prova").click(function () {
 
-	getPlaylist();
+	//getPlaylist();
+	console.log(getJson());
 
 });
 
