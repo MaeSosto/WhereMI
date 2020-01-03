@@ -229,6 +229,29 @@ function handleSignoutClick(event) {
 
 
 /////////////////UPLOAD VIDEO PUBBLICI///////////////////
+
+function inputLuogo(){
+
+    var Array=[];
+    var geocoder = new google.maps.Geocoder();
+    var address = document.getElementById('luogo').value;
+    geocoder.geocode({
+        'address': address
+    }, function (results) {
+        var x=results[0].geometry.location;
+        Array.push(x.lat());
+        Array.push(x.lng());
+})
+    console.log(Array);
+    return(Array)
+}
+
+function f() {
+    var autocomplete = new google.maps.places.Autocomplete(
+        document.getElementById('luogo'), {types: ['geocode']});
+}
+
+
 async function uploadYoutube() {
 
 	var openLocationCode = "da fare";
@@ -239,7 +262,7 @@ async function uploadYoutube() {
 	categoria = document.getElementById("categoria").value;
 	audience = document.getElementById("audience").value;
 	dettagli = document.getElementById("dettagli").value;
-	var latlong = ["34.2341","32.4234"];
+	var latlong = inputLuogo();
 
 	var metadatiClip = openLocationCode + ":" + titolo + ":" + descrizione + ":" + scopo + ":" + lingua + ":" + categoria + ":" + audience + ":" + dettagli;
 
