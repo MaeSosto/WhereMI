@@ -393,6 +393,17 @@ async function uploadRawFilePrivate(videoclip, titolo, metadatiClip) {
 
 /////aggiorna JSON e carica video
 
+function getJson(){ //funzione che ritorna il json con i luoghi
+	var Path="/config/general.json";
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", Path, false);                 ///////////ERA FALSE QUANDO FUNZIONAVA
+    xmlhttp.send();
+    if (xmlhttp.status==200) {
+      var rresult = JSON.parse(xmlhttp.responseText);
+	}
+	
+	return rresult;
+}
 
 function getCoords(code){ // converte plus code in coordinate
 	var urlCodereverse = "https://plus.codes/api?address=" + code+ "&ekey=AIzaSyAisQVJRCJqUAW-wICyJbshSxg_jPL-Y-A"; //URL API di OLC(Plus code)
@@ -451,7 +462,7 @@ function isPresente(lat, long, urlvideo){ //funzione che controlla se quel luogo
 		}
 	}
 		
-	if (check=!null){
+	if (check!=null){
 		insertHere(check, urlvideo); 
 	}
 	else{
@@ -461,19 +472,24 @@ function isPresente(lat, long, urlvideo){ //funzione che controlla se quel luogo
 }
 
 
-function insertHere(check, urlvideo){
+function insertHere(nome, urlvideo){
 	var luoghi = getJson();
-	luoghi[check].video.push(urlvideo);
+	console.log(luoghi);
+	luoghi[nome].video.push(urlvideo);
 	aggiornaJson(luoghi);
 }
 
 function creaNuovo(lat, long, urlvideo){
 	var luoghi = getJson();
+	console.log(luoghi);
 	var code = getOLC(lat, long);
+	luoghi[code]=new Object;
+	luoghi[code].coord= new Object;
+	luoghi[code].video= new Array;
 	luoghi[code].coord.lat=lat;
 	luoghi[code].coord.long=long;
 	luoghi[code].video.push(urlvideo);
-	aggiornaJson();
+	aggiornaJson(luoghi);
 	
 }
 
