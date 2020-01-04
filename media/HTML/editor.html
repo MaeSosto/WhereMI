@@ -36,8 +36,8 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
                                      <a style="color: white;
-                                    font-size: 20px;
-                                    margin-top: 9px;" href="../../../index.html">Home</a></li>
+                                     font-size: 18px;
+                                     margin-top: 7px;" href="../../../index.html">Home</a></li>
                                 <!-- <a class="button" href="#popup1">Sign in</a> -->
                                 <!-- <button type="button"  id="authorize_button" > Sign-in with Google</button> -->
                                 <!-- SIGN IN POPUP -->
@@ -51,13 +51,50 @@
                                       </div>
                                     </div>
                                     </div> -->
+                                    <li class="dropdown">
+                                            <a style="    color: #ffffff;
+                                            font-size: 17px;
+                                            /* background: turquoise; */
+                                            margin-top: 6px;" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    
+                                        <span lang="en">Language</span>
+                                        <span lang="it">Lingua</span>
+                                        <span lang="fr">Langue</span>
+                                        <span lang="de">Sprache</span>
+                                        <span lang="es">Idiomas</span>
+
+                                        <b class="caret"></b></a>
+                                            <ul class="dropdown-menu">
+                                              <li><a href="#" hreflang="it" onclick="setLang('it'); return false">Italian</a>
+                                              <li><a href="#" hreflang="it" onclick="setLang('es'); return false">Spanish</a>
+                                              <li><a href="#" hreflang="en" onclick="setLang('en'); return false">English</a></li>
+                                              <li> <a href="#" hreflang="de" onclick="setLang('de'); return false">German</a></li>
+                                              <li> <a href="#" hreflang="de" onclick="setLang('fr'); return false">French</a></li>
+                                              <!-- <li class="divider"></li>
+                                              <li><a href="#">Separated link</a></li>
+                                              <li class="divider"></li>
+                                              <li><a href="#">One more separated link</a></li> -->
+                                            </ul>
+                                            </li>
                                 <li>
-                                    <button style="display: none;" type="button" id="authorize_button"
-                                        class="btn btn-Google btn-lg google-button">Sign in with Google+</button>
+                                        <button  style="display: none; " type="button" id="authorize_button"
+                                        class="btn btn-Google btn-lg google-button">
+                                       <span lang='it'> Accesso con Google+ </span>
+                                       <span lang='en'> Sign in with Google+ </span>
+                                       <span lang='de'> Anmelden mit Google+ </span>
+                                       <span lang='es'>  Iniciar con Google+ </span>
+                                       <span lang='fr'>  connectez-vous avec Google+ </span>
+                                    </button>
+        
                                     <button type="button" class="btn btn-default btn-sm" id="signout_button"
                                         style="display: none; font-size: 14px; margin-top:17px;">
-                                    <span class="glyphicon glyphicon-log-in"></span> Sign-out
-                                    </button>
+                                        <span class="glyphicon glyphicon-log-in"></span> 
+                                        <span lang='it'>Disconnettersi</span>
+                                        <span lang='en'> Sign out</span>
+                                        <span lang='de'>Ausloggen</span>
+                                        <span lang='es'> Desconectar</span>
+                                        <span lang='fr'> Se déconnecter</span>
+                                     </button>   
                                 </li>
                             </ul>
                         </div>
@@ -69,11 +106,28 @@
                     <!--scegli file da pc-->
                     <div class="row">
                         <div class="col-md-6 register-section">
-                            <h2 style="color: #212121;" class="text-center">Seleziona oppure registra clip audio</h2>
+                            <h2 style="color: #212121;" class="text-center">
+                                
+                              <span lang="it">Seleziona oppure registra clip audio</span>
+                              <span lang="en">Seleziona oppure registra clip audio</span>
+                              <span lang="es">Seleziona oppure registra clip audio</span>
+                              <span lang="de">Seleziona oppure registra clip audio</span>
+                              <span lang="fr">Seleziona oppure registra clip audio</span>
+
+                            </h2>
                             <div class="block-center">
-                                <div>Seleziona audio localmente</div>
+                                <div lang="it">Seleziona audio localmente</div>
+                                <div lang="en">Seleziona audio localmente</div>
+                                <div lang="es">Seleziona audio localmente</div>
+                                <div lang="de">Seleziona audio localmente</div>
+                                <div lang="fr">Seleziona audio localmente</div>
+
                                 <input class="search-directions carica-file" type="file" accept="video/*" capture id="recorder">
-                                <div>Oppure</div>
+                                <div lang="it">Oppure</div>
+                                <div lang="en">Oppure</div>
+                                <div lang="es">Oppure</div>
+                                <div lang="de">Oppure</div>
+                                <div lang="fr">Oppure</div>
                                 <div>
                                  <button class="search-directions register" id="btnStart" ><img class="microfone" src="../img/microphone.png">Registra</button></div>
                                 <audio controls style="width: 0px; height: 0px;"></audio>
@@ -89,56 +143,146 @@
                             </button> -->
                         <div class="col-md-6 form-content" id="metadatiupload" style="display: none;">
                             <form>
-                                <h3>Inserisci le informazioni per salvare la nuova clip</h3>
+                                <h3 lang="it">Inserisci le informazioni per salvare la nuova clip</h3>
+                                <h3 lang="en">Inserisci le informazioni per salvare la nuova clip</h3>
+                                <h3 lang="es">Inserisci le informazioni per salvare la nuova clip</h3>
+                                <h3 lang="de">Inserisci le informazioni per salvare la nuova clip</h3>
+                                <h3 lang="fr">Inserisci le informazioni per salvare la nuova clip</h3>
+
                                 <div class="form-group">
-                                    <label for="titolo">Titolo</label>
+                                    <label for="titolo">
+                                        <span lang="it">Titolo</span>
+                                        <span lang="en">Title</span>
+                                        <span lang="es">Titolo</span>
+                                        <span lang="de">Titolo</span>
+                                        <span lang="fr">Titolo</span>
+                                    </label>
                                     <input type="text" class="form-control" id="titolo"
                                         placeholder="Inserisci il titolo che vuoi dare alla clip" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="descrizione">Descrizione</label>
-                                    <textarea class="form-control" id="descrizione" rows="3" placeholder="Inserisci una descrizione"
+                                    <label for="descrizione">
+                                        <span lang="it">Descrizione</span>
+                                        <span lang="en">Descrizione</span>
+                                        <span lang="es">Descrizione</span>
+                                        <span lang="de">Descrizione</span>
+                                        <span lang="fr">Descrizione</span>
+                                    </label>
+                                    <textarea class="form-control" id="descrizione" rows="3" placeholder="..."
                                         required>
                                     </textarea>
+                                    <!-- <h6>Inserisci una descrizione</h6> -->
                                 </div>
-                                <label for="testo">Scopo</label>
+                                <label for="testo">
+                                    <span ling="it">Scopo</span>
+                                    <span ling="en">Scopo</span>
+                                    <span ling="es">Scopo</span>
+                                    <span ling="de">Scopo</span>
+                                    <span ling="fr">Scopo</span>
+                                </label>
                                 <div class="form-group">
                                         <div class="form-check form-check">
                                                 <input class="form-check-input" type="radio" name="scopo" id="scopo" value="all"
                                                     checked>
-                                                <label class="form-check-label" for="scopo">All</label>
+                                                <label class="form-check-label" for="scopo">
+                                                    <span lang="en">All</span>
+                                                    <span lang="it">All</span>
+                                                    <span lang="es">All</span>
+                                                    <span lang="de">All</span>
+                                                    <span lang="fr">All</span>
+                                                </label>
                                             </div>
                                             <div class="form-check form-check">
                                                 <input class="form-check-input" type="radio" name="scopo" id="scopo" value="come">
-                                                <label class="form-check-label" for="scopo">Come</label>
+                                                <label class="form-check-label" for="scopo">
+
+                                                   <span lang="it">Come</span> 
+                                                   <span lang="es">Come</span> 
+                                                   <span lang="en">Come</span> 
+                                                   <span lang="de">Come</span> 
+                                                   <span lang="fr">Come</span> 
+
+                                                </label>
                                             </div>
                                             <div class="form-check form-check">
                                                 <input class="form-check-input" type="radio" name="scopo" id="scopo" value="perche">
-                                                <label class="form-check-label" for="scopo">Perché</label>
+                                                <label class="form-check-label" for="scopo">
+                                                   <span lang="it">Perché</span> 
+                                                   <span lang="en">Perché</span> 
+                                                   <span lang="es">Perché</span> 
+                                                   <span lang="de">Perché</span> 
+                                                   <span lang="fr">Perché</span> 
+                                                </label>
                                             </div>
                                             <div class="form-check form-check">
                                                 <input class="form-check-input" type="radio" name="scopo" id="scopo" value="cosa">
-                                                <label class="form-check-label" for="scopo">Cosa</label>
+                                                <label class="form-check-label" for="scopo">
+                                                    <span lang="it">Cosa</span>
+                                                    <span lang="en">Cosa</span>
+                                                    <span lang="es">Cosa</span>
+                                                    <span lang="de">Cosa</span>
+                                                    <span lang="fr">Cosa</span>
+                                                </label>
                                             </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="lingua">Lingua</label>
+                                    <label for="lingua">
+                                            <span lang="en">Language</span>
+                                            <span lang="it">Lingua</span>
+                                            <span lang="es">Idioma</span>
+                                            <span lang="de">Sprache</span>
+                                            <span lang="fr">Langue</span>
+                                    </label>
                                     <select id="lingua" class="form-control" onfocus='this.size=4;' onblur='this.size=1;'
                                         onchange='this.size=1; this.blur();'>
                                       
-                                        <option value=en>English</option>
-                                        <option value=de>German</option>
-                                        <option value=el>Greek</option>
-                                        <option value=it selected="selected">Italian</option>
+                                        <option selected="selected" value=empty >-</option>
+
+                            <option lang="it" value="ita" >Italiano</option>
+                            <option lang="en" value="ita" >Italian</option>
+                            <option lang="es" value="ita" >italiano</option>
+                            <option lang="de" value="ita" >Italienische</option>
+                            <option lang="fr" value="ita" >italienne</option>
+                            
+                        <option lang="it" value="eng">Inglese</option>
+                        <option lang="en" value="eng">English</option>
+                        <option lang="es" value="eng">Ingles</option>
+                        <option lang="de" value="eng">Englische</option>
+                        <option lang="fr" value="eng">Anglaise</option>
+
+                        <option lang="it" value="deu">Tedesco</option>
+                        <option lang="en" value="deu">German</option>
+                        <option lang="es" value="deu">Alemán</option>
+                        <option lang="de" value="deu">Deutsch</option>
+                        <option lang="fr" value="deu">Allemand</option>
+
+                        <option lang="it" value="fra">Francese</option>
+                        <option lang="en" value="fra">French</option>
+                        <option lang="es" value="fra">francés</option>
+                        <option lang="de" value="fra">Französisch</option>
+                        <option lang="fr" value="fra">Français</option>
+
+                        <option lang="it" value="esp">Spagnolo</option>
+                        <option lang="en" value="esp">Spanish</option>
+                        <option lang="es" value="esp">Español</option>
+                        <option lang="de" value="esp">Spanische </option>
+                        <option lang="fr" value="esp">Spagnolo</option>
                                       
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="categoria">Categoria</label>
+                                    <label for="categoria">
+                                            <span lang="en">Category</span>
+                                            <span lang="it">Categoria</span>
+                                            <span lang="es">Categoría</span>
+                                            <span lang="de">Kategorie</span>
+                                            <span lang="fr">Catégorie</span>
+                                    </label>
+                        
                                     <select id="categoria" class="form-control" onfocus='this.size=4;' onblur='this.size=1;'
                                         onchange='this.size=1; this.blur();'>
-                                        <option value=none selected="selected">Nessuna</option>
-                                        <option value=nat>Natura</option>
+                                        <option value=none selected="selected">-</option>
+                                        <!-- <option value=nat>Natura</option>
                                         <option value=art>Arte</option>
                                         <option value=his>Storia</option>
                                         <option value=flk>Folklore</option>
@@ -153,27 +297,113 @@
                                         <option value=tec>Tecnologia</option>
                                         <option value=pop>Cult, pop e gossip</option>
                                         <option value=prs>Esperienze personali</option>
-                                        <option value=oth>Altro</option>
+                                        <option value=oth>Altro</option> -->
+                                        <option lang="en" value=all >All</option>
+                                        <option lang="es" value=all >Todos</option>
+                                        <option lang="it" value=all >Tutte</option>
+                                        <option lang="fr" value=all >Toute</option>
+                                        <option lang="de" value=all >Alle</option>
+            
+                                        <option lang="it" value=nat>Natura</option>
+                                        <option lang="es" value=nat>Naturaleza</option>
+                                        <option lang="en" value=nat>Nature</option>
+                                        <option lang="fr" value=nat>Nature</option>
+                                        <option lang="de" value=nat>Natur</option>
+            
+                                        <option lang="it" value=art>Arte</option>
+                                        <option lang="es" value=art>Arte</option>
+                                        <option lang="fr" value=art>L'art</option>
+                                        <option lang="de" value=art>Art</option>
+                                        <option lang="en" value=art>Art</option>
+            
+                                        <option lang="it" value=his>Storia</option>
+                                        <option lang="en" value=his>History</option>
+                                        <option lang="de" value=his>Geschichte</option>
+                                        <option lang="es" value=his>historia</option>
+                                        <option lang="fr" value=his>histoire</option>
+                                    
+                                        
+                                        <option lang="it" value=rel>Religione</option>
+                                        <option lang="en" value=rel>Religion</option>
+                                        <option lang="de" value=rel>Religion</option>
+                                        <option lang="es" value=rel>Religión</option>
+                                        <option lang="fr" value=rel>Religion</option>
+            
+                                        <option lang="it" value=oth>Altro</option>
+                                        <option lang="en" value=oth>Other</option>
+                                        <option lang="de" value=oth>mehr</option>
+                                        <option lang="es" value=oth>más</option>
+                                        <option lang="fr" value=oth>Autre</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="audience">Audience</label>
+                                    <label for="audience">
+                                            <span lang="en">Audience</span>
+                                            <span lang="it">Pubblico</span>
+                                            <span lang="es">Audiencia</span>
+                                            <span lang="de">Publikum</span>
+                                            <span lang="fr">Public</span>
+                                    </label>
                                     <select id="audience" class="form-control" onfocus='this.size=4;' onblur='this.size=1;'
                                         onchange='this.size=1; this.blur();'>
-                                        <option value=gen>Pubblico generico</option>
-                                        <option value=pre>Pre-scuola</option>
-                                        <option value=elm>Scuola primaria</option>
-                                        <option value=mid>Scuola media</option>
-                                        <option value=scl>Specialisti del settore</option>
+                                        <option selected="selected" value=empty >-</option>
+                            <option lang="it" value="gen" >Generico</option>
+                            <option lang="en" value="gen" >General</option>
+                            <option lang="es" value="gen" >General</option>
+                            <option lang="de" value="gen" >Allgemeine </option>
+                            <option lang="fr" value="gen" >Générale</option>
+
+
+                            <option lang="it" value="pre">Pre-scolare</option>
+                            <option lang="en" value="pre">Preschool</option>
+                            <option lang="es" value="pre">preescolar</option>
+                            <option lang="de" value="pre">vorschulisch</option>
+                            <option lang="fr" value="pre">préscolaire</option>
+                            
+                            <option lang="it" value="elm">Elementari</option>
+                            <option lang="en" value="elm">Elementary</option>
+                            <option lang="es" value="elm">elemental</option>
+                            <option lang="de" value="elm">elementar</option>
+                            <option lang="fr" value="elm">élémentaire</option>
+
+                            <option lang="it" value="mid">Scuola media</option>
+                            <option lang="en" value="mid">Secondary school</option>
+                            <option lang="es" value="mid">Escuela media</option>
+                            <option lang="de" value="mid">Mittelschule</option>
+                            <option lang="fr" value="mid">Premier cycle du secondaire</option>
+
+                            <option lang="it" value="scl">Specializzato</option>
+                            <option lang="en" value="scl">Specialized</option>
+                            <option lang="es" value="scl">especializado</option>
+                            <option lang="de" value="scl">spezialisiert</option>
+                            <option lang="fr" value="scl">spécialisé</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="dettagli">Dettagli [<span id="num_dettagli"></span>]</label>
+                                    <label for="dettagli">
+                                            <span lang="en"> Detail</span>  
+                                            <span lang="it"> Dettagli </span>  
+                                            <span lang="fr">Détails</span>  
+                                            <span lang="de"> Einzelheiten </span>  
+                                            <span lang="es"> Detalles</span>  
+                                        [<span id="num_dettagli"></span>]</label>
                                     <input type="range" class="form-control-range slider" id="dettagli" min="1" max="5" value="3">
                                 </div>
                                 <div>
-                                    <button type="button" class="btn btn-primary" id="salva">Salva</button>
-                                    <button  style="height: 48px;" class="search-directions  upload-audio" type="button" id="upload"><img class="microfone" src="../img/upload.png">Carica</button>
+                                    <button type="button" class="btn btn-primary" id="salva">
+                                        <span lang="it">Salva</span>
+                                        <span lang="">Salva</span>
+                                        <span lang="">Salva</span>
+                                        <span lang="">Salva</span>
+                                        <span lang="">Salva</span>
+                                    </button>
+                                    <button  style="height: 48px;" class="search-directions  upload-audio" type="button" id="upload"><img class="microfone" src="../img/upload.png">
+                                     <span lang="it"> Carica</span> 
+                                     <span lang=""> Carica</span> 
+                                     <span lang=""> Carica</span> 
+                                     <span lang=""> Carica</span> 
+                                     <span lang=""> Carica</span>  
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -195,6 +425,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <!-- SIGN IN WITH GOOGLE -->
+        <script type="text/javascript" src="../Javascript/language.js"></script>
          <script type="text/javascript" src="../Javascript/login.js"></script>
         <script type="text/javascript" src="../Javascript/editor.js"></script>
        
