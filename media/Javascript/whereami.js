@@ -17,8 +17,24 @@ function initCoords() {
 	}
 }
 
+function addToPlayer(oggetto){
+	urlvideo=[];
+	var array=oggetto.video;
+	for(var i=0; i<array.length; i++){
+		urlvideo.push(array[i]);
+	}
+	console.log(urlvideo);
+}
 
-
+function getVideos(lat, long){ //scorre il json finché non trova quel luogo e poi prende i suoi video e li aggiunge al player
+	console.log(lat, long);
+	var luoghi=getJson();
+	for(let luogo in luoghi){
+		if (luoghi[luogo].coord.lat==lat && luoghi[luogo].coord.long==long){
+			addToPlayer(luoghi[luogo]);
+		}
+	}
+}
 
 function initAutocomplete(position) {
 	var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -35,9 +51,12 @@ function initAutocomplete(position) {
 
 	//marker dei luoghi 
 	var luoghi=getJson();	
+	var markers=[];
+	var i=0;
 	for (let luogo in luoghi){
 		cord= new google.maps.LatLng(luoghi[luogo].coord.lat, luoghi[luogo].coord.long);
-		stampaMarker(creaMarker2(cord), map);
+		var temp=creaMarker2(cord);
+		stampaMarker(temp, map);
 	}
 
 	function geocodeAddress(geocoder, resultsMap) {
@@ -135,11 +154,13 @@ function creaMarker2(coords) { //crea marker dei luoghi
 		position: coords,
 		draggable: false,
 		animation: google.maps.Animation.DROP,
-		id: "marker",
 		icon: {
 			url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
 		  }
 	});
+	google.maps.event.addListener(marker, 'click', function() { 
+		getVideos(marker.position.lat(), marker.position.lng()); 
+	 }); 
 	return marker;
 }
 
@@ -238,19 +259,18 @@ function showBar(show) { //mostra o nasconde la finestra del player e audio
 }
 
 
-var urlvideo = ["FV-AmtffJpI", "1Z72j3W3eAc"]; //array con id dei video da riprodurre, creare funzione per popolarlo
+var urlvideo = []; //array con id dei video da riprodurre, creare funzione per popolarlo
 var player;
 
 
 function onYouTubeIframeAPIReady() {
-
 	$("#playbutton").click(toggleAudio); //se clicchi sul pulsante chiama toogleAudio
 	$("#pausebutton").click(toggleAudio); //se clicchi sul pulsante chiama toogleAudio
 
 	player = new YT.Player('youtube-player', { //lega il player al div "youtube-player"
 		height: '0',
 		width: '0',
-		videoId: urlvideo[0], //url del video (stringa a 11 caratteri, dopo youtube.com/watch?v=)
+		videoId: "LD2wlSe5H1Q", //url del video (stringa a 11 caratteri, dopo youtube.com/watch?v=)
 		playerVars: {
 			autoplay: 0,
 			loop: 0,
@@ -263,14 +283,15 @@ function onYouTubeIframeAPIReady() {
 			player.pauseVideo();
 			togglePlayButton(false);
 		} else {
+			player.loadVideoById(urlvideo[0]);
 			player.playVideo();
 			togglePlayButton(true);
 		}
 	}
 
-	// function togglePlayButton(play) {
-	// 	document.getElementById("playbutton").innerHTML = play ? "pause" : "play";
-	// }
+	 function togglePlayButton(play) {
+	 	document.getElementById("playbutton").innerHTML = play ? "pause" : "play";
+	 }
 
 
 	$("#video1button").click(function () {
