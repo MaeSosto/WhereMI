@@ -246,7 +246,7 @@ function inputLuogo(){
     return(Array)
 }
 
-function f() {
+function callbackgoogle() {
     var autocomplete = new google.maps.places.Autocomplete(
         document.getElementById('luogo'), {types: ['geocode']});
 }
@@ -480,30 +480,28 @@ function isPresente(lat, long, urlvideo){ //funzione che controlla se quel luogo
 	
 	for(let luogo in luoghi){
 		
-		if (luoghi[luogo].coord.lat==lat && luoghi[luogo].coord.lat==long){
+		if (luoghi[luogo].coord.lat==lat && luoghi[luogo].coord.long==long){
 			check= luogo; // salvo il luogo dove inserire i dati
 		}
 	}
 		
 	if (check!=null){
-		insertHere(check, urlvideo); 
+		insertHere(check, urlvideo, luoghi); 
 	}
 	else{
-		creaNuovo(lat, long, urlvideo);
+		creaNuovo(lat, long, urlvideo, luoghi);
 	}
 	check=null;
 }
 
 
-function insertHere(nome, urlvideo){
-	var luoghi = getJson();
+function insertHere(nome, urlvideo, luoghi){
 	console.log(luoghi);
 	luoghi[nome].video.push(urlvideo);
 	aggiornaJson(luoghi);
 }
 
-function creaNuovo(lat, long, urlvideo){
-	var luoghi = getJson();
+function creaNuovo(lat, long, urlvideo, luoghi){
 	console.log(luoghi);
 	var code = getOLC(lat, long);
 	luoghi[code]=new Object;
@@ -587,7 +585,7 @@ function getVids(videos) { //funzione che crea la lista di video salvati
 								request.execute(function (response) {
 									console.log(response);
 								});
-								// elimono dalla lista il video che è stato appena caricato e i suoi tasti
+								// elimino dalla lista il video che è stato appena caricato e i suoi tasti
 								var listId = item.snippet.resourceId.videoId + item.snippet.resourceId.videoId;
 								var playId = item.snippet.resourceId.videoId + item.snippet.resourceId.videoId + item.snippet.resourceId.videoId;
 								var caricaId = item.snippet.resourceId.videoId;
@@ -607,8 +605,7 @@ function getVids(videos) { //funzione che crea la lista di video salvati
 }
 $("#prova").click(function () {
 
-	//getPlaylist();
-	console.log(getJson());
+	getPlaylist();
 
 });
 
@@ -648,31 +645,3 @@ function addToPlayer(id) {
 }
 
 
-/*
-
-$("#prova2").click(function () {
-
-
-    gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest") //aggiungo all'oggetto client la possibilità di accedere ai video di youtube
-    
-        .then (function(){
-            var request = gapi.client.youtube.videos.update({
-                id: "iOch785SV-c",
-                part: 'status',
-                status: {
-                    privacyStatus: 'private'
-                }
-            });
-        
-            request.execute(function (response) {
-                console.log(response);
-            });
-        })
-    
-
-  
-
-
-});
-
-*/
