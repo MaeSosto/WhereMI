@@ -1,7 +1,11 @@
 let langs = ['en', 'de', 'it', 'fr', 'es'];
+// ON DEFAULT INGLESEE
 let lang = 'en';
-
+//SALVO A LOCAL STORAGE L'ULTIMO SELEZIONATO PER MANTENERE LA LINGUA NELLE ALRE PAGINE E ON REFRESH
+lang = localStorage.getItem("lang");
+//SETTO LO STILE CON VALORE DELLA LINGUA SCELTA
 setLangStyles(lang);
+console.log(lang)
 
 function setStyles(styles) {
 	var elementId = '__lang_styles';
@@ -25,6 +29,7 @@ function setStyles(styles) {
 function setLang(lang) {
 
 	setLangStyles(lang);
+	localStorage.setItem("lang", lang);
 
 }
 
@@ -32,11 +37,11 @@ function setLangStyles(lang) {
 	let styles = langs
 		.filter(function (l) {
 			return l != lang;
-			
+
 		})
 		.map(function (l) {
 			return ':lang(' + l + ') { display: none; }';
-			
+
 		})
 		.join(' ');
 
