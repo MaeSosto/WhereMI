@@ -1,1 +1,23 @@
-{"87928GF2+4F":{"coord":{"lat":"37.3227667","long":"-79.49880719999999"},"video":["tFZiDco9vIk"]},"8FPJC59V+WG":{"coord":{"lat":"44.4197942","long":"12.193821899999989"},"video":["mDBccVFtvBs"]},"8FPJ93JP+3R":{"coord":{"lat":"44.3802291","long":"12.087030599999935"},"video":["Lk-M8GIhz0U"]}}
+{
+    "87928GF2+4F": {
+        "coord": {
+            "lat": "37.3227667",
+            "long": "-79.49880719999999"
+        },
+        "video": ["tFZiDco9vIk"]
+    },
+    "8FPJC59V+WG": {
+        "coord": {
+            "lat": "44.4197942",
+            "long": "12.193821899999989"
+        },
+        "video": ["mDBccVFtvBs"]
+    },
+    "8FPJ93JP+3R": {
+        "coord": {
+            "lat": "44.3802291",
+            "long": "12.087030599999935"
+        },
+        "video": ["Lk-M8GIhz0U"]
+    }
+}

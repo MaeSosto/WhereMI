@@ -1,6 +1,3 @@
-///////////////CARICAMENTO YOUTUBE////////////////
-
-
 //const API_KEY = "AIzaSyARgIB-2zTsZcy7IoYDUWlXu0a7yQDOj9s";
 //const CLIENT_ID = "840091091157-fitfqdv3e84ivdh1fj0on6s1ganlu1eo.apps.googleusercontent.com";
 
@@ -123,5 +120,5 @@ function handleAuthClick(event) {
  */
 function handleSignoutClick(event) {
 	gapi.auth2.getAuthInstance().signOut();
-	
+
 }
