@@ -1,5 +1,6 @@
 let langs = ['en', 'de', 'it', 'fr', 'es'];
 let lang = 'en';
+
 setLangStyles(lang);
 
 function setStyles(styles) {
@@ -8,7 +9,7 @@ function setStyles(styles) {
 	if (element) {
 		element.remove();
 	}
-
+	// console.log(lang)
 	let style = document.createElement('style');
 	style.id = elementId;
 	style.type = 'text/css';
@@ -25,18 +26,20 @@ function setLang(lang) {
 
 	setLangStyles(lang);
 
-
 }
 
 function setLangStyles(lang) {
 	let styles = langs
 		.filter(function (l) {
 			return l != lang;
+			
 		})
 		.map(function (l) {
 			return ':lang(' + l + ') { display: none; }';
+			
 		})
 		.join(' ');
 
 	setStyles(styles);
+	console.log(lang)
 }

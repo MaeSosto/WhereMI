@@ -109,7 +109,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <!-- <li> <button type="button" onclick="showPlayerDiv(false)">hide</button></li> -->
-                        <li class="active remove-position">
+                        <!-- <li class="active remove-position">
                             <div class="wrap">
                                 <div class="direction flex-center">
                                        <label class="text-center" lang="en">Where do you want to go?</label> 
@@ -120,15 +120,6 @@
       
                                     <input class="search-directions" type="text" id="end" name="to" required="required"
                                         placeholder="...?" size="30" />
-                                        <!-- <input lang="en" class="search-directions" type="text" id="end" name="to" required="required"
-                                        placeholder="Where do you want to go?" size="30" />
-                                        <input lang="de" class="search-directions" type="text" id="end" name="to" required="required"
-                                        placeholder="Wohin willst du gehen??" size="30" />
-                                        <input lang="es" class="search-directions" type="text" id="end" name="to" required="required"
-                                        placeholder="¿a donde quieres ir?" size="30" />
-                                        <input lang="fr" class="search-directions" type="text" id="end" name="to" required="required"
-                                        placeholder="Où veux-tu aller?" size="30" /> -->
-
                                     <input value="Go" class="search-directions" type="submit" />
 
                                 </div>
@@ -136,7 +127,7 @@
 
                                 </div>
                             </div>
-                        </li>
+                        </li> -->
                        
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -172,11 +163,11 @@
 
                                         <b class="caret"></b></a>
                                             <ul class="dropdown-menu">
-                                              <li><a href="#" hreflang="it" onclick="setLang('it'); return false">Italian</a>
-                                              <li><a href="#" hreflang="it" onclick="setLang('es'); return false">Spanish</a>
-                                              <li><a href="#" hreflang="en" onclick="setLang('en'); return false">English</a></li>
-                                              <li> <a href="#" hreflang="de" onclick="setLang('de'); return false">German</a></li>
-                                              <li> <a href="#" hreflang="de" onclick="setLang('fr'); return false">French</a></li>
+                                              <li><a href="#" hreflang="it" onclick="setLang('it'); return false"><img class="flags" src="../media/img/italy.png">Italian</a>
+                                              <li><a href="#" hreflang="it" onclick="setLang('es'); return false"><img class="flags" src="../media/img/spain.png" >Spanish</a>
+                                              <li><a href="#" hreflang="en" onclick="setLang('en'); return false"><img class="flags" src="../media/img/uk.png">English</a></li>
+                                              <li> <a href="#" hreflang="de" onclick="setLang('de'); return false" ><img class="flags" src="../media/img/germany.png">German</a></li>
+                                              <li> <a href="#" hreflang="de" onclick="setLang('fr'); return false"><img class="flags" src="../media/img/france.png">French</a></li>
                                               <!-- <li class="divider"></li>
                                               <li><a href="#">Separated link</a></li>
                                               <li class="divider"></li>
@@ -184,8 +175,6 @@
                                             </ul>
                                             </li>
                         <li>
-
-
                             <button  style="display: none; " type="button" id="authorize_button"
                                 class="btn btn-Google btn-lg google-button">
                                <span lang='it'> Accesso con Google+ </span>
@@ -213,6 +202,30 @@
         </nav>
        
         <div class="container">
+                <div class="active remove-position">
+                        <div class="text-center flex">
+                                <img src="../media/img/map.png" style="    width: 47px;
+                                position: relative;
+                                bottom: 10px;">
+                               <label class="text-center search-where" lang="en">Where do you want to go?</label> 
+                              <label  class="text-center search-where" lang="es">¿a donde quieres ir?</label>  
+                              <label  class="text-center search-where"  lang="it">Dove vorresti andare?</label>  
+                              <label  class="text-center search-where"  lang="fr">Où veux-tu aller?</label>  
+                              <label  class="text-center search-where"  lang="de">Wohin willst du gehen?</label>  
+                            <div class="direction flex-center">
+                                   
+    
+                                <input class="search-directions" type="text" id="end" name="to" required="required"
+                                    placeholder="...?" size="30" />
+                                <input value="Go" class="search-directions" type="submit" />
+    
+                            </div>
+                            <div>
+    
+                            </div>
+                        </div>
+                    </div>
+
             <div class="set-buttons space-between">
                 <button class="search-directions" type="button" id="set-position" onclick="showBar(true)"
                     value="Set position">Set position</button>
@@ -225,6 +238,10 @@
                 <button class="search-directions " type="button" onclick="showPlayerDiv(true)">Clips</button>
                 <input class="search-directions" type="button" id="reset-map" value="Reset map" />
             </div>
+
+
+           
+
             <div id="map" class="map">
             </div>
         </div>
@@ -243,68 +260,16 @@
         </div> -->
 
 <div class="container">
+   
     <div class="row m-5 filter-block">
-     <h3  id="gotofilter" style="text-align: center">
-        <span lang="it">Filtra clip per: </span>
-        <span lang="en">Filter clips by: </span>
-        <span lang="fr">Filtrer les clips par: </span>
-        <span lang="de">Clips filtern nach: </span>
-        <span lang="es">Filtrar clips por: </span>
-    </h3>
-    
-     <!-- <div class="col">
-         <div>
-         <div class="input-group-prepend">
-                <label class="input-group-text" for="selectDetail">Scopo</label>
-            </div>
-           
-            <div class="form-group">
-                <div class="form-check form-check">
-                        <input class="form-check-input" type="radio" name="scopo" id="scopo" value="all"
-                            checked>
-                        <label class="form-check-label" for="scopo">All</label>
-                    </div>
-                    <div class="form-check form-check">
-                        <input class="form-check-input" type="radio" name="scopo" id="scopo" value="come">
-                        <label class="form-check-label" for="scopo">Come</label>
-                    </div>
-                    <div class="form-check form-check">
-                        <input class="form-check-input" type="radio" name="scopo" id="scopo" value="perche">
-                        <label class="form-check-label" for="scopo">Perché</label>
-                    </div>
-                    <div class="form-check form-check">
-                        <input class="form-check-input" type="radio" name="scopo" id="scopo" value="cosa">
-                        <label class="form-check-label" for="scopo">Cosa</label>
-                    </div>
-             </div>
-            </div>
-        </div> -->
-        <div class="col-md-3">
-                <div >
-                    <div class="input-group-prepend">
-                        <label  class="input-group-text" for="selectDetail">
-                         <span lang="en"> Detail</span>  
-                         <span lang="it"> Dettagli </span>  
-                         <span lang="fr">Détails</span>  
-                         <span lang="de"> Einzelheiten </span>  
-                         <span lang="es"> Detalles</span>  
-                        [<span id="num_dettagli"></span>]</label>
-                    </div>
-                    <!-- <select id="selectDetail" class="form-control">
-                            <option value="1" selected="">Normale(1)</option>
-                            <option value="2">Approfondito(2)</option>
-                            <option value="3">Molto Approfondito(3)</option>
-                            <option value="4">Poema esagerato(4)</option>
-                    </select> -->
-                    <div class="col form_col">
-                            
-                            <input type="range" class="form-control-range slider" id="dettagli" min="1" max="5" value="3">
-                    </div>
-                </div>
-        </div>
-    </div>
-    <div class="row m-5 filter-block">
-    <div class="col-md-3">
+         <h3  id="gotofilter" style="text-align: center">
+               <span lang="it">Filtra clip per: </span>
+               <span lang="en">Filter clips by: </span>
+               <span lang="fr">Filtrer les clips par: </span>
+               <span lang="de">Clips filtern nach: </span>
+               <span lang="es">Filtrar clips por: </span>
+           </h3>
+    <div class="col-md-4">
                 <div>
                     <div class="input-group-prepend">
                         <label lang="it" class="input-group-text" for="selectCategoria">Categoria</label>
@@ -314,9 +279,7 @@
                         <label lang="fr" class="input-group-text" for="selectCategoria">Catégorie</label>
                     </div>
                     <select id="categoria" class="form-control">
-                          
-                            <option selected="selected" value=empty ></option>
-
+                            <option selected="selected" value=empty >-</option>
                             <option lang="en" value=all >All</option>
                             <option lang="es" value=all >Todos</option>
                             <option lang="it" value=all >Tutte</option>
@@ -350,14 +313,13 @@
 
                             <option lang="it" value=oth>Altro</option>
                             <option lang="en" value=oth>Other</option>
-                            <option lang="de" value=oth>mehr</option>
-                            <option lang="es" value=oth>más</option>
+                            <option lang="de" value=oth>Mehr</option>
+                            <option lang="es" value=oth>Más</option>
                             <option lang="fr" value=oth>Autre</option>
                     </select>
                 </div>
         </div>
-          
-        <div class="col-md-3">
+        <div class="col-md-4">
                 <div>
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="selectDetail">
@@ -405,7 +367,7 @@
                 </div>
         </div>
      
-        <div class="col-md-3">
+        <div class="col-md-4">
                 <div>
                     <div class="input-group-prepend">
                         <label  class="input-group-text" for="selectAudience">
@@ -423,7 +385,6 @@
                             <option lang="es" value="gen" >General</option>
                             <option lang="de" value="gen" >Allgemeine </option>
                             <option lang="fr" value="gen" >Générale</option>
-
 
                             <option lang="it" value="pre">Pre-scolare</option>
                             <option lang="en" value="pre">Preschool</option>
@@ -451,20 +412,107 @@
                 </select>
                 </div>
         </div>
-        <div class="col-md-3" style="text-align: center">
-            <button class="btn btn-primary waves-effect waves-light" style="margin-top: 6%" onclick="SendFiltro()" id="btn_Filter">
-               <span lang="it">Filtra!</span> 
-               <span lang="en">Filter!</span> 
-               <span lang="es">Filtro</span> 
-               <span lang="de">Filter!</span> 
-               <span lang="fr">Filtrer!</span> 
-            </button>
-        </div>
-
     </div>
+    <div class="row m-5 filter-block">
+           
+           <div class="col-md-4">
+                 
+                       <div class="input-group-prepend">
+           <label for="testo">
+                   <span lang="it">Scopo</span>
+                   <span lang="en">Purpose</span>
+                   <span lang="es">propósito</span>
+                   <span lang="de">Zweck</span>
+                   <span lang="fr">but</span>
+               </label>
+                       </div>
+                       <div style="display:flex; justify-content: space-between;">
+                       <div class="form-check form-check">
+                               <input class="input-group-text" type="radio" name="scopo" id="scopo" value="all"
+                                   checked>
+                               <label class="form-check-label" for="scopo">
+                                   <span lang="en">All</span>
+                                   <span lang="it">Tutte</span>
+                                   <span lang="es">Todos</span>
+                                   <span lang="de">Alle</span>
+                                   <span lang="fr">Toute</span>
+                               </label>
+                           </div>
+                           <div class="form-check form-check">
+                               <input class="form-check-input" type="radio" name="scopo" id="scopo" value="come">
+                               <label class="form-check-label" for="scopo">
+       
+                                  <span lang="it">Come</span> 
+                                  <span lang="en">How</span> 
+                                  <span lang="es">Cómo</span> 
+                                  <span lang="de">Wie</span> 
+                                  <span lang="fr">Comment</span> 
+       
+                               </label>
+                           </div>
+                           <div class="form-check form-check">
+                               <input class="form-check-input" type="radio" name="scopo" id="scopo" value="perche">
+                               <label class="form-check-label" for="scopo">
+                                  <span lang="it">Perché</span> 
+                                  <span lang="en">Why</span> 
+                                  <span lang="es">Por qué</span> 
+                                  <span lang="de">Warum</span> 
+                                  <span lang="fr">Pourquoi</span> 
+                               </label>
+                           </div>
+                           <div class="form-check form-check">
+                               <input class="form-check-input" type="radio" name="scopo" id="scopo" value="cosa">
+                               <label class="form-check-label" for="scopo">
+                                   <span lang="it">Cosa</span>
+                                   <span lang="en">What</span>
+                                   <span lang="es">Qué</span>
+                                   <span lang="de">Was</span>
+                                   <span lang="fr">Quel</span>
+                               </label>
+                           </div>
+                        </div>
+           </div>
+               <div class="col-md-4">
+                       <div>
+                           <div class="input-group-prepend">
+                               <label  class="input-group-text" for="selectDetail">
+                                <span lang="en"> Detail</span>  
+                                <span lang="it"> Dettagli </span>  
+                                <span lang="fr">Détails</span>  
+                                <span lang="de"> Einzelheiten </span>  
+                                <span lang="es"> Detalles</span>  
+                               [<span id="num_dettagli"></span>]</label>
+                           </div>
+                           <!-- <select id="selectDetail" class="form-control">
+                                   <option value="1" selected="">Normale(1)</option>
+                                   <option value="2">Approfondito(2)</option>
+                                   <option value="3">Molto Approfondito(3)</option>
+                                   <option value="4">Poema esagerato(4)</option>
+                           </select> -->
 
+                                   <input type="range" class="form-control-range slider" id="dettagli" min="1" max="5" value="3">
+                       </div>
+               </div>
+               <div class="col-md-4" style="text-align: center">
+                    <button class="btn btn-primary waves-effect waves-light" style="margin-top: 6%" onclick="SendFiltro()" id="btn_Filter">
+                       <span lang="it">Filtra!</span> 
+                       <span lang="en">Filter!</span> 
+                       <span lang="es">Filtro</span> 
+                       <span lang="de">Filter!</span> 
+                       <span lang="fr">Filtrer!</span> 
+                    </button>
+                </div>
+           </div>
 
-        <div class="row">
+<hr style="border:1px solid grey;">
+</div>
+<div class="background-image-map">
+<div class="container">
+        <div class="row clips-box" 
+       >
+                <h3 class="clips-text" style="text-align: center">
+                        CLIPS
+                    </h3>
             <!-- TODO: ADD THE ARRAY THAT GIVES THE LOOPS OFF DATA  -->
                 <div class="col-md-3 mb-2">
                         <div class="card h-100"> <!--h-100 setta la stessa altezza a tutte le card -->
@@ -495,6 +543,7 @@
                    </div>
                 
                </div>
+            </div>
     </div>
     <!--FINESTRA CON PLAYER E AUDIO-->
        <!-- TODO: DELETE AFTERALL -->
@@ -700,9 +749,12 @@
             <div class="col-lg-8" style="background: chocolate; height: 15%; border-bottom: 1px solid #e2e2e2;"> name
             </div>
         </div>
-    </div> <!-- LOGIN SCRIPTS -->
+    </div>
+     <!-- LOGIN SCRIPT -->
     <script type="text/javascript" src="../media/Javascript/login.js"></script>
+     <!-- LANGUAGE actionsSCRIPT -->
     <script type="text/javascript" src="../media/Javascript/language.js"></script>
+
     <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
         onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
 </body>

@@ -33,8 +33,8 @@ border-radius: 0;
   background-repeat: no-repeat;
     background-size: cover;
     padding-bottom: 48px;
-    border-bottom-left-radius: 42px;
-    border-bottom-right-radius: 42px;
+    /* border-bottom-left-radius: 42px;
+    border-bottom-right-radius: 42px; */
 }
 /* .container{
   margin-bottom: 60px;
@@ -557,7 +557,14 @@ background-color: #212121;
   width: 266px;
   padding: 3px;
   font-size: 20px;
-  margin-top: 22px !important;
+  margin-top: 12px !important;
+}
+.search-where{
+  margin-right: 45px;
+    margin-top: 8px;
+    font-weight: 500;
+    font-size: 17px;
+    text-shadow: 1px 1px 1px black;
 }
 .active-card{
   background-color: rgb(76, 175, 80) !important;
@@ -639,6 +646,43 @@ svg:not(:root).svg-inline--fa {
 }
 .remove-border-radius{
   border-radius: unset;
+}
+.flags{
+width: 27px;
+margin-right: 8px;
+}
+.white{
+  color: white;
+}
+.set-buttons{
+  padding: 20px;
+    background-color: #0000008a;
+    border-radius: 6px;
+    /* border-bottom-left-radius: 0; */
+    margin-bottom: -10px;
+}
+.clips-box{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #7474746b;
+}
+.clips-text{
+  margin-bottom: 27px;
+    text-align: center;
+    color: white;
+    text-shadow: 4px 3px 4px #0e0e0e;
+    background-color: #747474;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-top: 0;
+}
+.background-image-map{
+  background-image: url(https://cdn.pixabay.com/photo/2016/03/22/04/23/map-1272165_1280.png);
+  /* background-repeat: no-repeat; */
+  /* background-color: #ededee; */
+  background-size: contain;
+  background-position: top;
 }
 @media screen and (max-width: 700px){
   .box{
