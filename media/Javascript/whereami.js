@@ -27,7 +27,6 @@ function addToPlayer(oggetto){
 }
 
 function getVideos(lat, long){ //scorre il json finché non trova quel luogo e poi prende i suoi video e li aggiunge al player
-	console.log(lat, long);
 	var luoghi=getJson();
 	for(let luogo in luoghi){
 		if (luoghi[luogo].coord.lat==lat && luoghi[luogo].coord.long==long){
@@ -35,14 +34,14 @@ function getVideos(lat, long){ //scorre il json finché non trova quel luogo e p
 		}
 	}
 }
-
+var map;
 function initAutocomplete(position) {
 	var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
 	var directionsRenderer = new google.maps.DirectionsRenderer;
 	var directionsService = new google.maps.DirectionsService;
 	var geocoder = new google.maps.Geocoder();
-	var map = creamappa(coords);
+	 map = creamappa(coords);
 
 	
 	//marker della tua posizione
@@ -51,8 +50,6 @@ function initAutocomplete(position) {
 
 	//marker dei luoghi 
 	var luoghi=getJson();	
-	var markers=[];
-	var i=0;
 	for (let luogo in luoghi){
 		cord= new google.maps.LatLng(luoghi[luogo].coord.lat, luoghi[luogo].coord.long);
 		var temp=creaMarker2(cord);
@@ -158,9 +155,18 @@ function creaMarker2(coords) { //crea marker dei luoghi
 			url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
 		  }
 	});
+
 	google.maps.event.addListener(marker, 'click', function() { 
 		getVideos(marker.position.lat(), marker.position.lng()); 
+	}); 
+
+	 google.maps.event.addListener(marker, 'mouseover', function() { 
+		var infowindow = new google.maps.InfoWindow({
+			content: " funzia"
+		});
+		infowindow.open(map, this);
 	 }); 
+
 	return marker;
 }
 

@@ -8,13 +8,13 @@ const CLIENT_ID = "899661843536-gl9bsjpnqbjkcddj1e8167o6e6anpmrd.apps.googleuser
 
 
 // TODO localhost JOPROVE keys to delete in the end 
-// const API_KEY = "AIzaSyD-mpMmNo1CDOd8fAF7exQ_g4GInG882FM";
-// const CLIENT_ID = "899376088276-hufn1h9oj01vc5u9ui9ithdku5iln5rg.apps.googleusercontent.com";
+
+//JOANNA
+ const API_KEY = "AIzaSyD-mpMmNo1CDOd8fAF7exQ_g4GInG882FM";
+ const CLIENT_ID = "899376088276-hufn1h9oj01vc5u9ui9ithdku5iln5rg.apps.googleusercontent.com";
 
 
-//CODICI funzionanti per upload YT + backup per esaurimento quote (error 403 - youtube.quota)
-
-
+//MIO
 const API_KEY = "AIzaSyAisQVJRCJqUAW-wICyJbshSxg_jPL-Y-A";
 const CLIENT_ID = "600073852662-qiaidgofjs1bt8dpd1jgm3tbk72sdlej.apps.googleusercontent.com";
 
@@ -74,30 +74,31 @@ function initClient() {
  *  Called when the signed in status changes, to update the UI
  *  appropriately. After a sign-in, the API is called.
  */
-
 function updateSigninStatus(isSignedIn) {
-	if (isSignedIn) {
-		authorizeButton.style.display = 'none';
-		signoutButton.style.display = 'block';
-		userStatus.style.display = 'block';
-
-		//Elementi statici presenti solo nel editor
-		if (utenteButton || update) {
-			utenteButton.style.display = 'none';
-			update.disabled = false;
-		}
-		//document.getElementById("update").display = 'initial';
-		//document.getElementById("update").disabled = false;
-	} else {
-		authorizeButton.style.display = 'block';
-		signoutButton.style.display = 'none';
-		userStatus.style.display = 'none';
-		if (utenteButton || update) {
-			utenteButton.style.display = 'none';
-			update.disabled = true;
-		}
-
-	}
+    if (isSignedIn) {
+        authorizeButton.style.display = 'none';
+        signoutButton.style.display = 'block';
+        //Elementi statici presenti solo nel editor
+        if (utenteButton || update) {
+            utenteButton.style.display = 'none';
+            update.disabled = false;
+        }
+        //condizione per link to editor
+        if (userStatus) {
+            userStatus.style.display = 'block';
+        }
+    } else {
+        authorizeButton.style.display = 'block';
+        signoutButton.style.display = 'none';
+        if (utenteButton || update) {
+            utenteButton.style.display = 'none';
+            update.disabled = true;
+        }
+        //condizione per link to editor
+        if (userStatus) {
+            userStatus.style.display = 'none';
+        }
+    }
 }
 
 /**
@@ -120,5 +121,8 @@ function handleAuthClick(event) {
  */
 function handleSignoutClick(event) {
 	gapi.auth2.getAuthInstance().signOut();
+	if (window.location = "../media/html/editor.html") {         
+		window.location.replace("../../index.html");     
+	}
 
 }
