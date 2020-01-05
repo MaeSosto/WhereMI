@@ -1,8 +1,9 @@
 let langs = ['en', 'de', 'it', 'fr', 'es'];
 // ON DEFAULT INGLESEE
 let lang = 'en';
+
 //SALVO A LOCAL STORAGE L'ULTIMO SELEZIONATO PER MANTENERE LA LINGUA NELLE ALRE PAGINE E ON REFRESH
-lang = localStorage.getItem("lang");
+lang = localStorage.getItem("lang") || 'en';
 //SETTO LO STILE CON VALORE DELLA LINGUA SCELTA
 setLangStyles(lang);
 console.log(lang)
@@ -10,6 +11,7 @@ console.log(lang)
 function setStyles(styles) {
 	var elementId = '__lang_styles';
 	var element = document.getElementById(elementId);
+
 	if (element) {
 		element.remove();
 	}
