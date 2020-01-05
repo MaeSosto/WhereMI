@@ -254,8 +254,7 @@ function callbackgoogle() {
 
 async function uploadYoutube() {
 
-	var openLocationCode = "da fare";
-	titolo = document.getElementById("titolo").value;
+	titolo = "whereami+" + document.getElementById("titolo").value;
 	descrizione = document.getElementById("descrizione").value;
 	scopo = document.getElementById("scopo").value;
 	lingua = document.getElementById("lingua").value;
@@ -264,7 +263,7 @@ async function uploadYoutube() {
 	dettagli = document.getElementById("dettagli").value;
 	var latlong = inputLuogo();
 
-	var metadatiClip = openLocationCode + ":" + titolo + ":" + descrizione + ":" + scopo + ":" + lingua + ":" + categoria + ":" + audience + ":" + dettagli;
+	var metadatiClip = latlong[0] + ":" + latlong[1] +":"+ descrizione + ":" + scopo + ":" + lingua + ":" + categoria + ":" + audience + ":" + dettagli;
 
 
 	var success = await window.uploadToYoutube(audSave.src || recorder.src, titolo, metadatiClip, latlong);
@@ -336,17 +335,16 @@ async function uploadRawFile(videoclip, titolo, metadatiClip, latlong) {
 
 async function uploadYoutubePrivate() {
 
-	var openLocationCode = "da fare";
-	titolo = document.getElementById("titolo").value;
+	titolo = "whereami+" + document.getElementById("titolo").value;
 	descrizione = document.getElementById("descrizione").value;
 	scopo = document.getElementById("scopo").value;
 	lingua = document.getElementById("lingua").value;
 	categoria = document.getElementById("categoria").value;
 	audience = document.getElementById("audience").value;
 	dettagli = document.getElementById("dettagli").value;
+	var latlong=inputLuogo();
 
-
-	var metadatiClip = openLocationCode + ":" + titolo + ":" + descrizione + ":" + scopo + ":" + lingua + ":" + categoria + ":" + audience + ":" + dettagli;
+	var metadatiClip = latlong[0] + ":" + latlong[1] +":"+ titolo + ":" + descrizione + ":" + scopo + ":" + lingua + ":" + categoria + ":" + audience + ":" + dettagli;
 
 
 	var success = await window.uploadToYoutubePrivate(audSave.src || recorder.src, titolo, metadatiClip);
@@ -462,6 +460,16 @@ function getOLC(lat, long){ // converte coordinate in plus code
 	return stringa;
 }
 
+function generateRandomString(iLen) {
+    var sRnd = '';
+    var sChrs = "ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+    for (var i = 0; i < iLen; i++) {
+      var randomPoz = Math.floor(Math.random() * sChrs.length);
+      sRnd += sChrs.substring(randomPoz, randomPoz + 1);
+    }
+    return sRnd;
+  }
+
 
 
 function aggiornaJson(oggetto){ //funzione che aggiorna il json con il nuovo oggetto
@@ -496,14 +504,12 @@ function isPresente(lat, long, urlvideo){ //funzione che controlla se quel luogo
 
 
 function insertHere(nome, urlvideo, luoghi){
-	console.log(luoghi);
 	luoghi[nome].video.push(urlvideo);
 	aggiornaJson(luoghi);
 }
 
 function creaNuovo(lat, long, urlvideo, luoghi){
-	console.log(luoghi);
-	var code = getOLC(lat, long);
+	var code = generateRandomString(10);
 	luoghi[code]=new Object;
 	luoghi[code].coord= new Object;
 	luoghi[code].video= new Array;
@@ -558,9 +564,10 @@ function getVids(videos) { //funzione che crea la lista di video salvati
 		},
 		function (data) {
 			$.each(data.items, function (i, item) {
-				if (item.status.privacyStatus == "unlisted") { //seleziono solo i video unlisted del canale
-
-					output = '<li id="' + item.snippet.resourceId.videoId + item.snippet.resourceId.videoId + '">' + item.snippet.title + '</li>' +
+				var titolo= item.snippet.title;
+				arrStr=titolo.split("+");       //ogni video privato caricato col nostro sito ha "whereami" nel titolo seguito da un + perciò divito la stringa
+				if (item.status.privacyStatus == "unlisted" && arrStr[0]=="whereami") { //seleziono solo i video unlisted del canale
+					output = '<li id="' + item.snippet.resourceId.videoId + item.snippet.resourceId.videoId + '">' + arrStr[1] + '</li>' +
 						'<button type= "button"  id="' + item.snippet.resourceId.videoId + item.snippet.resourceId.videoId + item.snippet.resourceId.videoId + '">Play</button>' +
 						'<button type= "button" id="' + item.snippet.resourceId.videoId + '">Carica</button>';
 					$("#videosalvatilist").append(output); //aggiungo nomi e button alla lista dei video
@@ -593,8 +600,8 @@ function getVids(videos) { //funzione che crea la lista di video salvati
 								$("#" + playId).remove();
 								$("#" + caricaId).remove();
 
-
-								///////QUI E' DA AGGIUNGERE LA FUNZIONE CHE AGGIUNGE I DATI AL JSON 
+								var latlong = item.snippet.description.split(":");
+								isPresente(latlong[0], latlong[1], item.snippet.resourceId.videoId); 
 							})
 					}
 				}
