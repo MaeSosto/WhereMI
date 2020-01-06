@@ -4,6 +4,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+            <title>Where MI</title>
+            <link rel="shortcut icon" href="https://site181964.tw.cs.unibo.it/media/img/logo.png" />
+    
         <!--includo libreria jquery tramite CDN, niente download-->
         <!--Api youtube audio-->
         <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
@@ -478,9 +481,9 @@
                         CLIPS
                     </h3>
                     <!-- TODO: ADD THE ARRAY THAT GIVES THE LOOPS OFF DATA  -->
-                    <div class="col-md-3 mb-2">
+                    <!-- <div class="col-md-3 mb-2">
                         <div class="card h-100">
-                            <!--h-100 setta la stessa altezza a tutte le card -->
+                         
                             <div class="card-body" id="TvLSlvx3LbMheader" style="background-color: #34456a;">
                                 <div style="display:flex; justify-content: space-between">
                                     <h4> <a class="card-title" style="color: white"
@@ -509,13 +512,34 @@
                                     aria-hidden="true"></i></button>
                                 <button id="pausebutton1" title="Pause" class="pause audio-buttons "><i class="fa fa-pause"
                                     aria-hidden="true"></i></button>
-                                <!-- <button  type="button" id="skipbutton">skip</button> -->
+                                <button  type="button" id="skipbutton">skip</button>
                                 <button title="Next" id="nextbutton1" class="audio-buttons  next"><i
                                     class="fa fa-fast-forward" aria-hidden="true"></i></button>
                                 <div id="youtube-player"></div>
                             </div>
                         </div>
+                    </div> -->
+
+                    <!-- TODO: CHANGE IT LATER -->
+
+                    <div>
+                        <div class="buttonsdiv">
+                            <button type="button" id="backbutton">indietro</button><button type="button"
+                                id="playbutton">play</button><button type="button" id="nextbutton">avanti</button>
+                            <button type="button" id="skipbutton">skip</button>
+                            <div id="youtube-player"></div>
+                        </div>
+                        <div class="col-lg-4" style="background: blue; height: 15%; border-bottom: 1px solid #e2e2e2;"><button
+                            type="button" id="video1button">url video</button></div>
+                        <div class="col-lg-8" style="background: chocolate; height: 15%; border-bottom: 1px solid #e2e2e2;"> name
+                        </div>
+                        <div class="col-lg-4" style="background: blue; height: 15%; border-bottom: 1px solid #e2e2e2;"><button
+                            type="button" id="video2button">url video</button></div>
+                        <div class="col-lg-8" style="background: chocolate; height: 15%; border-bottom: 1px solid #e2e2e2;"> name
+                        </div>
                     </div>
+
+                    
                 </div>
             </div>
         </div>
@@ -707,6 +731,8 @@
                 <div class="imagediv">
                     <img src="">
                 </div>
+
+                <!-- <div>
                 <div class="buttonsdiv">
                     <button type="button" id="backbutton">indietro</button><button type="button"
                         id="playbutton">play</button><button type="button" id="nextbutton">avanti</button>
@@ -721,10 +747,20 @@
                     type="button" id="video2button">url video</button></div>
                 <div class="col-lg-8" style="background: chocolate; height: 15%; border-bottom: 1px solid #e2e2e2;"> name
                 </div>
+            </div> -->
+
             </div>
         </div>
         <!-- LOGIN SCRIPT -->
         <script type="text/javascript" src="../media/Javascript/login.js"></script>
+
+        <!-- SCRIPT FOR REDERECTIONG INTO HTTPS -->
+         <!-- <script>
+           if (window.location.protocol != "https:")
+               window.location.href = window.location.href.replace('http', 'https');
+         </script> -->
+
+
         <!-- LANGUAGE actionsSCRIPT -->
         <script type="text/javascript" src="../media/Javascript/language.js"></script>
         <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"

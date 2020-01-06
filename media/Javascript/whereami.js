@@ -143,7 +143,7 @@ function creamappa(coords) {
 	var map = new google.maps.Map(document.getElementById('map'), {
 		zoom: 15,
 		center: coords,
-	});
+	});	
 	return (map);
 }
 function creaMarker2(coords) { //crea marker dei luoghi
@@ -280,6 +280,7 @@ function onYouTubeIframeAPIReady() {
 		playerVars: {
 			autoplay: 0,
 			loop: 0,
+			origin:'https://site181964.tw.cs.unibo.it'
 		},
 	});
 

@@ -10,8 +10,8 @@ const CLIENT_ID = "899661843536-gl9bsjpnqbjkcddj1e8167o6e6anpmrd.apps.googleuser
 // TODO localhost JOPROVE keys to delete in the end 
 
 //JOANNA
- const API_KEY = "AIzaSyD-mpMmNo1CDOd8fAF7exQ_g4GInG882FM";
- const CLIENT_ID = "899376088276-hufn1h9oj01vc5u9ui9ithdku5iln5rg.apps.googleusercontent.com";
+//  const API_KEY = "AIzaSyD-mpMmNo1CDOd8fAF7exQ_g4GInG882FM";
+//  const CLIENT_ID = "899376088276-hufn1h9oj01vc5u9ui9ithdku5iln5rg.apps.googleusercontent.com";
 
 
 //MIO

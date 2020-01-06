@@ -549,6 +549,7 @@ window.onYouTubeIframeAPIReady = function () {
 		playerVars: {
 			autoplay: 0,
 			loop: 0,
+			origin:'https://site181964.tw.cs.unibo.it'
 		},
 	});
 
