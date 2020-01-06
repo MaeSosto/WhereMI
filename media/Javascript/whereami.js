@@ -17,6 +17,8 @@ function initCoords() {
 	}
 }
 
+
+
 function addToPlayer(oggetto){
 	urlvideo=[];
 	var array=oggetto.video;
@@ -24,6 +26,18 @@ function addToPlayer(oggetto){
 		urlvideo.push(array[i]);
 	}
 	console.log(urlvideo);
+	popolaDivVideo(urlvideo);
+}
+
+function popolaDivVideo(urlvideo){
+	for(let video in urlvideo){
+		output = '<li id="' + video + '">' + arrStr[1] + '</li>' +
+						'<button type= "button"  id="' + item.snippet.resourceId.videoId + item.snippet.resourceId.videoId + item.snippet.resourceId.videoId + '">Play</button>' +
+						'<button type= "button" id="' + item.snippet.resourceId.videoId + '">Carica</button>';
+					$("#videosalvatilist").append(output); //aggiungo nomi e button alla lista dei video
+
+	}
+	
 }
 
 function getVideos(lat, long){ //scorre il json finché non trova quel luogo e poi prende i suoi video e li aggiunge al player

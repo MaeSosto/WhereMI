@@ -154,10 +154,10 @@ async function uploadYoutube() {
 		latlong.lat=x.lat();
 		latlong.lng=x.lng();
 
-		var metadatiClip = latlong.lat + ":" + latlong.lng +":"+ descrizione + ":" + scopo + ":" + lingua + ":" + categoria + ":" + audience + ":" + dettagli;
+		var metadatiClip = latlong.lat + ":" + latlong.lng + ":" + titolo +":"+ descrizione + ":" + scopo + ":" + lingua + ":" + categoria + ":" + audience + ":" + dettagli;
 		console.log(metadatiClip);
 
-		var success =  window.uploadToYoutube(audSave.src || recorder.src, titolo, metadatiClip, latlong);
+		var success =  window.uploadToYoutube(audSave.src || recorder.src, titolo, metadatiClip);
 		if (success) {
 			alert("caricato");
 		}
@@ -169,18 +169,18 @@ async function uploadYoutube() {
 	
 }
 
-window.uploadToYoutube = async function (urlClip, titolo, metadati, latlong) {
+window.uploadToYoutube = async function (urlClip, titolo, metadati) {
 	//Ottieni clip video da URL (hosted cloudinary.com)
 	let response = await fetch(urlClip);
 	var rawData = await response.blob();
 	rawData.type = 'video/mp4';
 	console.log("Preparo invio dati a Youtube (API)", rawData);
-	uploadRawFile(rawData, titolo, metadati, latlong);
+	uploadRawFile(rawData, titolo, metadati);
 	return true;
 }
 
 
-async function uploadRawFile(videoclip, titolo, metadatiClip, latlong) {
+async function uploadRawFile(videoclip, titolo, metadatiClip) {
 	var token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token;
 	var params = {
 		snippet: {
@@ -217,7 +217,7 @@ async function uploadRawFile(videoclip, titolo, metadatiClip, latlong) {
 		})
 		.done(function (response) {
 			console.log("Caricamento completato! YouTube:", response)
-			isPresente(latlong.lat, latlong.lng, response.id);
+			isPresente(metadatiClip, response.id);
 			return true;
 		})
 		.fail(function (response) {
@@ -251,7 +251,7 @@ async function uploadYoutubePrivate() {
 		latlong.lat=x.lat();
 		latlong.lng=x.lng();
 
-		var metadatiClip = latlong.lat + ":" + latlong.lng +":"+ descrizione + ":" + scopo + ":" + lingua + ":" + categoria + ":" + audience + ":" + dettagli;
+		var metadatiClip = latlong.lat + ":" + latlong.lng + ":" + titolo +":"+ descrizione + ":" + scopo + ":" + lingua + ":" + categoria + ":" + audience + ":" + dettagli;
 		console.log(metadatiClip);
 
 		var success = window.uploadToYoutubePrivate(audSave.src || recorder.src, titolo, metadatiClip);
@@ -394,40 +394,61 @@ function aggiornaJson(oggetto){ //funzione che aggiorna il json con il nuovo ogg
 
 var check = null; // controllo per la funzione
 
-function isPresente(lat, long, urlvideo){ //funzione che controlla se quel luogo esiste già e aggiunge i dati di conseguenza
+function isPresente(metadati, urlvideo){ //funzione che controlla se quel luogo esiste già e aggiunge i dati di conseguenza
 	var luoghi=getJson();
-	
+	var metadatisplit=metadati.split(":");
 	for(let luogo in luoghi){
 		
-		if (luoghi[luogo].coord.lat==lat && luoghi[luogo].coord.long==long){
+		if (luoghi[luogo].coord.lat==metadatisplit[0] && luoghi[luogo].coord.long==metadatisplit[1]){
 			check= luogo; // salvo il luogo dove inserire i dati
 		}
 	}
 		
 	if (check!=null){
-		insertHere(check, urlvideo, luoghi); 
+		insertHere(check, urlvideo, luoghi, metadatisplit); 
 	}
 	else{
-		creaNuovo(lat, long, urlvideo, luoghi);
+		creaNuovo(metadatisplit, urlvideo, luoghi);
 	}
 	check=null;
 }
 
 
-function insertHere(nome, urlvideo, luoghi){
-	luoghi[nome].video.push(urlvideo);
+function insertHere(nome, urlvideo, luoghi, metadatisplit){
+	var temp = new Object;
+	temp.url=urlvideo;
+	temp.titolo=metadatisplit[2];
+	temp.descrizione=metadatisplit[3];
+	temp.scopo=metadatisplit[4];
+	temp.lingua=metadatisplit[5];
+	temp.categoria=metadatisplit[6];
+	temp.audiance=metadatisplit[7];
+	temp.dettagli=metadatisplit[8];
+	luoghi[nome].video.push(temp);
+
 	aggiornaJson(luoghi);
 }
 
-function creaNuovo(lat, long, urlvideo, luoghi){
+function creaNuovo(metadatisplit, urlvideo, luoghi){
 	//var code = generateRandomString(10);
-	var code= getOLC(lat, long);
+	var code= getOLC(metadatisplit[0], metadatisplit[1]);
 	luoghi[code]=new Object;
 	luoghi[code].coord= new Object;
+	luoghi[code].coord.lat=metadatisplit[0];
+	luoghi[code].coord.long=metadatisplit[1];
 	luoghi[code].video= new Array;
-	luoghi[code].coord.lat=lat;
-	luoghi[code].coord.long=long;
-	luoghi[code].video.push(urlvideo);
+
+	var temp = new Object;
+	temp.url=urlvideo;
+	temp.titolo=metadatisplit[2];
+	temp.descrizione=metadatisplit[3];
+	temp.scopo=metadatisplit[4];
+	temp.lingua=metadatisplit[5];
+	temp.categoria=metadatisplit[6];
+	temp.audiance=metadatisplit[7];
+	temp.dettagli=metadatisplit[8];
+
+	luoghi[code].video.push(temp);
 	aggiornaJson(luoghi);
 	
 }
@@ -528,7 +549,7 @@ function getVids(videos) { //funzione che crea la lista di video salvati
 $("#tastovideosalvati").click(function () {
 
 	getPlaylist();
-	
+
 });
 
 
