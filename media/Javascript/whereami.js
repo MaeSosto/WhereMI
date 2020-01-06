@@ -22,22 +22,27 @@ function initCoords() {
 function addToPlayer(oggetto){
 	urlvideo=[];
 	var array=oggetto.video;
-	for(var i=0; i<array.length; i++){
-		urlvideo.push(array[i]);
+	for(var i=0; i<array.length;i++){
+		urlvideo.push(array[i].url);
 	}
 	console.log(urlvideo);
-	popolaDivVideo(urlvideo);
+	popolaDivVideo(array);
 }
 
-function popolaDivVideo(urlvideo){
-	for(let video in urlvideo){
-		output = '<li id="' + video + '">' + arrStr[1] + '</li>' +
-						'<button type= "button"  id="' + item.snippet.resourceId.videoId + item.snippet.resourceId.videoId + item.snippet.resourceId.videoId + '">Play</button>' +
-						'<button type= "button" id="' + item.snippet.resourceId.videoId + '">Carica</button>';
-					$("#videosalvatilist").append(output); //aggiungo nomi e button alla lista dei video
+function popolaDivVideo(array){
+	for(let video in array){
+		var titolo=array[video].titolo.split("+");
+		output = '<li id="' + array[video].url + '" >' + titolo[1] + '</li>' ;
+		$("#listavideodariprodurre").append(output); //aggiungo nomi e button alla lista dei video
 
 	}
 	
+}
+
+function playThis(url){
+	player.loadVideoById(url);
+	player.playVideo;
+	togglePlayButton(true);
 }
 
 function getVideos(lat, long){ //scorre il json finché non trova quel luogo e poi prende i suoi video e li aggiunge al player
@@ -404,6 +409,89 @@ function getJson(){ //funzione che ritorna il json con i luoghi
 
 
 /*************** FILTRO e creazione Luoghi **************/
+
+
+/*
+if (typeof Object.prototype.equals !== 'function') {
+	Object.prototype.equals = function(x) {
+		for (p in this) {
+			switch (typeof(this[p])) {
+				case 'object':
+					if (!this[p].equals(x[p])) {
+						return false;
+					}
+					break;
+				case 'function':
+					if (typeof(x[p]) == 'undefined' || (p != 'equals' && this[p].toString() != x[p].toString())) {
+						return false;
+					}
+					break;
+				default:
+					if (this[p] != x[p]) {
+						return false;
+					}
+			}
+		}
+
+		for (p in x) {
+			if (typeof(this[p]) == 'undefined') {
+				return false;
+			}
+		}
+
+		return true;
+	}
+}
+
+
+function filtro(oggettojson,oggettofiltro){
+   if(oggettojson.equals(oggettofiltro))
+	   return true
+   else return false
+
+}
+function creaOggettofiltro() {
+
+var A = {
+	categoria: document.getElementById("categoria").value,
+	lingua: document.getElementById("selectDetail").value,
+	audience: document.getElementById("selectAudience").value,
+	scopo: document.getElementById("scopo").value,
+	dettagli: document.getElementById("dettagli").value
+};
+return A;
+}
+
+function CreaOggettoJson(x) {
+	var luoghi={"87928GF2+4F":{"coord":{"lat":"37.3227667","long":"-79.49880719999999"},"video":[{"url":"tFZiDco9vIk","titolo":"thistitolo","descrizione":"thisdescrizione","scopo":"thisscopo","lingua":"thislingua","categoria":"thiscategoria","audiance":"thisaudiance","dettagli":"thisdettagli"}]},obj:{"coord":{"lat":"-33.8688197","long":"151.20929550000005"},"video":[{"url":"tiprego","titolo":"whereami+fsfsdf","descrizione":"                           dfsdfsdf         ","scopo":"all","lingua":"ita","categoria":"nat","audiance":"pre","dettagli":"3"}]},"8FQFF57Q+MX":{"coord":{"lat":"45.4642035","long":"9.189981999999986"},"video":[{"url":"s482hF5pBXk","titolo":"whereami+dsdf","descrizione":"                                    dfasf","scopo":"all","lingua":"ita","categoria":"nat","audiance":"gen","dettagli":"3"}]}};
+		
+	//al posto di 4RRH46J5+FP ci va messo ogni singolo oggetto del file json
+ 	var A;
+	for (var obj in luoghi){
+		A= {
+			categoria:luoghi[obj].video[0].categoria,
+			lingua: luoghi[obj].video[0].lingua,
+			audience: luoghi[obj].video[0].audience,
+			scopo: luoghi[obj].video[0].scopo,
+			dettagli: luoghi[obj].video[0].dettagli
+		}
+		if(filtro(x, A)==true){
+			console.log(obj);
+		}
+	}
+	
+	return A
+}
+
+
+
+
+
+
+
+
+
+
 /*
  //var marker=creaMarker(coords);
  var arra=new Array();
