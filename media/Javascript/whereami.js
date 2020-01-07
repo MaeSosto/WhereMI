@@ -442,15 +442,16 @@ function creaOggettofiltro() {
 	return A;
 }
 
-function sendFiltro() {
+function filtro() {
 	var temp=new Array()
 	var obj=getJson()
 	var oggfiltro=creaOggettofiltro()
 	console.log(oggfiltro);
 
 	for(let luoghi in obj) {
-
-		if (oggfiltro.categoria == luoghi[obj].video[0].categoria && oggfiltro.categoria == luoghi[obj].video[0].lingua && oggfiltro.audience == luoghi[obj].video[0].audience && oggfiltro.scopo == luoghi[obj].video[0].scopo && oggfiltro.dettagli == luoghi[obj].video[0].dettagli) {
+		if(oggfiltro.lingua=='all')
+		{oggfiltro.lingua = luoghi[obj].video[0].lingua;}
+		if (oggfiltro.categoria == luoghi[obj].video[0].categoria && oggfiltro.lingua == luoghi[obj].video[0].lingua && oggfiltro.audience == luoghi[obj].video[0].audience && oggfiltro.scopo == luoghi[obj].video[0].scopo && oggfiltro.dettagli == luoghi[obj].video[0].dettagli) {
 			temp.push(obj);//metto in un array tutti i video che rientrano nel filto
 		}
 	}
