@@ -21,19 +21,21 @@ function initCoords() {
 
 function addToPlayer(oggetto){
 	urlvideo=[];
-	var array=oggetto.video;
-	for(var i=0; i<array.length;i++){
-		urlvideo.push(array[i].url);
+	var arrayvideo=oggetto.video;
+	for(var i=0; i<arrayvideo.length;i++){
+		urlvideo.push(arrayvideo[i].url);
 	}
 	console.log(urlvideo);
-	popolaDivVideo(array);
+	popolaDivVideo(arrayvideo);
+	showPlayerDiv(true);
 }
 
-function popolaDivVideo(array){
-	for(let video in array){
-		var titolo=array[video].titolo.split("+");
-		output = '<li id="' + array[video].url + '" >' + titolo[1] + '</li>' ;
-		$("#listavideodariprodurre").append(output); //aggiungo nomi e button alla lista dei video
+function popolaDivVideo(oggetto){
+	$("#listavideodariprodurre").html(''); //elimino contenuto lista
+	for(let video in oggetto){
+		var titolo=oggetto[video].titolo.split("+");
+		output = '<li id="' + oggetto[video].url + '" >' + titolo[1] + '</li>' ;
+		$("#listavideodariprodurre").append(output); 
 
 	}
 	
@@ -179,12 +181,17 @@ function creaMarker2(coords) { //crea marker dei luoghi
 		getVideos(marker.position.lat(), marker.position.lng()); 
 	}); 
 
-	 google.maps.event.addListener(marker, 'mouseover', function() { 
+	google.maps.event.addListener(marker, 'mouseover', function() { 
 		var infowindow = new google.maps.InfoWindow({
-			content: " funzia"
+			content: "click on marker"
 		});
 		infowindow.open(map, this);
-	 }); 
+
+		google.maps.event.addListener(marker, 'mouseout', function() { 
+			infowindow.close(map, this);
+		}); 
+	}); 
+	
 
 	return marker;
 }
@@ -260,11 +267,14 @@ function onSignIn(googleUser) {
 /**********FINESTRA PLAYER E AUDIO **********/
 
 function showPlayerDiv(show) { //mostra o nasconde la finestra del player e audio
-	var bar = document.getElementById('bar');
+	var divfiltro = document.getElementById('divfiltro');
+	var divplayer = document.getElementById('divplayer');
 	if (show == true) {
-		bar.style.visibility = 'visible';
+		divfiltro.style.display = 'block';
+		divplayer.style.display = 'block';
 	} else {
-		bar.style.visibility = 'hidden';
+		divfiltro.style.display = 'none';
+		divplayer.style.display = 'none';
 	}
 
 }
