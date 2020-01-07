@@ -271,8 +271,8 @@
                             <label lang="de" class="input-group-text" for="selectCategoria">Kategorie</label>
                             <label lang="fr" class="input-group-text" for="selectCategoria">Catégorie</label>
                         </div>
-                        <select id="categoria" class="form-control">
-                            <option selected="selected" value=all>-</option>
+                        <select id="categoria" class="form-control" required>
+                            <option selected="selected">-</option>
                             <option lang="en" value=all>All</option>
                             <option lang="es" value=all>Todos</option>
                             <option lang="it" value=all>Tutte</option>
@@ -317,8 +317,8 @@
                             <span lang="fr">Langue</span>
                             </label>
                         </div>
-                        <select id="selectDetail" class="form-control">
-                            <option selected="selected" value=all>-</option>
+                        <select id="selectDetail" class="form-control" required>
+                            <option selected="selected" >-</option>
                             <option lang="it" value="ita">Italiano</option>
                             <option lang="en" value="ita">Italian</option>
                             <option lang="es" value="ita">italiano</option>
@@ -359,7 +359,7 @@
                             </label>
                         </div>
                         <select id="selectAudience" class="form-control">
-                            <option selected="selected" value=empty>-</option>
+                            <option selected="selected" value="gen">-</option>
                             <option lang="it" value="gen">Generico</option>
                             <option lang="en" value="gen">General</option>
                             <option lang="es" value="gen">General</option>
@@ -402,7 +402,7 @@
                     </div>
                     <div style="display:flex; justify-content: space-between;">
                         <div class="form-check form-check">
-                            <input class="input-group-text" type="radio" name="scopo" id="scopo" value="all" checked>
+                            <input class="input-group-text" type="radio" name="scopo" id="scopo" value="all">
                             <label class="form-check-label" for="scopo">
                             <span lang="en">All</span>
                             <span lang="it">Tutte</span>

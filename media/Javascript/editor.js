@@ -422,7 +422,7 @@ function insertHere(nome, urlvideo, luoghi, metadatisplit){
 	temp.scopo=metadatisplit[4];
 	temp.lingua=metadatisplit[5];
 	temp.categoria=metadatisplit[6];
-	temp.audiance=metadatisplit[7];
+	temp.audience=metadatisplit[7];
 	temp.dettagli=metadatisplit[8];
 	luoghi[nome].video.push(temp);
 
@@ -445,7 +445,7 @@ function creaNuovo(metadatisplit, urlvideo, luoghi){
 	temp.scopo=metadatisplit[4];
 	temp.lingua=metadatisplit[5];
 	temp.categoria=metadatisplit[6];
-	temp.audiance=metadatisplit[7];
+	temp.audience=metadatisplit[7];
 	temp.dettagli=metadatisplit[8];
 
 	luoghi[code].video.push(temp);
