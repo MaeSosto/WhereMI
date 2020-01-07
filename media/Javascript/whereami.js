@@ -10,10 +10,18 @@
 // funzione pr l'inizializazione delle coordinate
 
 function initCoords() {
-	if (navigator.geolocation) {
+	if (confirm("Vuoi usare la Geolocalizzazione?")) {
 		navigator.geolocation.getCurrentPosition(initAutocomplete);
+		document.getElementById('set-position').style.visibility="hidden";
 	} else {
-		showError("Your browser does not support Geolocation!");
+		document.getElementById('set-position').style.visibility="visible";
+		var position = {
+			coords: {
+				latitude:44.4936714	,
+				longitude:11.3430347
+			}
+		};
+		initAutocomplete(position);
 	}
 }
 
@@ -421,195 +429,35 @@ function getJson(){ //funzione che ritorna il json con i luoghi
 /*************** FILTRO e creazione Luoghi **************/
 
 
-/*
-if (typeof Object.prototype.equals !== 'function') {
-	Object.prototype.equals = function(x) {
-		for (p in this) {
-			switch (typeof(this[p])) {
-				case 'object':
-					if (!this[p].equals(x[p])) {
-						return false;
-					}
-					break;
-				case 'function':
-					if (typeof(x[p]) == 'undefined' || (p != 'equals' && this[p].toString() != x[p].toString())) {
-						return false;
-					}
-					break;
-				default:
-					if (this[p] != x[p]) {
-						return false;
-					}
-			}
-		}
 
-		for (p in x) {
-			if (typeof(this[p]) == 'undefined') {
-				return false;
-			}
-		}
-
-		return true;
-	}
-}
-
-
-function filtro(oggettojson,oggettofiltro){
-   if(oggettojson.equals(oggettofiltro))
-	   return true
-   else return false
-
-}
 function creaOggettofiltro() {
 
-var A = {
-	categoria: document.getElementById("categoria").value,
-	lingua: document.getElementById("selectDetail").value,
-	audience: document.getElementById("selectAudience").value,
-	scopo: document.getElementById("scopo").value,
-	dettagli: document.getElementById("dettagli").value
-};
-return A;
+	var A = {
+		categoria: document.getElementById("categoria").value,
+		lingua: document.getElementById("selectDetail").value,
+		audience: document.getElementById("selectAudience").value,
+		scopo: document.getElementById("scopo").value,
+		dettagli: document.getElementById("dettagli").value
+	};
+	return A;
 }
 
-function CreaOggettoJson(x) {
-	var luoghi={"87928GF2+4F":{"coord":{"lat":"37.3227667","long":"-79.49880719999999"},"video":[{"url":"tFZiDco9vIk","titolo":"thistitolo","descrizione":"thisdescrizione","scopo":"thisscopo","lingua":"thislingua","categoria":"thiscategoria","audiance":"thisaudiance","dettagli":"thisdettagli"}]},obj:{"coord":{"lat":"-33.8688197","long":"151.20929550000005"},"video":[{"url":"tiprego","titolo":"whereami+fsfsdf","descrizione":"                           dfsdfsdf         ","scopo":"all","lingua":"ita","categoria":"nat","audiance":"pre","dettagli":"3"}]},"8FQFF57Q+MX":{"coord":{"lat":"45.4642035","long":"9.189981999999986"},"video":[{"url":"s482hF5pBXk","titolo":"whereami+dsdf","descrizione":"                                    dfasf","scopo":"all","lingua":"ita","categoria":"nat","audiance":"gen","dettagli":"3"}]}};
-		
-	//al posto di 4RRH46J5+FP ci va messo ogni singolo oggetto del file json
- 	var A;
-	for (var obj in luoghi){
-		A= {
-			categoria:luoghi[obj].video[0].categoria,
-			lingua: luoghi[obj].video[0].lingua,
-			audience: luoghi[obj].video[0].audience,
-			scopo: luoghi[obj].video[0].scopo,
-			dettagli: luoghi[obj].video[0].dettagli
-		}
-		if(filtro(x, A)==true){
-			console.log(obj);
+function sendFiltro() {
+	var temp=new Array()
+	var obj=getJson()
+	var oggfiltro=creaOggettofiltro()
+	console.log(oggfiltro);
+
+	for(let luoghi in obj) {
+
+		if (oggfiltro.categoria == luoghi[obj].video[0].categoria && oggfiltro.categoria == luoghi[obj].video[0].lingua && oggfiltro.audience == luoghi[obj].video[0].audience && oggfiltro.scopo == luoghi[obj].video[0].scopo && oggfiltro.dettagli == luoghi[obj].video[0].dettagli) {
+			temp.push(obj);//metto in un array tutti i video che rientrano nel filto
 		}
 	}
-	
-	return A
+		var i=temp.length;
+	for(var y=0;y<i;y++){
+		addToPlayer(temp[y]);
+	}
+
+
 }
-
-
-
-
-
-
-
-
-
-
-/*
- //var marker=creaMarker(coords);
- var arra=new Array();
- var c;
- //var nome= document.getElementById('newMarker').value;
- //var marker=addressconverter(geocoder,map,nome);
- function b(){
-     var titolo = document.getElementById("titolo").value;
-     var descrizione = document.getElementById("descrizione").value;
-     var scopo = document.getElementById("scopo").value;
-     var lingua = document.getElementById("lingua").value;
-     var categoria = document.getElementById("categoria").value;
-     var audience = document.getElementById("audience").value;
-     var dettagli = document.getElementById("dettagli").value;
-     return (c=new Luogo(2,lingua,audience,dettagli,descrizione,scopo,titolo,categoria))
- }
- document.getElementById('clicca').addEventListener('click', function(){
-         x=b();
-         arra.push(x)
-         console.log(arra[0].getmarker()+arra[0].gettitolo()+arra[0].getdescrizione()+arra[0].getlingua())
-     }
- );
- function addressconverter(geocoder,resultsMap,address) {
-     var results=geocoder.geocode({'address': address});
-     function x(results) {
-         var marker;
-         resultsMap.setCenter(results[0].geometry.location);
-         marker=creaMarker(results[0].geometry.location)
-         return marker
-     }
-     return x(results);
- }
- function filter(input){
-     var y=arra.length;
-     var controllo=0
-     var foo=new Array()
-     for (var i=0;i<y;i++){
-         controllo=0
-         if(arra[i].getlingua()==input.getlingua()&&controllo==0){
-             foo.push(arra[i])
-             controllo++;
-         }
-         if(arra[i].getscopo()==input.getscopo()&&controllo==0){
-             foo.push(arra[i])
-             controllo++;
-         }
-         if(arra[i].getaudience()==input.getaudience()&&controllo==0){
-             foo.push(arra[i])
-             controllo++;
-         }
-         if(arra[i].getdettagli()==input.getdettagli()&&controllo==0){
-             foo.push(arra[i])
-             controllo++;
-         }
-         if(arra[i].getcategoria()==input.getcategoria()&&controllo==0){
-             foo.push(arra[i])
-             controllo++;
-         }
-     }
-     return foo;
- }
- function displayfilter(input,map) {
-     var y = input.length;
-     for (var i = 0; i < y; i++) {
-         stampaMarker(input[i].getmarker().map);
-     }
- }
- function resetFilter(input){
-     var y = input.length;
-     for (var i = 0; i < y; i++) {
-         input[i].getmarker().setMap(null);
-     }
-     input=[];
- }
- class Luogo{
-     constructor(marker,lingua,audience,dettagli,descrizione,scopo,titolo,categoria) {
-         this.marker = marker
-         this.lingua = lingua
-         this.audience = audience
-         this.dettagli = dettagli
-         this.descrizione = descrizione
-         this.scopo=scopo
-         this.titolo=titolo
-         this.categoria=categoria
-     }
-     getaudience(){
-         return this.audience;
-     }
-     getlingua(){
-         return this.lingua
-     }
-     getdettagli(){
-         return this.dettagli;
-     }
-     getmarker (){
-         return this.marker
-     }
-     getdescrizione(){
-         return this.descrizione;
-     }
-     getscopo(){
-         return this.scopo
-     }
-     gettitolo(){
-         return this.titolo
-     }
-     getcategoria(){
-         return this.categoria
-     }
- }
- */
