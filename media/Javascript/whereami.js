@@ -83,6 +83,7 @@ function initAutocomplete(position) {
 		cord = new google.maps.LatLng(luoghi[luogo].coord.lat, luoghi[luogo].coord.long);
 		var temp = creaMarker2(cord);
 		stampaMarker(temp, map);
+
 	}
 
 	function geocodeAddress(geocoder, resultsMap) {
@@ -148,6 +149,43 @@ function initAutocomplete(position) {
 
 }
 
+
+function Evicino(position) {
+	var array = new Array()
+	var range = 4000;
+	var luoghi = getJson();
+	for (let luogo in luoghi) {
+		var temp = new google.maps.LatLng(luoghi[luogo].coord.lat, luoghi[luogo].coord.long)
+		var distanza = spherical.computeDistanceBetween(position, temp)
+		if (distanza < range) {
+			array.push(luoghi[luogo]);
+		}
+	}
+	//array è un array di oggeti che identifica i luoghi più vicini
+	//addToPlayer(array);
+}
+
+
+
+function nextLuogo(lat, lng) { //trova il luogo più vicino
+	var position = new google.maps.LatLng(lat, lng);
+	var luogopiuvicino;
+	var arraydistanza = new Array();
+	var luoghi = getJson();
+	var spherical = google.maps.geometry.spherical;
+	for (let luogo in luoghi) {
+		var temp = new google.maps.LatLng(luoghi[luogo].coord.lat, luoghi[luogo].coord.long);
+		if (position.lat() != temp.lat() && position.lng() != temp.lng()) {
+			var distanza = spherical.computeDistanceBetween(position, temp);
+			arraydistanza.push(distanza);
+			if (distanza <= Math.min.apply(null, arraydistanza)) {
+				luogopiuvicino = luoghi[luogo];
+			}
+		}
+	}
+	return luogopiuvicino;
+}
+
 function compiler(input, map) {
 
 	var searchBox = new google.maps.places.SearchBox(input);
@@ -188,6 +226,8 @@ function creaMarker2(coords) { //crea marker dei luoghi
 
 	google.maps.event.addListener(marker, 'click', function () {
 		getVideos(marker.position.lat(), marker.position.lng());
+		document.getElementById("skipbutton").value=marker.position.lat();
+		document.getElementById("skipbutton").name=marker.position.lng();
 	});
 
 	google.maps.event.addListener(marker, 'mouseover', function () {
@@ -303,7 +343,7 @@ function showBar(show) { //mostra o nasconde la finestra del player e audio
 }
 
 
-var urlvideo = []; //array con id dei video da riprodurre, creare funzione per popolarlo
+var urlvideo = []; //array con id dei video da riprodurre
 var player;
 
 
@@ -337,6 +377,8 @@ function onYouTubeIframeAPIReady() {
 	function togglePlayButton(play) {
 		document.getElementById("playbutton").innerHTML = play ? "pause" : "play";
 	}
+
+	
 
 
 	$("#video1button").click(function () {
@@ -372,47 +414,24 @@ function onYouTubeIframeAPIReady() {
 		player.playVideo;
 		togglePlayButton(true);
 	});
+
+	
+
+	$("#skipbutton").click(function () {
+		
+		var lat=document.getElementById("skipbutton").value;
+		var lng=document.getElementById("skipbutton").name;
+		var nxt= nextLuogo(lat, lng);
+		addToPlayer(nxt.video);
+		document.getElementById("skipbutton").value=nxt.coord.lat;
+		document.getElementById("skipbutton").name=nxt.coord.long;
+	});
+
+
+	
+
 }
 
-class Luogo {
-
-	constructor(marker, lingua, audience, dettagli, descrizione, scopo, titolo, categoria) {
-		this.marker = Marker
-		this.lingua = lingua
-		this.audience = audience
-		this.dettagli = dettagli
-		this.descrizione = descrizione
-		this.scopo = scopo
-		this.titolo = titolo
-		this.categoria = categoria
-
-	}
-
-	getaudience() {
-		return this.audience;
-	}
-	getlingua() {
-		return this.lingua
-	}
-	getdettagli() {
-		return this.dettagli;
-	}
-	getmarker() {
-		return this.marker;
-	}
-	getdescrizione() {
-		return this.descrizione;
-	}
-	getscopo() {
-		return this.scopo
-	}
-	gettitolo() {
-		return this.titolo
-	}
-	getcategoria() {
-		return this.categoria
-	}
-}
 
 function getJson() { //funzione che ritorna il json con i luoghi
 	var Path = "/config/general.json";
@@ -447,7 +466,7 @@ function SendFiltro() {
 	var temp = new Array();
 	var obj = getJson();
 	var oggfiltro = creaOggettofiltro();
-	
+
 
 
 	for (let luoghi in obj) {
@@ -459,12 +478,12 @@ function SendFiltro() {
 
 			//console.log(arrayvideo[i]);
 			//console.log(oggfiltro);
-			
+
 			if (oggfiltro.categoria == arrayvideo[i].categoria && oggfiltro.lingua == arrayvideo[i].lingua && oggfiltro.audience == arrayvideo[i].audience && oggfiltro.scopo == arrayvideo[i].scopo && oggfiltro.dettagli == arrayvideo[i].dettagli) {
-					temp.push(arrayvideo[i]); //metto in un array tutti i video che rientrano nel filto
+				temp.push(arrayvideo[i]); //metto in un array tutti i video che rientrano nel filto
 			}
-				
-			
+
+
 		}
 	}
 	addToPlayer(temp);
