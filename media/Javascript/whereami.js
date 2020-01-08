@@ -9,6 +9,10 @@
 
 // funzione pr l'inizializazione delle coordinate
 
+var arrayposizionivisitate=new Array();
+
+
+
 function initCoords() {
 	if (confirm("Vuoi usare la Geolocalizzazione?")) {
 		navigator.geolocation.getCurrentPosition(initAutocomplete);
@@ -175,15 +179,34 @@ function nextLuogo(lat, lng) { //trova il luogo più vicino
 	var spherical = google.maps.geometry.spherical;
 	for (let luogo in luoghi) {
 		var temp = new google.maps.LatLng(luoghi[luogo].coord.lat, luoghi[luogo].coord.long);
-		if (position.lat() != temp.lat() && position.lng() != temp.lng()) {
+		if (position.lat() != temp.lat() && position.lng() != temp.lng() && Evisitato(arrayposizionivisitate,luoghi[luogo])) {
 			var distanza = spherical.computeDistanceBetween(position, temp);
 			arraydistanza.push(distanza);
 			if (distanza <= Math.min.apply(null, arraydistanza)) {
 				luogopiuvicino = luoghi[luogo];
+
 			}
 		}
 	}
+
+	arrayposizionivisitate.push(luogopiuvicino);
 	return luogopiuvicino;
+}
+
+//dovrebbe andare forse c'è un problema di scope con t DP
+
+function Evisitato(array,oggetto){
+
+	var t=false;
+	for(var i=0;i<array.lenght;i++)
+	{
+		if(array[i]==oggetto)
+		{
+			var t=true;
+		}
+	}
+
+return t
 }
 
 function compiler(input, map) {

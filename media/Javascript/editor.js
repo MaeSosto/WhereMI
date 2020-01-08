@@ -121,9 +121,10 @@ const recorder = document.getElementById('recorder');
 recorder.addEventListener('change', function (e) {
 	const file = e.target.files[0];
 	const url = URL.createObjectURL(file);
-
-	// Do something with the audio file.
 	recorder.src = url;
+
+	divMetadati.style.display = 'block';
+
 });
 
 /////////////////UPLOAD VIDEO PUBBLICI///////////////////
@@ -239,9 +240,6 @@ async function uploadYoutubePrivate() {
 	categoria = document.getElementById("categoria").value;
 	audience = document.getElementById("audience").value;
 	dettagli = document.getElementById("dettagli").value;
-
-
-
 	
 	var geocoder = new google.maps.Geocoder();
     var address = document.getElementById('luogo').value;
