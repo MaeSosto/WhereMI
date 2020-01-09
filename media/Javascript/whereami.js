@@ -172,14 +172,25 @@ function Evicino(position) {
 
 
 function nextLuogo(lat, lng) { //trova il luogo più vicino
+	
 	var position = new google.maps.LatLng(lat, lng);
 	var luogopiuvicino;
 	var arraydistanza = new Array();
 	var luoghi = getJson();
 	var spherical = google.maps.geometry.spherical;
 	for (let luogo in luoghi) {
+		var t=true;
 		var temp = new google.maps.LatLng(luoghi[luogo].coord.lat, luoghi[luogo].coord.long);
-		if (position.lat() != temp.lat() && position.lng() != temp.lng() && Evisitato(arrayposizionivisitate,luoghi[luogo])) {
+
+		for(var i=0;i<arrayposizionivisitate.lenght;i++)
+		{
+			if(arrayposizionivisitate[i]===luoghi[luogo])
+			{
+				t=false;
+			}
+		}
+		
+		if (position.lat() != temp.lat() && position.lng() != temp.lng() &&t) {
 			var distanza = spherical.computeDistanceBetween(position, temp);
 			arraydistanza.push(distanza);
 			if (distanza <= Math.min.apply(null, arraydistanza)) {
@@ -189,25 +200,6 @@ function nextLuogo(lat, lng) { //trova il luogo più vicino
 		}
 	}
 
-	arrayposizionivisitate.push(luogopiuvicino);
-	return luogopiuvicino;
-}
-
-//dovrebbe andare forse c'è un problema di scope con t DP
-
-function Evisitato(array,oggetto){
-
-	var t=false;
-	for(var i=0;i<array.lenght;i++)
-	{
-		if(array[i]==oggetto)
-		{
-			var t=true;
-		}
-	}
-
-return t
-}
 
 function compiler(input, map) {
 
