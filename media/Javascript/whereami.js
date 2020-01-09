@@ -9,10 +9,11 @@
 
 // funzione pr l'inizializazione delle coordinate
 
-var arrayposizionivisitate=new Array();
+
 var posizioneiniziale;
 var posizioneattuale;
 var posizionearrivo;
+
 
 
 function initCoords() {
@@ -20,6 +21,7 @@ function initCoords() {
 		navigator.geolocation.getCurrentPosition(initAutocomplete);
 		document.getElementById('set-position').style.visibility = "hidden";
 	} else {
+		
 		document.getElementById('set-position').style.visibility = "visible";
 		var position = {
 			coords: {
@@ -172,28 +174,30 @@ function Evicino(position) {
 	//addToPlayer(array);
 }
 
+var arrayposizionivisitate=new Array();
+
 
 
 function nextLuogo(lat, lng) { //trova il luogo più vicino
-
-	var position = new google.maps.LatLng(lat, lng);
+	var position = new google.maps.LatLng(lat, lng); //luogo da cui fai skip
 	var luogopiuvicino;
 	var arraydistanza = new Array();
 	var luoghi = getJson();
 	var spherical = google.maps.geometry.spherical;
+	arrayposizionivisitate.push(position); //metto luogo da cui fai skip tra i visitati
 	for (let luogo in luoghi) {
 		var t=true;
-		var temp = new google.maps.LatLng(luoghi[luogo].coord.lat, luoghi[luogo].coord.long);
+		var temp = new google.maps.LatLng(luoghi[luogo].coord.lat, luoghi[luogo].coord.long); //luogo nel json
 
-		for(var i=0;i<arrayposizionivisitate.lenght;i++)
+		for(var i=0;i<arrayposizionivisitate.length;i++)
 		{
-			if(arrayposizionivisitate[i]===luoghi[luogo])
-			{
-				t=false;
+	
+			if(arrayposizionivisitate[i].lat()==temp.lat()&&arrayposizionivisitate[i].lng()==temp.lng()){				
+				t=false
 			}
 		}
 
-		if (position.lat() != temp.lat() && position.lng() != temp.lng() &&t) {
+		if (position.lat() != temp.lat() && position.lng() != temp.lng() && t) {
 			var distanza = spherical.computeDistanceBetween(position, temp);
 			arraydistanza.push(distanza);
 			if (distanza <= Math.min.apply(null, arraydistanza)) {
@@ -202,10 +206,24 @@ function nextLuogo(lat, lng) { //trova il luogo più vicino
 			}
 		}
 	}
+	
+	if (luogopiuvicino){//finché non sono finiti i luoghi non visitati continuo
+		var posizioneluogogiavisitato = new google.maps.LatLng(luogopiuvicino.coord.lat, luogopiuvicino.coord.long);
+		arrayposizionivisitate.push(posizioneluogogiavisitato);	
+	}else{//altrimenti riparto dal primo luogo e svuoto l'array
+		luogopiuvicino=luoghi[Object.keys(luoghi)[0]];  //quando finiscono i luoghi ricomincia dal primo nel json
+		arrayposizionivisitate=[]; //e svuota l'array delle posizini visitate
+		
+	}
+	
+	
 
-	arrayposizionivisitate.push(luogopiuvicino);
 	return luogopiuvicino;
 }
+
+
+
+
 
 
 function compiler(input, map) {
@@ -250,6 +268,7 @@ function creaMarker2(coords) { //crea marker dei luoghi
 		getVideos(marker.position.lat(), marker.position.lng());
 		document.getElementById("skipbutton").value=marker.position.lat();
 		document.getElementById("skipbutton").name=marker.position.lng();
+		marker.setIcon("http://maps.google.com/mapfiles/ms/icons/red-dot.png");                              
 	});
 
 	google.maps.event.addListener(marker, 'mouseover', function () {
@@ -342,13 +361,13 @@ var player;
 
 
 function onYouTubeIframeAPIReady() {
+	
 	$("#playbutton").click(toggleAudio); //se clicchi sul pulsante chiama toogleAudio
-	$("#pausebutton").click(toggleAudio); //se clicchi sul pulsante chiama toogleAudio
 
 	player = new YT.Player('youtube-player', { //lega il player al div "youtube-player"
 		height: '0',
 		width: '0',
-		videoId: "LD2wlSe5H1Q", //url del video (stringa a 11 caratteri, dopo youtube.com/watch?v=)
+		 //url del video (stringa a 11 caratteri, dopo youtube.com/watch?v=)
 		playerVars: {
 			autoplay: 0,
 			loop: 0,
@@ -356,13 +375,23 @@ function onYouTubeIframeAPIReady() {
 		},
 	});
 
+	
 
 	function toggleAudio() {
+
 		if (player.getPlayerState() == 1 || player.getPlayerState() == 3) {
 			player.pauseVideo();
 			togglePlayButton(false);
 		} else {
-			player.loadVideoById(urlvideo[0]);
+			id=player.getVideoUrl().split("=")[1];
+			if(!id){
+				player.loadVideoById(urlvideo[0]);
+				for(var i=0; i<urlvideo.length;i++){
+					document.getElementById(urlvideo[i]).style.color="black";
+				}
+				document.getElementById(urlvideo[0]).style.color="red";
+			}
+		
 			player.playVideo();
 			togglePlayButton(true);
 		}
@@ -387,12 +416,23 @@ function onYouTubeIframeAPIReady() {
 		togglePlayButton(true);
 	});
 
+	function makeAllBlack(){
+		for(var i=0; i<urlvideo.length;i++){
+			document.getElementById(urlvideo[i]).style.color="black";
+		}
+
+	}
 	$("#nextbutton").click(function () {
 		var index = urlvideo.indexOf(player.getVideoData()['video_id']); //prendo l'indice del video che è in esecuzione
 		if (index == urlvideo.length - 1) { //se siamo sull'ultimo video
 			player.loadVideoById(urlvideo[0]);
+			makeAllBlack();
+			document.getElementById(urlvideo[0]).style.color="red";
+			
 		} else {
 			player.loadVideoById(urlvideo[index + 1]);
+			makeAllBlack();
+			document.getElementById(urlvideo[index+1]).style.color="red";
 		}
 		player.playVideo;
 		togglePlayButton(true);
@@ -402,8 +442,12 @@ function onYouTubeIframeAPIReady() {
 		var index = urlvideo.indexOf(player.getVideoData()['video_id']);
 		if (index - 1 < 0) { //se siamo sul primo video
 			player.loadVideoById(urlvideo[0]);
+			makeAllBlack();
+			document.getElementById(urlvideo[0]).style.color="red";
 		} else {
 			player.loadVideoById(urlvideo[index - 1]);
+			makeAllBlack();
+			document.getElementById(urlvideo[index-1]).style.color="red";
 		}
 		player.playVideo;
 		togglePlayButton(true);
@@ -422,7 +466,7 @@ function onYouTubeIframeAPIReady() {
 		//var coord=new google.maps.LatLng(nxt.coord.lat, nxt.coord.long)
 		//calculateAndDisplayRoute(directionsService, directionsRenderer,posizioneattuale,coord)
 		addToPlayer(nxt.video);
-		//posizionearrivo=coord;
+		//posizionearrivo=coord; 
 		document.getElementById("skipbutton").value=nxt.coord.lat;
 		document.getElementById("skipbutton").name=nxt.coord.long;
 	});
@@ -453,7 +497,6 @@ function getJson() { //funzione che ritorna il json con i luoghi
 function creaOggettofiltro() {
 
 	var A = {
-		categoria: document.getElementById("categoria").value,
 		lingua: document.getElementById("selectDetail").value,
 		audience: document.getElementById("selectAudience").value,
 		scopo: document.getElementById("scopo").value,
@@ -479,7 +522,7 @@ function SendFiltro() {
 			//console.log(arrayvideo[i]);
 			//console.log(oggfiltro);
 
-			if (oggfiltro.categoria == arrayvideo[i].categoria && oggfiltro.lingua == arrayvideo[i].lingua && oggfiltro.audience == arrayvideo[i].audience && oggfiltro.scopo == arrayvideo[i].scopo && oggfiltro.dettagli == arrayvideo[i].dettagli) {
+			if (oggfiltro.lingua == arrayvideo[i].lingua && oggfiltro.audience == arrayvideo[i].audience && oggfiltro.scopo == arrayvideo[i].scopo && oggfiltro.dettagli == arrayvideo[i].dettagli) {
 				temp.push(arrayvideo[i]); //metto in un array tutti i video che rientrano nel filto
 			}
 

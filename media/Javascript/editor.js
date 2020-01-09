@@ -248,15 +248,15 @@ async function uploadYoutubePrivate() {
 		var x=results[0].geometry.location;
 		latlong.lat=x.lat();
 		latlong.lng=x.lng();
-
+		console.log("latitudine :"+x.lat(),x.lng())
 		var metadatiClip = latlong.lat + ":" + latlong.lng + ":" + titolo +":"+ descrizione + ":" + scopo + ":" + lingua + ":" + categoria + ":" + audience + ":" + dettagli;
 		console.log(metadatiClip);
-
+/*
 		var success = window.uploadToYoutubePrivate(audSave.src || recorder.src, titolo, metadatiClip);
 		if (success) {
 			alert("caricato");
 		}
-	
+*/
 		
 	});
 
@@ -419,7 +419,6 @@ function insertHere(nome, urlvideo, luoghi, metadatisplit){
 	temp.descrizione=metadatisplit[3];
 	temp.scopo=metadatisplit[4];
 	temp.lingua=metadatisplit[5];
-	temp.categoria=metadatisplit[6];
 	temp.audience=metadatisplit[7];
 	temp.dettagli=metadatisplit[8];
 	luoghi[nome].video.push(temp);
@@ -431,6 +430,7 @@ function creaNuovo(metadatisplit, urlvideo, luoghi){
 	//var code = generateRandomString(10);
 	var code= getOLC(metadatisplit[0], metadatisplit[1]);
 	luoghi[code]=new Object;
+	luoghi[code].categoria=metadatisplit[6]
 	luoghi[code].coord= new Object;
 	luoghi[code].coord.lat=metadatisplit[0];
 	luoghi[code].coord.long=metadatisplit[1];
@@ -442,7 +442,6 @@ function creaNuovo(metadatisplit, urlvideo, luoghi){
 	temp.descrizione=metadatisplit[3];
 	temp.scopo=metadatisplit[4];
 	temp.lingua=metadatisplit[5];
-	temp.categoria=metadatisplit[6];
 	temp.audience=metadatisplit[7];
 	temp.dettagli=metadatisplit[8];
 
@@ -533,8 +532,8 @@ function getVids(videos) { //funzione che crea la lista di video salvati
 								$("#" + playId).remove();
 								$("#" + caricaId).remove();
 
-								var latlong = item.snippet.description.split(":");
-								isPresente(latlong[0], latlong[1], item.snippet.resourceId.videoId); 
+								var metadati = item.snippet.description;
+								isPresente(metadati, item.snippet.resourceId.videoId); 
 								console.log("il video è publico");
 							})
 					}
