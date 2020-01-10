@@ -476,6 +476,7 @@ function onYouTubeIframeAPIReady() {
 		
 		var directionsRenderer = new google.maps.DirectionsRenderer;
 		var directionsService = new google.maps.DirectionsService;
+		directionsRenderer.set('directions', null);
 		var lat=document.getElementById("skipbutton").value;
 		var lng=document.getElementById("skipbutton").name;
 		posizioneattuale=new google.maps.LatLng(lat, lng);
