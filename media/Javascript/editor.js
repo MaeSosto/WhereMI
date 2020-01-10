@@ -145,6 +145,7 @@ async function uploadYoutube() {
 	categoria = document.getElementById("categoria").value;
 	audience = document.getElementById("audience").value;
 	dettagli = document.getElementById("dettagli").value;
+	nomeluogo=document.getElementById("nomeluogo").value;
 
 	
 	var geocoder = new google.maps.Geocoder();
@@ -155,7 +156,7 @@ async function uploadYoutube() {
 		latlong.lat=x.lat();
 		latlong.lng=x.lng();
 
-		var metadatiClip = latlong.lat + ":" + latlong.lng + ":" + titolo +":"+ descrizione + ":" + scopo + ":" + lingua + ":" + categoria + ":" + audience + ":" + dettagli;
+		var metadatiClip = latlong.lat + ":" + latlong.lng + ":" + titolo +":"+ descrizione + ":" + scopo + ":" + lingua + ":" + categoria + ":" + audience + ":" + dettagli + ":" +nomeluogo;
 		console.log(metadatiClip);
 
 		var success =  window.uploadToYoutube(audSave.src || recorder.src, titolo, metadatiClip);
@@ -240,6 +241,7 @@ async function uploadYoutubePrivate() {
 	categoria = document.getElementById("categoria").value;
 	audience = document.getElementById("audience").value;
 	dettagli = document.getElementById("dettagli").value;
+	nomeluogo=document.getElementById("nomeluogo").value;
 	
 	var geocoder = new google.maps.Geocoder();
     var address = document.getElementById('luogo').value;
@@ -248,8 +250,7 @@ async function uploadYoutubePrivate() {
 		var x=results[0].geometry.location;
 		latlong.lat=x.lat();
 		latlong.lng=x.lng();
-		console.log("latitudine :"+x.lat(),x.lng())
-		var metadatiClip = latlong.lat + ":" + latlong.lng + ":" + titolo +":"+ descrizione + ":" + scopo + ":" + lingua + ":" + categoria + ":" + audience + ":" + dettagli;
+		var metadatiClip = latlong.lat + ":" + latlong.lng + ":" + titolo +":"+ descrizione + ":" + scopo + ":" + lingua + ":" + categoria + ":" + audience + ":" + dettagli+":"+ nomeluogo;
 		console.log(metadatiClip);
 /*
 		var success = window.uploadToYoutubePrivate(audSave.src || recorder.src, titolo, metadatiClip);
@@ -430,7 +431,8 @@ function creaNuovo(metadatisplit, urlvideo, luoghi){
 	//var code = generateRandomString(10);
 	var code= getOLC(metadatisplit[0], metadatisplit[1]);
 	luoghi[code]=new Object;
-	luoghi[code].categoria=metadatisplit[6]
+	luoghi[code].categoria=metadatisplit[6];
+	luoghi[code].nome=metadatisplit[9];
 	luoghi[code].coord= new Object;
 	luoghi[code].coord.lat=metadatisplit[0];
 	luoghi[code].coord.long=metadatisplit[1];
