@@ -229,17 +229,16 @@
                     <div>
                     </div>
                 </div>
-            </div>
-            <div class="set-buttons space-between">
-                <button class="search-directions" type="button" id="set-position" onclick="showBar(true)"
-                    value="Set position">Set position</button>
-                <input class="search-directions-extra" type="text" id="pos" required="required"
-                    placeholder="sposta marker" size="30" />
-                <input class="search-directions" type="text" id="newMarker" required="required"
-                    placeholder="aggiungi marker" size="30" />
-                <input class="search-directions" type="button" id="reset-map" value="Reset map" />
-            </div>
-            <div id="map" class="map">
+                <div class="set-buttons space-between">
+                    <button class="search-directions" type="button" id="set-position" onclick="showBar(true)"
+                        value="Set position">Set position</button>
+                    <input class="search-directions-extra" type="text" id="pos" required="required"
+                        placeholder="sposta marker" size="30" />
+                    
+                    <input class="search-directions" type="button" id="reset-map" value="Reset map" />
+                </div>
+                <div id="map" class="map">
+                </div>
             </div>
         </div>
     </div>
@@ -312,7 +311,7 @@
 
 
     <!--FILTRO-->
-    <div class="container" id ="divfiltro" style="display: none;">
+    <div class="container" id ="divfiltro" >
         <div class="row m-5 filter-block">
             <h3 id="gotofilter" style="text-align: center">
                 <span lang="it">Filtra clip per: </span>
@@ -331,37 +330,39 @@
                             <span lang="es">Idioma</span>
                             <span lang="de">Sprache</span>
                             <span lang="fr">Langue</span>
-                        </label>
+                            </label>
+                        </div>
+                        <select id="selectDetail" class="form-control" required>
+                            <option selected="selected" value="all">-</option>
+                            <option lang="it" value="ita">Italiano</option>
+                            <option lang="en" value="ita">Italian</option>
+                            <option lang="es" value="ita">italiano</option>
+                            <option lang="de" value="ita">Italienische</option>
+                            <option lang="fr" value="ita">italienne</option>
+                            <option lang="it" value="eng">Inglese</option>
+                            <option lang="en" value="eng">English</option>
+                            <option lang="es" value="eng">Ingles</option>
+                            <option lang="de" value="eng">Englische</option>
+                            <option lang="fr" value="eng">Anglaise</option>
+                            <option lang="it" value="deu">Tedesco</option>
+                            <option lang="en" value="deu">German</option>
+                            <option lang="es" value="deu">Alemán</option>
+                            <option lang="de" value="deu">Deutsch</option>
+                            <option lang="fr" value="deu">Allemand</option>
+                            <option lang="it" value="fra">Francese</option>
+                            <option lang="en" value="fra">French</option>
+                            <option lang="es" value="fra">francés</option>
+                            <option lang="de" value="fra">Französisch</option>
+                            <option lang="fr" value="fra">Français</option>
+                            <option lang="it" value="esp">Spagnolo</option>
+                            <option lang="en" value="esp">Spanish</option>
+                            <option lang="es" value="esp">Español</option>
+                            <option lang="de" value="esp">Spanische </option>
+                            <option lang="fr" value="esp">Spagnolo</option>
+                        </select>
                     </div>
-                    <select id="selectDetail" class="form-control" required>
-                        <option selected="selected">-</option>
-                        <option lang="it" value="ita">Italiano</option>
-                        <option lang="en" value="ita">Italian</option>
-                        <option lang="es" value="ita">italiano</option>
-                        <option lang="de" value="ita">Italienische</option>
-                        <option lang="fr" value="ita">italienne</option>
-                        <option lang="it" value="eng">Inglese</option>
-                        <option lang="en" value="eng">English</option>
-                        <option lang="es" value="eng">Ingles</option>
-                        <option lang="de" value="eng">Englische</option>
-                        <option lang="fr" value="eng">Anglaise</option>
-                        <option lang="it" value="deu">Tedesco</option>
-                        <option lang="en" value="deu">German</option>
-                        <option lang="es" value="deu">Alemán</option>
-                        <option lang="de" value="deu">Deutsch</option>
-                        <option lang="fr" value="deu">Allemand</option>
-                        <option lang="it" value="fra">Francese</option>
-                        <option lang="en" value="fra">French</option>
-                        <option lang="es" value="fra">francés</option>
-                        <option lang="de" value="fra">Französisch</option>
-                        <option lang="fr" value="fra">Français</option>
-                        <option lang="it" value="esp">Spagnolo</option>
-                        <option lang="en" value="esp">Spanish</option>
-                        <option lang="es" value="esp">Español</option>
-                        <option lang="de" value="esp">Spanische </option>
-                        <option lang="fr" value="esp">Spagnolo</option>
-                    </select>
-                </div>
+                  
+               
             </div>
             <div class="col-md-4">
                 <div>
@@ -407,7 +408,66 @@
         </div>
         <div class="row m-5 filter-block">
             <div class="col-md-4">
-                <div class="input-group-prepend">
+                    <div class="form-group">
+                            <label for="testo">
+                                    <span lang="it">Scopo</span>
+                                    <span lang="en">Purpose</span>
+                                    <span lang="es">Propósito</span>
+                                    <span lang="de">Zweck</span>
+                                    <span lang="fr">But</span>
+                                </label>
+                            <select class="form-control is-valid custom-select"  name="scopo" id="scopo" required>
+                              <option value="">Open this select menu</option>
+                              <option value="1"    
+                              lang="it">All </option>
+                              <option value="1"
+                               lang="en">Tutte </option>
+                              <option value="1"
+                              lang="es">Todos</option>
+                              <option value="1"
+                              lang="de">Alle </option>
+                              <option value="1"
+                              lang="fr">Toute</option>
+
+                              <option value="2"    
+                                lang="it">Come </option>
+                                <option value="2"
+                                 lang="en">How </option>
+                                <option value="2"
+                                lang="es">Cómo</option>
+                                <option value="2"
+                                lang="de">Wie </option>
+                                <option value="2"
+                                lang="fr">Comment</option>
+                           
+                              <option value="3"
+                                    lang="it">Perché </option>
+                                    <option value="3"
+                                    lang="en">Why </option>
+                                    <option value="3"
+                                   lang="es">Por qué </option>
+                                    <option value="3"
+                                     lang="de">Warum </option>
+                                    <option value="3"
+                                   lang="fr">Pourquoi </option>
+                            
+
+                          
+                              <option value="4"
+                                     lang="it">Cosa</option>
+                                    <option value="4"
+                                    lang="en">What</option>
+                                    <option value="4"
+                                     lang="es">Qué</option>
+                                    <option value="4"
+                                     lang="de">Was</option>
+                                    <option value="4"
+                                   lang="fr">Quel</option>
+                             
+                            </select>
+                           
+                    </div>
+                <!-- <div class="input-group-prepend">
                     <label for="testo">
                         <span lang="it">Scopo</span>
                         <span lang="en">Purpose</span>
@@ -456,32 +516,32 @@
                             <span lang="de">Was</span>
                             <span lang="fr">Quel</span>
                         </label>
-                    </div>
+                    </div> -->
                 </div>
-            </div>
+           
             <div class="col-md-4">
-                <div>
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" for="selectDetail">
-                            <span lang="en"> Detail</span>
-                            <span lang="it"> Dettagli </span>
-                            <span lang="fr">Détails</span>
-                            <span lang="de"> Einzelheiten </span>
-                            <span lang="es"> Detalles</span>
-                            [<span id="num_dettagli"></span>]</label>
-                    </div>
-                    <!-- <select id="selectDetail" class="form-control">
-                            <option value="1" selected="">Normale(1)</option>
-                            <option value="2">Approfondito(2)</option>
-                            <option value="3">Molto Approfondito(3)</option>
-                            <option value="4">Poema esagerato(4)</option>
-                            </select> -->
-                    <input type="range" class="form-control-range slider" id="dettagli" min="1" max="5" value="3">
-                </div>
+                    <div class="form-group">
+                            <label for="dettagli">
+                                    <span lang="en"> Detail</span>  
+                                    <span lang="it"> Dettagli </span>  
+                                    <span lang="fr">Détails</span>  
+                                    <span lang="de"> Einzelheiten </span>  
+                                    <span lang="es"> Detalles</span>  
+                                <!-- [<span id="num_dettagli"></span>] -->
+                            </label>
+                            <select id="dettagli" class="form-control is-valid custom-select" required>
+                                    <option value="">Open this select menu</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                            </select>
+                           
+                          </div>
             </div>
-            <div class="col-md-4" style="text-align: center">
-                <button class="btn btn-primary waves-effect waves-light" style="margin-top: 6%" onclick="SendFiltro()"
-                    id="btn_Filter">
+                <div class="col-md-4" style="text-align: center">
+                    <button class="btn btn-primary waves-effect waves-light" style="margin-top: 6%" onclick=filtro()>
                     <span lang="it">Filtra!</span>
                     <span lang="en">Filter!</span>
                     <span lang="es">Filtro</span>
@@ -489,6 +549,7 @@
                     <span lang="fr">Filtrer!</span>
                 </button>
             </div>
+        </div>
         </div>
         <hr style="border:1px solid grey;">
     </div>
@@ -544,7 +605,7 @@
                 <!-- TODO: CHANGE IT LATER -->
 
                 <div>
-
+                        <h1 id="titololuogo" style="text-align: center; color:white;">Titolo Luogo</h1>
                     <div class="buttonsdiv bottom-box">
                         <!-- <button class="btn-primary" type="button" id="backbutton">indietro</button> -->
                         <button class="btn-primary audio-buttons" type="button" id="playbutton">play</button>
