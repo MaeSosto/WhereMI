@@ -522,9 +522,8 @@ function onYouTubeIframeAPIReady() {
 
 	$("#prevbutton").click(function(){
 
-		
 
-		if (arrayposizionivisitate.length==0){
+		if (arrayposizionivisitate.length==0 ||arrayposizionivisitate.length==1){
 			return 0;
 		}
 		for (luogo in LuoghiAlCaricamento){
@@ -536,14 +535,13 @@ function onYouTubeIframeAPIReady() {
 		}
 		
 		arrayposizionivisitate.pop();
-		console.log(arrayposizionivisitate);
 	});
 
 
 
 }
 
-function getJson() { //funzione che ritorna il json con i luoghi
+function getJson() { //funzione che ritorna il json con i luoghi 
 	var Path = "/config/general.json";
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("GET", Path, false);
