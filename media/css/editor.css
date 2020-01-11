@@ -39,7 +39,12 @@ body {
     padding-left: 15px;
     padding-right: 29px;
 }
-
+.register-section{
+    background-color: #00000082;
+    padding-bottom: 24px;
+    border-bottom-right-radius: 186px;
+    padding-top: 20px;
+}
 .register-section .upload-audio {
     height: 56px;
     border: 3px solid #04b4cc;

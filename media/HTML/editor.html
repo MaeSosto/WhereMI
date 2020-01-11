@@ -83,7 +83,7 @@
                                               <li><a href="#">One more separated link</a></li> -->
                                             </ul>
                                             </li>
-                                <li>
+                                     <li>
                                         <button  style="display: none; " type="button" id="authorize_button"
                                         class="btn btn-Google btn-lg google-button">
                                        <span lang='it'> Accesso con Google+ </span>
@@ -113,7 +113,7 @@
                     <!--scegli file da pc-->
                     <div class="row">
                         <div class="col-md-6 register-section">
-                            <h2 style="color: #212121;" class="text-center">
+                            <h2 style="color: white;" class="text-center">
                                 
                               <span lang="it">Seleziona oppure registra clip audio</span>
                               <span lang="en">Select or record audio clips</span>
@@ -123,49 +123,52 @@
 
 
                             </h2>
-                            <div class="block-center">
+                            <div class="block-center" style="color:white;">
                                 <div lang="it">Seleziona audio localmente</div>
                                 <div lang="en">Select audio locally</div>
                                 <div lang="es">Seleccionar audio localmente</div>
                                 <div lang="de">Audio lokal auswählen</div>
                                 <div lang="fr">Sélectionnez l'audio localement.</div>
 
-                                <input class="search-directions carica-file" type="file" accept="video/*" capture id="recorder">
-                                <div lang="it">Oppure</div>
-                                <div lang="en">Or</div>
-                                <div lang="es">O</div>
-                                <div lang="de">Or</div>
-                                <div lang="fr">Or</div>
+                                <input style="font-size: 15px; max-width: 300px; text-align: center; height: 50px" class="search-directions carica-file " type="file" accept="video/*" capture id="recorder">
+                                <div style="color:white;" lang="it">Oppure</div>
+                                <div style="color:white;" lang="en">Or</div>
+                                <div style="color:white;" lang="es">O</div>
+                                <div style="color:white;" lang="de">Or</div>
+                                <div style="color:white;" lang="fr">Or</div>
 
                                 <div>
-                                 <button class="search-directions register" id="btnStart" ><img class="microfone" src="../img/microphone.png">
+                                 <button class="search-directions register btn-primary" id="btnStart" >
+                                     <!-- <img class="microfone" src="../img/microphone.png"> -->
                                     <span lang="it">Registra</span>
                                     <span lang="en">Record</span>
                                     <span lang="es">Grabar</span>
                                     <span lang="de">Aufnehmen</span>
                                     <span lang="fr">Enregistrer</span>
-
-                                </button></div>
+                                </button>
+                            </div>
                                 <audio controls style="width: 0px; height: 0px;"></audio>
                                 <!-- tag dove viene registrato l'audio-->
                                 <audio id="aud2" style="display: none;" controls></audio>
                                 <!-- tag dove viene visualizzato l'audio-->
-                                <button type="button" id="tastovideosalvati" > Video Salvati </button>
+                               
                             </div>
                         </div>
                         <!-- <button type="button"  id="authorize_button" > Sign-in with Google</button>
                             <button type="button" class="btn btn-default btn-sm" id="signout_button" style="display: none; font-size: 14px">
                               <span class="glyphicon glyphicon-log-in"></span> Sign-out
                             </button> -->
+                           
+                            <div class="col-md-6 form-content border-mob" id="uploadedCheck" style="display: none;">
+                                <h2 style="color: white">Il tuo clip è stato creato con successo!</h2>
+                            </div>
                         <div class="col-md-6 form-content" id="metadatiupload" style="display: none;">
-                            <form>
+                            <form class="was-validated">
                                 <h3 lang="it">Inserisci le informazioni per salvare la nuova clip</h3>
                                 <h3 lang="en">Enter the information to save the new clip</h3>
                                 <h3 lang="es">Ingrese la información para guardar el nuevo clip</h3>
                                 <h3 lang="de">Geben Sie die Informationen ein, um den neuen Clip zu speichern</h3>
                                 <h3 lang="fr">Entrez les informations pour enregistrer le nouveau clip</h3>
-
-
                                 <div class="form-group">
                                     <label for="titolo">
                                         <span lang="it">Titolo</span>
@@ -175,7 +178,7 @@
                                         <span lang="fr">Titre</span>
 
                                     </label>
-                                    <input type="text" class="form-control" id="titolo"
+                                    <input type="text" class="form-control is-valid" id="titolo"
                                     placeholder="..." required>
                                     <h6 lang="it" class="white">*Inserisci il titolo che vuoi dare alla clip</h6>
                                     <h6 lang="en" class="white">*Enter the title you want to give to the clip.</h6>
@@ -185,7 +188,6 @@
 
                                 </div>
                                 <div class="form-group">
-                                    
                                         <label for="luogo">
                                             <span lang="it">Luogo</span> 
                                             <span lang="en">Place</span> 
@@ -194,15 +196,16 @@
                                             <span lang="fr">Lieu</span> 
                                          </label>
      
-                                    <input type="text" class="form-control" id="luogo"
+                                    <input type="text" class="form-control is-valid" id="luogo"
                                     placeholder="..." required>
                                     <h6 lang="it" class="white">*Inserisci luogo</h6>
                                 <h6 lang="en" class="white">*Enter a place</h6>
                                 <h6 lang="es" class="white">*Entrar en un lugar</h6>
                                 <h6 lang="de" class="white">*Geben Sie einen Ort ein</h6>
                                 <h6 lang="fr" class="white">*Entrez un lieu</h6>
-
+                               
                                 </div>
+                               
                                 <div class="form-group">
                                     <label for="descrizione">
                                         <span lang="it">Descrizione</span>
@@ -211,14 +214,13 @@
                                         <span lang="de">Beschreibung</span>
                                         <span lang="fr">Description</span>
                                     </label>
-                                    <textarea style="padding:0;" class="form-control" id="descrizione" rows="5" cols="40"  placeholder="..."
+                                    <textarea style="padding:0;" class="form-control is-valid" id="descrizione" rows="5" cols="40"  placeholder="..."
                                         required>  </textarea>
                                     <h6 lang="it" class="white">*Inserisci una descrizione</h6>
                                     <h6 lang="en" class="white">*Enter a description.</h6>
                                     <h6 lang="es" class="white">*Ingrese una descripción</h6>
                                     <h6 lang="de" class="white">*Geben Sie eine Beschreibung ein</h6>
                                     <h6 lang="fr" class="white">*Saisissez une description.</h6>
-
                                 </div>
                                 <label for="testo">
                                     <span lang="it">Scopo</span>
@@ -228,33 +230,80 @@
                                     <span lang="fr">But</span>
                                 </label>
                                 <div class="form-group">
+                                        <select class="form-control is-valid custom-select"  name="scopo" id="scopo" required>
+                                          <option value="">Open this select menu</option>
+                                          <option value="1"    
+                                            lang="it">Come </option>
+                                            <option value="1"
+                                             lang="en">How </option>
+                                            <option value="1"
+                                            lang="es">Cómo</option>
+                                            <option value="1"
+                                            lang="de">Wie </option>
+                                            <option value="1"
+                                            lang="fr">Comment</option>
+                                       
+                                          <option value="2"
+                                                lang="it">Perché </option>
+                                                <option value="2"
+                                                lang="en">Why </option>
+                                                <option value="2"
+                                               lang="es">Por qué </option>
+                                                <option value="2"
+                                                 lang="de">Warum </option>
+                                                <option value="2"
+                                               lang="fr">Pourquoi </option>
+                                        
+                                          <option value="3"
+                                                lang="it">Perché </option>
+                                                <option value="3"
+                                                lang="en">Why </option>
+                                                <option value="3"
+                                                lang="es">Por qué</option>
+                                                <option value="3"
+                                                 lang="de">Warum </option>
+                                                <option value="3"
+                                                lang="fr">Pourquoi </option>
+
+                                      
+                                          <option value="4"
+                                                 lang="it">Cosa</option>
+                                                <option value="4"
+                                                lang="en">What</option>
+                                                <option value="4"
+                                                 lang="es">Qué</option>
+                                                <option value="4"
+                                                 lang="de">Was</option>
+                                                <option value="4"
+                                               lang="fr">Quel</option>
+                                         
+                                        </select>
+                                       
+                                </div>
+                                <!-- <div class="form-group">
                                         <div class="form-check form-check">
-                                                <input class="form-check-input" type="radio" name="scopo" id="scopo" value="all"
-                                                    checked>
+                                                <input class="form-control custom-control-input is-valid" type="select" name="scopo" id="scopo" value="ss"
+                                                    required>
                                                 <label class="form-check-label" for="scopo">
                                                     <span lang="en">All</span>
                                                     <span lang="it">Tutte</span>
                                                     <span lang="es">Todos</span>
                                                     <span lang="de">Alle</span>
                                                     <span lang="fr">Toute</span>
-
                                                 </label>
                                             </div>
                                             <div class="form-check form-check">
-                                                <input class="form-check-input" type="radio" name="scopo" id="scopo" value="come">
+                                                <input class="form-control custom-control-input is-valid" type="radio" name="scopo" id="scopo" value="come">
                                                 <label class="form-check-label" for="scopo">
-
                                                    <span lang="it">Come</span> 
                                                    <span lang="en">How</span> 
                                                    <span lang="es">Cómo</span> 
                                                    <span lang="de">Wie</span> 
                                                    <span lang="fr">Comment</span> 
-
-
                                                 </label>
                                             </div>
                                             <div class="form-check form-check">
-                                                <input class="form-check-input" type="radio" name="scopo" id="scopo" value="perche">
+                                                <input class="form-control is-valid custom-control-input" type="radio" name="scopo" id="scopo" value="perche">
                                                 <label class="form-check-label" for="scopo">
                                                    <span lang="it">Perché</span> 
                                                    <span lang="en">Why</span> 
@@ -265,7 +314,7 @@
                                                 </label>
                                             </div>
                                             <div class="form-check form-check">
-                                                <input class="form-check-input" type="radio" name="scopo" id="scopo" value="cosa">
+                                                <input class="form-control custom-control-input" type="radio" name="scopo" id="scopo" value="cosa">
                                                 <label class="form-check-label" for="scopo">
                                                     <span lang="it">Cosa</span>
                                                     <span lang="en">What</span>
@@ -275,7 +324,7 @@
 
                                                 </label>
                                             </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group">
                                     <label for="lingua">
                                             <span lang="en">Language</span>
@@ -284,10 +333,8 @@
                                             <span lang="de">Sprache</span>
                                             <span lang="fr">Langue</span>
                                     </label>
-                                    <select id="lingua" class="form-control" onfocus='this.size=4;' onblur='this.size=1;'
-                                        onchange='this.size=1; this.blur();'>
-                                      
-                                        <option selected="selected" value=empty >-</option>
+                                    <select required id="lingua" class="form-control is-valid custom-select" >
+                                        <option value="">Open this select menu</option>
 
                             <option lang="it" value="ita" >Italiano</option>
                             <option lang="en" value="ita" >Italian</option>
@@ -330,9 +377,8 @@
                                             <span lang="fr">Catégorie</span>
                                     </label>
                         
-                                    <select id="categoria" class="form-control" onfocus='this.size=4;' onblur='this.size=1;'
-                                        onchange='this.size=1; this.blur();'>
-                                        <option value=none selected="selected">-</option>
+                                    <select required id="categoria" class="form-control is-valid custom-select" >
+                                            <option value="">Open this select menu</option>
                                         <!-- <option value=nat>Natura</option>
                                         <option value=art>Arte</option>
                                         <option value=his>Storia</option>
@@ -395,9 +441,8 @@
                                             <span lang="de">Publikum</span>
                                             <span lang="fr">Public</span>
                                     </label>
-                                    <select id="audience" class="form-control" onfocus='this.size=4;' onblur='this.size=1;'
-                                        onchange='this.size=1; this.blur();'>
-                                        <option selected="selected" value=empty >-</option>
+                                    <select required id="audience" class="form-control is-valid custom-select" >
+                                        <option value="">Open this select menu</option>
                             <option lang="it" value="gen" >Generico</option>
                             <option lang="en" value="gen" >General</option>
                             <option lang="es" value="gen" >General</option>
@@ -430,7 +475,7 @@
                             <option lang="fr" value="scl">spécialisé</option>
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="dettagli">
                                             <span lang="en"> Detail</span>  
                                             <span lang="it"> Dettagli </span>  
@@ -438,39 +483,68 @@
                                             <span lang="de"> Einzelheiten </span>  
                                             <span lang="es"> Detalles</span>  
                                         [<span id="num_dettagli"></span>]</label>
-                                    <input type="range" class="form-control-range slider" id="dettagli" min="1" max="5" value="3">
-                                </div>
-                                <div>
-                                    <button type="button" class="btn btn-primary" id="salva">
+                                    <input type="range" class="form-control-range form-control is-valid slider" id="dettagli" min="1" max="5" value="3">
+                                </div> -->
+                                <div class="form-group">
+                                        <label for="dettagli">
+                                                <span lang="en"> Detail</span>  
+                                                <span lang="it"> Dettagli </span>  
+                                                <span lang="fr">Détails</span>  
+                                                <span lang="de"> Einzelheiten </span>  
+                                                <span lang="es"> Detalles</span>  
+                                            <!-- [<span id="num_dettagli"></span>] -->
+                                        </label>
+                                        <select id="dettagli" class="form-control is-valid custom-select" required>
+                                                <option value="">Open this select menu</option>
+                                          <option value="1">1</option>
+                                          <option value="2">2</option>
+                                          <option value="3">3</option>
+                                          <option value="4">4</option>
+                                          <option value="5">5</option>
+                                        </select>
+                                       
+                                      </div>
+                                <div style="display: flex;justify-content: space-between;">
+                                    <button type="submit" class="btn btn-primary" id="salva">
                                         <span lang="it">Salva</span>
                                         <span lang="en">Save</span>
                                         <span lang="es">Guardar</span>
                                         <span lang="de">Speichern</span>
                                         <span lang="fr">Enregistrer</span>
-
                                     </button>
-                                    <button  style="height: 48px;" class="search-directions  upload-audio" type="button" id="upload"><img class="microfone" src="../img/upload.png">
+                                    <button  class="search-directions btn-primary2 upload-audio" type="button" id="upload">
+                                        <!-- <img class="microfone" src="../img/upload.png"> -->
                                      <span lang="it"> Carica</span> 
                                      <span lang="en"> Upload</span> 
                                      <span lang="es"> Subir</span> 
                                      <span lang="de"> Hochladen</span> 
-                                     <span lang="fr"> Importer</span>  
-
+                                     <span lang="fr"> Importer</span> 
                                     </button>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <div id="videosalvati" style="display: block; background: red;">
-                        <div id="youtube-player2"></div>
-                        <!--player invisibile che riproduce video salvati-->
-                        <ul id="videosalvatilist"></ul>
-                        <!--lista video salvati-->
+                    <div class="row" style="text-align: center">
+                        <div class="col-md-6">
+                                <button  type="button" class="btn btn-primary" id="tastovideosalvati" > Video Salvati </button>
+                                <div id="videosalvati" style="display: block; ">
+                                    <div id="youtube-player2"></div>
+                                    <!--player invisibile che riproduce video salvati-->
+                                    <ul class="saved-list"  id="videosalvatilist">
+                                      
+                                    </ul>
+                                    <!--lista video salvati-->
+                                </div>
+                        </div>
                     </div>
+                
                 </div>
                 </div>
             </div>
         </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"

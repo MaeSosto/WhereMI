@@ -4,6 +4,7 @@ var audSave = document.getElementById('aud2'); //tag dove viene salvato l'audio 
 var titolo, scopo, lingua, categoria, descrizione, audience, dettagli;
 var player;
 var divMetadati = document.getElementById("metadatiupload");
+var uploadedBox = document.getElementById("uploadedCheck");
 
 
 // Controllo sullo slider
@@ -21,10 +22,12 @@ function showAudio(show) { //mostra o nasconde il tag audio
 		// audio.style.visibility = 'visible';
 		audSave.style.display = 'block';
 		divMetadati.style.display = "block";
+		uploadedBox.style.display= 'none';
 	} else {
 		// audio.style.visibility = 'hidden';
 		audSave.style.display = 'none';
 		divMetadati.style.display = "none";
+		uploadedBox.style.display= 'block';
 	}
 
 }
@@ -124,6 +127,7 @@ recorder.addEventListener('change', function (e) {
 	recorder.src = url;
 
 	divMetadati.style.display = 'block';
+	uploadedBox.style.display= 'none';
 
 });
 
@@ -452,14 +456,17 @@ function creaNuovo(metadatisplit, urlvideo, luoghi){
 
 $("#upload").click(function () {
 	divMetadati.style.display = 'none';
+	uploadedBox.style.display= 'block';
 	//TODO: refreshare i campi 
 	uploadYoutube();
 });
 
 $("#salva").click(function () {
-	divMetadati.style.display = 'none';
+
 	//TODO: refreshare i campi 
 	uploadYoutubePrivate();
+	divMetadati.style.display = 'none';
+	uploadedBox.style.display= 'block';
 });
 
 

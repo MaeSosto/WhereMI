@@ -1,51 +1,55 @@
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-            <title>Where MI</title>
-            <link rel="shortcut icon" href="https://site181964.tw.cs.unibo.it/media/img/logo.png" />
-    
-        <!--includo libreria jquery tramite CDN, niente download-->
-        <!--Api youtube audio-->
-        <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <!-- Link to the script-->
-        <script type="text/javascript" src="../media/Javascript/whereami.js"></script>
-        <!--Link to CSS-->
-        <link rel="stylesheet" href="../media/css/whereami.css">
-        <!--stili della barra di ricerca-->
-        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
-        <!-- FONT-FAMILY -->
-        <link href="https://fonts.googleapis.com/css?family=Alatsi&display=swap" rel="stylesheet">
-        <!--LOGIN GOOGLE-->
-        <!-- Maps Javascript API-->
-        <script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAisQVJRCJqUAW-wICyJbshSxg_jPL-Y-A&libraries=geometry,places&callback=initCoords"
-            async defer></script>
-        <!-- <meta name="google-signin-scope" content="profile email">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <title>Where MI</title>
+    <link rel="shortcut icon" href="https://site181964.tw.cs.unibo.it/media/img/logo.png" />
+
+    <!--includo libreria jquery tramite CDN, niente download-->
+    <!--Api youtube audio-->
+    <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Link to the script-->
+    <script type="text/javascript" src="../media/Javascript/whereami.js"></script>
+    <!--Link to CSS-->
+    <link rel="stylesheet" href="../media/css/whereami.css">
+    <!--stili della barra di ricerca-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <!-- FONT-FAMILY -->
+    <link href="https://fonts.googleapis.com/css?family=Alatsi&display=swap" rel="stylesheet">
+    <!--LOGIN GOOGLE-->
+    <!-- Maps Javascript API-->
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAisQVJRCJqUAW-wICyJbshSxg_jPL-Y-A&libraries=geometry,places&callback=initCoords"
+        async defer></script>
+    <!-- <meta name="google-signin-scope" content="profile email">
             <meta name="google-signin-client_id" content="899376088276-hufn1h9oj01vc5u9ui9ithdku5iln5rg.apps.googleusercontent.com"> -->
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-            integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <!-- BARRA DI RICERCA
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</head>
+
+<body>
+    <!-- BARRA DI RICERCA
             <div class="inner-form">
               <div class="input-field second-wrap col-sm-1">
                 <input id="search" type="text" placeholder="Cerca.." />
               </div>
             </div>
             -->
-        <!-- <nav class="navbar navbar-expand-lg nav-personal-style ">
+    <!-- <nav class="navbar navbar-expand-lg nav-personal-style ">
             <div class="flex-center">
                     <img class="logo" src="../media/img/logo.png"> <a class="navbar-brand" href="#">Where MI</a>
                 </div>
@@ -84,37 +88,37 @@
                     </ul>
             </div>
             </nav> -->
-        <a href="#gotofilter">
-            <div class="fixed-filter-button applied">
-                <svg class="svg-inline--fa fa-filter fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="filter"
-                    role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                    <path fill="currentColor"
-                        d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z">
-                    </path>
-                </svg>
-                <!-- <i class="fas fa-filter"></i> -->
-            </div>
-        </a>
-        <div class="background-image">
-            <nav class="navbar navbar-inverse" role="navigation">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                            data-target="#bs-example-navbar-collapse-1">
+    <a href="#gotofilter">
+        <div class="fixed-filter-button applied">
+            <svg class="svg-inline--fa fa-filter fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="filter"
+                role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor"
+                    d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z">
+                </path>
+            </svg>
+            <!-- <i class="fas fa-filter"></i> -->
+        </div>
+    </a>
+    <div class="background-image">
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                        </button>
-                        <div class="flex-center left-on-mobile">
-                            <img class="logo" src="../media/img/logo.png"> <a class="navbar-brand" href="#">Where MI</a>
-                        </div>
+                    </button>
+                    <div class="flex-center left-on-mobile">
+                        <img class="logo" src="../media/img/logo.png"> <a class="navbar-brand" href="#">Where MI</a>
                     </div>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <!-- <li> <button type="button" onclick="showPlayerDiv(false)">hide</button></li> -->
-                            <!-- <li class="active remove-position">
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <!-- <li> <button type="button" onclick="showPlayerDiv(false)">hide</button></li> -->
+                        <!-- <li class="active remove-position">
                                 <div class="wrap">
                                     <div class="direction flex-center">
                                            <label class="text-center" lang="en">Where do you want to go?</label> 
@@ -133,17 +137,17 @@
                                     </div>
                                 </div>
                                 </li> -->
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li id="userStatus">
-                                <a style="color: white;
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li id="userStatus">
+                            <a style="color: white;
                                     font-size: 18px;
                                     margin-top: 7px;" href="../media/html/editor.html">Editor</a>
-                            </li>
-                            <!-- <a class="button" href="#popup1">Sign in</a> -->
-                            <!-- <button type="button"  id="authorize_button" > Sign-in with Google</button> -->
-                            <!-- SIGN IN POPUP -->
-                            <!-- <div id="popup1" class="overlay">
+                        </li>
+                        <!-- <a class="button" href="#popup1">Sign in</a> -->
+                        <!-- <button type="button"  id="authorize_button" > Sign-in with Google</button> -->
+                        <!-- SIGN IN POPUP -->
+                        <!-- <div id="popup1" class="overlay">
                                 <div class="popup">
                                 	
                                 	<a class="close" href="#">&times;</a>
@@ -153,8 +157,8 @@
                                 	</div>
                                 </div>
                                 </div> -->
-                            <li class="dropdown">
-                                <a style="    color: #ffffff;
+                        <li class="dropdown">
+                            <a style="    color: #ffffff;
                                     font-size: 17px;
                                     /* background: turquoise; */
                                     margin-top: 6px;" href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -164,82 +168,82 @@
                                 <span lang="de">Sprache</span>
                                 <span lang="es">Idiomas</span>
                                 <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#" hreflang="it" onclick="setLang('it'); return false"><img class="flags"
-                                        src="../media/img/italy.png">Italian</a>
-                                    <li><a href="#" hreflang="it" onclick="setLang('es'); return false"><img class="flags"
-                                        src="../media/img/spain.png">Spanish</a>
-                                    <li><a href="#" hreflang="en" onclick="setLang('en'); return false"><img class="flags"
-                                        src="../media/img/uk.png">English</a></li>
-                                    <li> <a href="#" hreflang="de" onclick="setLang('de'); return false"><img class="flags"
-                                        src="../media/img/germany.png">German</a></li>
-                                    <li> <a href="#" hreflang="de" onclick="setLang('fr'); return false"><img class="flags"
-                                        src="../media/img/france.png">French</a></li>
-                                    <!-- <li class="divider"></li>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" hreflang="it" onclick="setLang('it'); return false"><img class="flags"
+                                            src="../media/img/italy.png">Italian</a>
+                                <li><a href="#" hreflang="it" onclick="setLang('es'); return false"><img class="flags"
+                                            src="../media/img/spain.png">Spanish</a>
+                                <li><a href="#" hreflang="en" onclick="setLang('en'); return false"><img class="flags"
+                                            src="../media/img/uk.png">English</a></li>
+                                <li> <a href="#" hreflang="de" onclick="setLang('de'); return false"><img class="flags"
+                                            src="../media/img/germany.png">German</a></li>
+                                <li> <a href="#" hreflang="de" onclick="setLang('fr'); return false"><img class="flags"
+                                            src="../media/img/france.png">French</a></li>
+                                <!-- <li class="divider"></li>
                                         <li><a href="#">Separated link</a></li>
                                         <li class="divider"></li>
                                         <li><a href="#">One more separated link</a></li> -->
-                                </ul>
-                            </li>
-                            <li>
-                                <button style="display: none; " type="button" id="authorize_button"
-                                    class="btn btn-Google btn-lg google-button">
+                            </ul>
+                        </li>
+                        <li>
+                            <button style="display: none; " type="button" id="authorize_button"
+                                class="btn btn-Google btn-lg google-button">
                                 <span lang='it'> Accesso con Google+ </span>
                                 <span lang='en'> Sign in with Google+ </span>
                                 <span lang='de'> Anmelden mit Google+ </span>
                                 <span lang='es'> Iniciar con Google+ </span>
                                 <span lang='fr'> connectez-vous avec Google+ </span>
-                                </button>
-                                <button type="button" class="btn btn-default btn-sm" id="signout_button"
-                                    style="display: none; font-size: 14px; margin-top:17px;">
+                            </button>
+                            <button type="button" class="btn btn-default btn-sm" id="signout_button"
+                                style="display: none; font-size: 14px; margin-top:17px;">
                                 <span class="glyphicon glyphicon-log-in"></span>
                                 <span lang='it'>Disconnettersi</span>
                                 <span lang='en'> Sign out</span>
                                 <span lang='de'>Ausloggen</span>
                                 <span lang='es'> Desconectar</span>
                                 <span lang='fr'> Se déconnecter</span>
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /.navbar-collapse -->
+                            </button>
+                        </li>
+                    </ul>
                 </div>
-                <!-- /.container-fluid -->
-            </nav>
-            <div class="container">
-                <div class="active remove-position">
-                    <div class="text-center flex">
-                        <img src="../media/img/map.png" style="    width: 47px;
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        <div class="container">
+            <div class="active remove-position">
+                <div class="text-center flex">
+                    <img src="../media/img/map.png" style="    width: 47px;
                             position: relative;
                             bottom: 10px;">
-                        <label class="text-center search-where" lang="en">Where do you want to go?</label>
-                        <label class="text-center search-where" lang="es">¿a donde quieres ir?</label>
-                        <label class="text-center search-where" lang="it">Dove vorresti andare?</label>
-                        <label class="text-center search-where" lang="fr">Où veux-tu aller?</label>
-                        <label class="text-center search-where" lang="de">Wohin willst du gehen?</label>
-                        <div class="direction flex-center">
-                            <input class="search-directions" type="text" id="end" name="to" required="required"
-                                placeholder="...?" size="30" />
-                            <input value="Go" class="search-directions" type="submit" />
-                        </div>
-                        <div>
-                        </div>
+                    <label class="text-center search-where" lang="en">Where do you want to go?</label>
+                    <label class="text-center search-where" lang="es">¿a donde quieres ir?</label>
+                    <label class="text-center search-where" lang="it">Dove vorresti andare?</label>
+                    <label class="text-center search-where" lang="fr">Où veux-tu aller?</label>
+                    <label class="text-center search-where" lang="de">Wohin willst du gehen?</label>
+                    <div class="direction flex-center">
+                        <input class="search-directions" type="text" id="end" name="to" required="required"
+                            placeholder="...?" size="30" />
+                        <input value="Go" class="search-directions" type="submit" />
+                    </div>
+                    <div>
                     </div>
                 </div>
-                <div class="set-buttons space-between">
-                    <button class="search-directions" type="button" id="set-position" onclick="showBar(true)"
-                        value="Set position">Set position</button>
-                    <input class="search-directions-extra" type="text" id="pos" required="required"
-                        placeholder="sposta marker" size="30" />
-                    <input class="search-directions" type="text" id="newMarker" required="required"
-                        placeholder="aggiungi marker" size="30" />
-                    <input class="search-directions" type="button" id="reset-map" value="Reset map" />
-                </div>
-                <div id="map" class="map">
-                </div>
+            </div>
+            <div class="set-buttons space-between">
+                <button class="search-directions" type="button" id="set-position" onclick="showBar(true)"
+                    value="Set position">Set position</button>
+                <input class="search-directions-extra" type="text" id="pos" required="required"
+                    placeholder="sposta marker" size="30" />
+                <input class="search-directions" type="text" id="newMarker" required="required"
+                    placeholder="aggiungi marker" size="30" />
+                <input class="search-directions" type="button" id="reset-map" value="Reset map" />
+            </div>
+            <div id="map" class="map">
             </div>
         </div>
-        <!-- <div style="    position: absolute;
+    </div>
+    <!-- <div style="    position: absolute;
             left: 50%;
             top: 43%;" class="hide-on-mobile">
                 <svg style="position: absolute;
@@ -256,7 +260,7 @@
 
 
 
-<!-- TODO: SPOSTARE SUL FILTRO DEI LUOGHI
+    <!-- TODO: SPOSTARE SUL FILTRO DEI LUOGHI
                 <div class="col-md-4">
                     <div>
                         <div class="input-group-prepend">
@@ -307,198 +311,198 @@
 
 
 
-                <!--FILTRO-->
-        <div class="container" id ="divfiltro" style="display: none;">
-            <div class="row m-5 filter-block">
-                <h3 id="gotofilter" style="text-align: center">
-                    <span lang="it">Filtra clip per: </span>
-                    <span lang="en">Filter clips by: </span>
-                    <span lang="fr">Filtrer les clips par: </span>
-                    <span lang="de">Clips filtern nach: </span>
-                    <span lang="es">Filtrar clips por: </span>
-                </h3>
-               
-                <div class="col-md-4">
-                    <div>
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="selectDetail">
+    <!--FILTRO-->
+    <div class="container" id ="divfiltro" style="display: none;">
+        <div class="row m-5 filter-block">
+            <h3 id="gotofilter" style="text-align: center">
+                <span lang="it">Filtra clip per: </span>
+                <span lang="en">Filter clips by: </span>
+                <span lang="fr">Filtrer les clips par: </span>
+                <span lang="de">Clips filtern nach: </span>
+                <span lang="es">Filtrar clips por: </span>
+            </h3>
+
+            <div class="col-md-4">
+                <div>
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="selectDetail">
                             <span lang="en">Language</span>
                             <span lang="it">Lingua</span>
                             <span lang="es">Idioma</span>
                             <span lang="de">Sprache</span>
                             <span lang="fr">Langue</span>
-                            </label>
-                        </div>
-                        <select id="selectDetail" class="form-control" required>
-                            <option selected="selected" >-</option>
-                            <option lang="it" value="ita">Italiano</option>
-                            <option lang="en" value="ita">Italian</option>
-                            <option lang="es" value="ita">italiano</option>
-                            <option lang="de" value="ita">Italienische</option>
-                            <option lang="fr" value="ita">italienne</option>
-                            <option lang="it" value="eng">Inglese</option>
-                            <option lang="en" value="eng">English</option>
-                            <option lang="es" value="eng">Ingles</option>
-                            <option lang="de" value="eng">Englische</option>
-                            <option lang="fr" value="eng">Anglaise</option>
-                            <option lang="it" value="deu">Tedesco</option>
-                            <option lang="en" value="deu">German</option>
-                            <option lang="es" value="deu">Alemán</option>
-                            <option lang="de" value="deu">Deutsch</option>
-                            <option lang="fr" value="deu">Allemand</option>
-                            <option lang="it" value="fra">Francese</option>
-                            <option lang="en" value="fra">French</option>
-                            <option lang="es" value="fra">francés</option>
-                            <option lang="de" value="fra">Französisch</option>
-                            <option lang="fr" value="fra">Français</option>
-                            <option lang="it" value="esp">Spagnolo</option>
-                            <option lang="en" value="esp">Spanish</option>
-                            <option lang="es" value="esp">Español</option>
-                            <option lang="de" value="esp">Spanische </option>
-                            <option lang="fr" value="esp">Spagnolo</option>
-                        </select>
+                        </label>
                     </div>
+                    <select id="selectDetail" class="form-control" required>
+                        <option selected="selected">-</option>
+                        <option lang="it" value="ita">Italiano</option>
+                        <option lang="en" value="ita">Italian</option>
+                        <option lang="es" value="ita">italiano</option>
+                        <option lang="de" value="ita">Italienische</option>
+                        <option lang="fr" value="ita">italienne</option>
+                        <option lang="it" value="eng">Inglese</option>
+                        <option lang="en" value="eng">English</option>
+                        <option lang="es" value="eng">Ingles</option>
+                        <option lang="de" value="eng">Englische</option>
+                        <option lang="fr" value="eng">Anglaise</option>
+                        <option lang="it" value="deu">Tedesco</option>
+                        <option lang="en" value="deu">German</option>
+                        <option lang="es" value="deu">Alemán</option>
+                        <option lang="de" value="deu">Deutsch</option>
+                        <option lang="fr" value="deu">Allemand</option>
+                        <option lang="it" value="fra">Francese</option>
+                        <option lang="en" value="fra">French</option>
+                        <option lang="es" value="fra">francés</option>
+                        <option lang="de" value="fra">Französisch</option>
+                        <option lang="fr" value="fra">Français</option>
+                        <option lang="it" value="esp">Spagnolo</option>
+                        <option lang="en" value="esp">Spanish</option>
+                        <option lang="es" value="esp">Español</option>
+                        <option lang="de" value="esp">Spanische </option>
+                        <option lang="fr" value="esp">Spagnolo</option>
+                    </select>
                 </div>
-                <div class="col-md-4">
-                    <div>
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="selectAudience">
+            </div>
+            <div class="col-md-4">
+                <div>
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="selectAudience">
                             <span lang="en">Audience</span>
                             <span lang="it">Pubblico</span>
                             <span lang="es">Audiencia</span>
                             <span lang="de">Publikum</span>
                             <span lang="fr">Public</span>
-                            </label>
-                        </div>
-                        <select id="selectAudience" class="form-control">
-                            <option selected="selected" value="gen">-</option>
-                            <option lang="it" value="gen">Generico</option>
-                            <option lang="en" value="gen">General</option>
-                            <option lang="es" value="gen">General</option>
-                            <option lang="de" value="gen">Allgemeine </option>
-                            <option lang="fr" value="gen">Générale</option>
-                            <option lang="it" value="pre">Pre-scolare</option>
-                            <option lang="en" value="pre">Preschool</option>
-                            <option lang="es" value="pre">preescolar</option>
-                            <option lang="de" value="pre">vorschulisch</option>
-                            <option lang="fr" value="pre">préscolaire</option>
-                            <option lang="it" value="elm">Elementari</option>
-                            <option lang="en" value="elm">Elementary</option>
-                            <option lang="es" value="elm">elemental</option>
-                            <option lang="de" value="elm">elementar</option>
-                            <option lang="fr" value="elm">élémentaire</option>
-                            <option lang="it" value="mid">Scuola media</option>
-                            <option lang="en" value="mid">Secondary school</option>
-                            <option lang="es" value="mid">Escuela media</option>
-                            <option lang="de" value="mid">Mittelschule</option>
-                            <option lang="fr" value="mid">Premier cycle du secondaire</option>
-                            <option lang="it" value="scl">Specializzato</option>
-                            <option lang="en" value="scl">Specialized</option>
-                            <option lang="es" value="scl">especializado</option>
-                            <option lang="de" value="scl">spezialisiert</option>
-                            <option lang="fr" value="scl">spécialisé</option>
-                        </select>
+                        </label>
                     </div>
+                    <select id="selectAudience" class="form-control">
+                        <option selected="selected" value="gen">-</option>
+                        <option lang="it" value="gen">Generico</option>
+                        <option lang="en" value="gen">General</option>
+                        <option lang="es" value="gen">General</option>
+                        <option lang="de" value="gen">Allgemeine </option>
+                        <option lang="fr" value="gen">Générale</option>
+                        <option lang="it" value="pre">Pre-scolare</option>
+                        <option lang="en" value="pre">Preschool</option>
+                        <option lang="es" value="pre">preescolar</option>
+                        <option lang="de" value="pre">vorschulisch</option>
+                        <option lang="fr" value="pre">préscolaire</option>
+                        <option lang="it" value="elm">Elementari</option>
+                        <option lang="en" value="elm">Elementary</option>
+                        <option lang="es" value="elm">elemental</option>
+                        <option lang="de" value="elm">elementar</option>
+                        <option lang="fr" value="elm">élémentaire</option>
+                        <option lang="it" value="mid">Scuola media</option>
+                        <option lang="en" value="mid">Secondary school</option>
+                        <option lang="es" value="mid">Escuela media</option>
+                        <option lang="de" value="mid">Mittelschule</option>
+                        <option lang="fr" value="mid">Premier cycle du secondaire</option>
+                        <option lang="it" value="scl">Specializzato</option>
+                        <option lang="en" value="scl">Specialized</option>
+                        <option lang="es" value="scl">especializado</option>
+                        <option lang="de" value="scl">spezialisiert</option>
+                        <option lang="fr" value="scl">spécialisé</option>
+                    </select>
                 </div>
             </div>
-            <div class="row m-5 filter-block">
-                <div class="col-md-4">
-                    <div class="input-group-prepend">
-                        <label for="testo">
+        </div>
+        <div class="row m-5 filter-block">
+            <div class="col-md-4">
+                <div class="input-group-prepend">
+                    <label for="testo">
                         <span lang="it">Scopo</span>
                         <span lang="en">Purpose</span>
                         <span lang="es">propósito</span>
                         <span lang="de">Zweck</span>
                         <span lang="fr">but</span>
-                        </label>
-                    </div>
-                    <div style="display:flex; justify-content: space-between;">
-                        <div class="form-check form-check">
-                            <input class="input-group-text" type="radio" name="scopo" id="scopo" value="all">
-                            <label class="form-check-label" for="scopo">
+                    </label>
+                </div>
+                <div style="display:flex; justify-content: space-between;">
+                    <div class="form-check form-check">
+                        <input class="input-group-text" type="radio" name="scopo" id="scopo" value="all">
+                        <label class="form-check-label" for="scopo">
                             <span lang="en">All</span>
                             <span lang="it">Tutte</span>
                             <span lang="es">Todos</span>
                             <span lang="de">Alle</span>
                             <span lang="fr">Toute</span>
-                            </label>
-                        </div>
-                        <div class="form-check form-check">
-                            <input class="form-check-input" type="radio" name="scopo" id="scopo" value="come">
-                            <label class="form-check-label" for="scopo">
+                        </label>
+                    </div>
+                    <div class="form-check form-check">
+                        <input class="form-check-input" type="radio" name="scopo" id="scopo" value="come">
+                        <label class="form-check-label" for="scopo">
                             <span lang="it">Come</span>
                             <span lang="en">How</span>
                             <span lang="es">Cómo</span>
                             <span lang="de">Wie</span>
                             <span lang="fr">Comment</span>
-                            </label>
-                        </div>
-                        <div class="form-check form-check">
-                            <input class="form-check-input" type="radio" name="scopo" id="scopo" value="perche">
-                            <label class="form-check-label" for="scopo">
+                        </label>
+                    </div>
+                    <div class="form-check form-check">
+                        <input class="form-check-input" type="radio" name="scopo" id="scopo" value="perche">
+                        <label class="form-check-label" for="scopo">
                             <span lang="it">Perché</span>
                             <span lang="en">Why</span>
                             <span lang="es">Por qué</span>
                             <span lang="de">Warum</span>
                             <span lang="fr">Pourquoi</span>
-                            </label>
-                        </div>
-                        <div class="form-check form-check">
-                            <input class="form-check-input" type="radio" name="scopo" id="scopo" value="cosa">
-                            <label class="form-check-label" for="scopo">
+                        </label>
+                    </div>
+                    <div class="form-check form-check">
+                        <input class="form-check-input" type="radio" name="scopo" id="scopo" value="cosa">
+                        <label class="form-check-label" for="scopo">
                             <span lang="it">Cosa</span>
                             <span lang="en">What</span>
                             <span lang="es">Qué</span>
                             <span lang="de">Was</span>
                             <span lang="fr">Quel</span>
-                            </label>
-                        </div>
+                        </label>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div>
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="selectDetail">
+            </div>
+            <div class="col-md-4">
+                <div>
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="selectDetail">
                             <span lang="en"> Detail</span>
                             <span lang="it"> Dettagli </span>
                             <span lang="fr">Détails</span>
                             <span lang="de"> Einzelheiten </span>
                             <span lang="es"> Detalles</span>
                             [<span id="num_dettagli"></span>]</label>
-                        </div>
-                        <!-- <select id="selectDetail" class="form-control">
+                    </div>
+                    <!-- <select id="selectDetail" class="form-control">
                             <option value="1" selected="">Normale(1)</option>
                             <option value="2">Approfondito(2)</option>
                             <option value="3">Molto Approfondito(3)</option>
                             <option value="4">Poema esagerato(4)</option>
                             </select> -->
-                        <input type="range" class="form-control-range slider" id="dettagli" min="1" max="5" value="3">
-                    </div>
+                    <input type="range" class="form-control-range slider" id="dettagli" min="1" max="5" value="3">
                 </div>
-                <div class="col-md-4" style="text-align: center">
-                    <button class="btn btn-primary waves-effect waves-light" style="margin-top: 6%" onclick="SendFiltro()"
-                        id="btn_Filter">
+            </div>
+            <div class="col-md-4" style="text-align: center">
+                <button class="btn btn-primary waves-effect waves-light" style="margin-top: 6%" onclick="SendFiltro()"
+                    id="btn_Filter">
                     <span lang="it">Filtra!</span>
                     <span lang="en">Filter!</span>
                     <span lang="es">Filtro</span>
                     <span lang="de">Filter!</span>
                     <span lang="fr">Filtrer!</span>
-                    </button>
-                </div>
+                </button>
             </div>
-            <hr style="border:1px solid grey;">
         </div>
+        <hr style="border:1px solid grey;">
+    </div>
 
-        <!--PLAYER-->
-        <div class="background-image-map" id="divplayer" style="display: none;">
+    <!--PLAYER-->
+    <div class="background-image-map" id="divplayer" style="display: none;">
 
-            <div class="container">
-                <div class="row clips-box">
-                    <h3 class="clips-text" style="text-align: center">
-                        CLIPS
-                    </h3>
-                    <!-- TODO: ADD THE ARRAY THAT GIVES THE LOOPS OFF DATA  -->
-                    <!-- <div class="col-md-3 mb-2">
+        <div class="container">
+            <div class="row clips-box">
+                <h3 class="clips-text" style="text-align: center;padding: 18px 14px;">
+                    CLIPS PLAYER
+                </h3>
+                <!-- TODO: ADD THE ARRAY THAT GIVES THE LOOPS OFF DATA  -->
+                <!-- <div class="col-md-3 mb-2">
                         <div class="card h-100">
                          
                             <div class="card-body" id="TvLSlvx3LbMheader" style="background-color: #34456a;">
@@ -537,40 +541,71 @@
                         </div>
                     </div> -->
 
-                    <!-- TODO: CHANGE IT LATER -->
+                <!-- TODO: CHANGE IT LATER -->
 
+                <div>
+
+                    <div class="buttonsdiv bottom-box">
+                        <!-- <button class="btn-primary" type="button" id="backbutton">indietro</button> -->
+                        <button class="btn-primary audio-buttons" type="button" id="playbutton">play</button>
+                        <button class="btn-primary audio-buttons" type="button" id="nextbutton">next</button>
+                        <!-- <button class="btn-primary" type="button" id="skipbutton">skip</button> -->
+                        <div></div>
+                        <div id="youtube-player"></div>
+                    </div>
                     <div>
-                        <div class="buttonsdiv">
-                            <button type="button" id="backbutton">indietro</button><button type="button"
-                                id="playbutton">play</button><button type="button" id="nextbutton">avanti</button>
-                            <button type="button" id="skipbutton">skip</button>
+
+                    </div>
+                    <div class="places-buttons">
+                        <div class="flex-des"> <img class="arrows" id="backbutton" src="../media/img/back.png" style="">
+                            <img id="skipbutton" src="../media/img/next.png" class="arrows"></div>
+                    </div>
+                    <div class="clip-list">
+                        <div style="flex: 1;
+                                        ">
+                            <ul id="listavideodariprodurre" class="title-list">
+
+                            </ul>
+                        </div>
+                        <div style="flex: 1">
+                            <ul id="description" class="desc-part" style="list-style: none;">
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- <button class="btn-primary" type="button" id="backbutton">indietro</button>
+                            <button class="btn-primary" type="button"
+                                id="playbutton">play</button><button  class="btn-primary"type="button" id="nextbutton">next</button>
+                            <button class="btn-primary" type="button" id="skipbutton">skip</button>
+                            <div></div>
                             <div id="youtube-player"></div>
                         </div>
-                        <div class="col-lg-4" style="background: blue; height: 15%; border-bottom: 1px solid #e2e2e2;">
+                        <div>
                             <ul id="listavideodariprodurre"></ul>
-                        </div>
-                        
-                    </div>
+                        </div> -->
 
-                    
                 </div>
+
+
             </div>
         </div>
+    </div>
 
-       
-        <!-- LOGIN SCRIPT -->
-        <script type="text/javascript" src="../media/Javascript/login.js"></script>
 
-        <!-- SCRIPT FOR REDERECTIONG INTO HTTPS -->
-         <!-- <script>
+    <!-- LOGIN SCRIPT -->
+    <script type="text/javascript" src="../media/Javascript/login.js"></script>
+
+    <!-- SCRIPT FOR REDIRECT INTO HTTPS -->
+    <!-- <script>
            if (window.location.protocol != "https:")
                window.location.href = window.location.href.replace('http', 'https');
          </script> -->
 
 
-        <!-- LANGUAGE actionsSCRIPT -->
-        <script type="text/javascript" src="../media/Javascript/language.js"></script>
-        <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
-            onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
-    </body>
+    <!-- LANGUAGE actionsSCRIPT -->
+    <script type="text/javascript" src="../media/Javascript/language.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
+        onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
+</body>
+
 </html>
