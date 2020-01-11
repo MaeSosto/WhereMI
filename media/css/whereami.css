@@ -772,7 +772,7 @@ svg:not(:root).svg-inline--fa {
   padding-bottom:10px;
 }
 .places-buttons{
-  margin-top: -81px;
+  margin-top: -64px;
 }
 .clips-text {
   text-align: center;
@@ -845,7 +845,10 @@ color: #0a0a0a;
     width: 70%;
   }
 }
-
+.audio-buttons{
+  max-width: 100px;
+  margin-right: 10px;
+}
 @media only screen and (max-width: 767px) {
   .wrap {
     position: unset;
@@ -853,6 +856,9 @@ color: #0a0a0a;
     left: 0;
     transform: unset;
     width: 100%;
+  }
+  .clips-text {
+    border-radius: unset;
   }
   .border-mob{
     border-top-left-radius: 90px;
