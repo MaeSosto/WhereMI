@@ -8,12 +8,14 @@ var uploadedBox = document.getElementById("uploadedCheck");
 
 
 // Controllo sullo slider
+/*
 var slider = document.getElementById("dettagli");
 var output = document.getElementById("num_dettagli");
 output.innerHTML = slider.value;
 slider.oninput = function () {
 	output.innerHTML = this.value;
 }
+*/
 
 
 function showAudio(show) { //mostra o nasconde il tag audio
