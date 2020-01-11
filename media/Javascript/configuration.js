@@ -1,7 +1,7 @@
 /**************LANGUAGE CONFIGURATION*************/
 
 let langs = ['en', 'de', 'it', 'fr', 'es'];
-// ON DEFAULT INGLESEE
+// ON DEFAULT INGLESE
 let lang = 'en';
 
 //SALVO A LOCAL STORAGE L'ULTIMO SELEZIONATO PER MANTENERE LA LINGUA NELLE ALRE PAGINE E ON REFRESH
@@ -52,7 +52,7 @@ function setLangStyles(lang) {
 
 
 /**************LOADER CONFIGURATION*************/
-
+//Wait until the body is ready
 function onReady(callback) {
 	var intervalId = window.setInterval(function() {
 	  if (document.getElementsByTagName('body')[0] !== undefined) {

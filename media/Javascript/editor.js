@@ -166,6 +166,7 @@ async function uploadYoutube() {
 		var success =  window.uploadToYoutube(audSave.src || recorder.src, titolo, metadatiClip);
 		if (success) {
 			alert("caricato");
+			uploadedBox.style.display= 'block';
 		}
 	
 		
@@ -325,9 +326,7 @@ async function uploadRawFilePrivate(videoclip, titolo, metadatiClip) {
 
 
 }
-
 /////aggiorna JSON e carica video
-
 function getJson(){ //funzione che ritorna il json con i luoghi
 	var Path="/config/general.json";
     var xmlhttp = new XMLHttpRequest();
@@ -458,7 +457,7 @@ function creaNuovo(metadatisplit, urlvideo, luoghi){
 
 $("#upload").click(function () {
 	divMetadati.style.display = 'none';
-	uploadedBox.style.display= 'block';
+	// uploadedBox.style.display= 'block';
 	//TODO: refreshare i campi 
 	uploadYoutube();
 });
@@ -468,7 +467,7 @@ $("#salva").click(function () {
 	//TODO: refreshare i campi 
 	uploadYoutubePrivate();
 	divMetadati.style.display = 'none';
-	uploadedBox.style.display= 'block';
+	// uploadedBox.style.display= 'block';
 });
 
 

@@ -879,9 +879,9 @@ color: #0a0a0a;
   .clips-text {
     border-radius: unset;
   }
-  .border-mob{
+  /* .border-mob{
     border-top-left-radius: 90px;
-  }
+  } */
   .audio-buttons{
     width: 100px;
   }
@@ -929,5 +929,8 @@ color: #0a0a0a;
     text-align: center;
     display: flex;
     justify-content: space-around;
+  }
+  .register-section{
+    border-radius: unset;
   }
 }
