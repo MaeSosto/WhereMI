@@ -271,7 +271,12 @@ a:hover {
   background: #f2f2f2;
 }
 
-
+.logo-text {
+  font-size: 24px;
+  position: relative;
+  top: 12px;
+  left: 10px;
+}
 @media screen and (max-width: 992px) {
 
   /*quando la grandezza dello schermo è minore di 992px fa questo*/
@@ -373,9 +378,11 @@ a:hover {
   padding-top: 10px;
   padding-bottom: 20px;
   height: 95px;
-  overflow: scroll;
   border-bottom: 2px solid black;
   text-shadow: 1px 1px 1px black;
+}
+.desc-part li{
+  overflow-y: scroll;
 }
 .form_col {
   max-width: 100px;
@@ -478,6 +485,12 @@ a:hover {
 .navbar-brand {
   margin-left: -2px !important;
   margin-top: 14px !important;
+  color: white !important;
+  font-size: 24px;
+}
+.logo-title-s{
+  margin-left: 7px !important;
+  margin-top: 2px !important;
   color: white !important;
   font-size: 24px;
 }
