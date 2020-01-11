@@ -762,7 +762,7 @@ svg:not(:root).svg-inline--fa {
   display: flex; justify-content: space-between; object-fit: contain;
 }
 .bottom-box{
-  border-bottom: 8px solid #000000;display: flex; justify-content: center;     padding-bottom: 8px;
+  border-bottom: 2px solid #000000;display: flex; justify-content: center;     padding-bottom: 8px;
 }
 .clips-box {
   border-top-left-radius: 10px;
@@ -783,7 +783,7 @@ svg:not(:root).svg-inline--fa {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   margin-top: 0;
-  margin-bottom: -4px;
+  margin-bottom: 3px;
 }
 
 .background-image-map {
