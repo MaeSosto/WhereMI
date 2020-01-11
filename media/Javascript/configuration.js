@@ -1,3 +1,5 @@
+/**************LANGUAGE CONFIGURATION*************/
+
 let langs = ['en', 'de', 'it', 'fr', 'es'];
 // ON DEFAULT INGLESEE
 let lang = 'en';
@@ -6,7 +8,6 @@ let lang = 'en';
 lang = localStorage.getItem("lang") || 'en';
 //SETTO LO STILE CON VALORE DELLA LINGUA SCELTA
 setLangStyles(lang);
-console.log(lang)
 
 function setStyles(styles) {
 	var elementId = '__lang_styles';
@@ -15,7 +16,6 @@ function setStyles(styles) {
 	if (element) {
 		element.remove();
 	}
-	// console.log(lang)
 	let style = document.createElement('style');
 	style.id = elementId;
 	style.type = 'text/css';
@@ -48,5 +48,25 @@ function setLangStyles(lang) {
 		.join(' ');
 
 	setStyles(styles);
-	console.log(lang)
 }
+
+
+/**************LOADER CONFIGURATION*************/
+
+function onReady(callback) {
+	var intervalId = window.setInterval(function() {
+	  if (document.getElementsByTagName('body')[0] !== undefined) {
+		window.clearInterval(intervalId);
+		callback.call(this);
+	  }
+	}, 1000);
+  }
+  
+  function setVisible(selector, visible) {
+	document.querySelector(selector).style.display = visible ? 'block' : 'none';
+  }
+  
+  onReady(function() {
+	setVisible('.page', true);
+	setVisible('#loading', false);
+  });
