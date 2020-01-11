@@ -21,9 +21,9 @@ function initCoords() {
 	console.log(LuoghiAlCaricamento);
 	if (confirm("Vuoi usare la Geolocalizzazione?")) {
 		navigator.geolocation.getCurrentPosition(initAutocomplete);
-		document.getElementById('set-position').style.visibility = "hidden";
+		document.getElementById('set-position').style.display = 'none';
 	} else {
-		document.getElementById('set-position').style.visibility = "visible";
+		document.getElementById('set-position').style.display = 'block';
 		var position = {
 			coords: {
 				latitude: 44.4936714,
@@ -143,6 +143,8 @@ function initAutocomplete(position) {
 	   marker.setPosition(marker.getPosition());
 
    });
+   
+
 
 }
 
@@ -291,7 +293,10 @@ function creaMarker2(coords) { //crea marker dei luoghi
 			}
 			
 		}
-		
+		//GOTO CLIPS EVENT ON CLICK
+		google.maps.event.addDomListener(marker, 'click', function() {
+			window.location.href = '#gotoclips';
+		});
 
 		google.maps.event.addListener(marker, 'mouseout', function () {
 			infowindow.close(map, this);
@@ -347,12 +352,15 @@ function onSignIn(googleUser) {
 function showPlayerDiv(show) { //mostra o nasconde la finestra del player e audio
 	var divfiltro = document.getElementById('divfiltro');
 	var divplayer = document.getElementById('divplayer');
+	var gotoFilter = document.getElementById('gotoFilter');
 	if (show == true) {
 		divfiltro.style.display = 'block';
 		divplayer.style.display = 'block';
+		gotoFilter.style.display = 'block';
 	} else {
 		divfiltro.style.display = 'none';
 		divplayer.style.display = 'none';
+		gotoFilter.style.display = 'none';
 	}
 
 }

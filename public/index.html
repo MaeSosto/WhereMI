@@ -86,8 +86,8 @@
                     </ul>
             </div>
             </nav> -->
-        <a href="#gotofilter">
-            <div class="fixed-filter-button applied">
+        <a  href="#gotofilter">
+            <div style="display: none;" id="gotoFilter" class="fixed-filter-button applied">
                 <svg class="svg-inline--fa fa-filter fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="filter"
                     role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
                     <path fill="currentColor"
@@ -236,6 +236,52 @@
                         <span lang="de">Position setzen</span>
                         <span lang="fr">Définir la position</span>
                         </button>
+                        <div class="form-group">
+                                <!-- <label for="categoria">
+                                <span lang="en">Category</span>
+                                <span lang="it">Categoria</span>
+                                <span lang="es">Categoría</span>
+                                <span lang="de">Kategorie</span>
+                                <span lang="fr">Catégorie</span>
+                                </label> -->
+                                <select style="border:3px solid #03b4cc;color: #090909; height: 36px;" id="categoria" class="form-control is-valid custom-select" >
+                                    <option lang="it" value="">Seleziona categoria del luogo</option>
+                                    <option lang="en" value="">Select place's category</option>
+                                    <option lang="es" value="">Selecciona la categoría del lugar</option>
+                                    <option lang="de" value="">Ortskategorie auswählen</option>
+                                    <option lang="fr" value="">Seleziona categoria del luogo</option>
+                                    <option lang="en" value=all>All</option>
+                                    <option lang="es" value=all>Todos</option>
+                                    <option lang="it" value=all>Tutte</option>
+                                    <option lang="fr" value=all>Toute</option>
+                                    <option lang="de" value=all>Alle</option>
+                                    <option lang="it" value=nat>Natura</option>
+                                    <option lang="es" value=nat>Naturaleza</option>
+                                    <option lang="en" value=nat>Nature</option>
+                                    <option lang="fr" value=nat>Nature</option>
+                                    <option lang="de" value=nat>Natur</option>
+                                    <option lang="it" value=art>Arte</option>
+                                    <option lang="es" value=art>Arte</option>
+                                    <option lang="fr" value=art>L'art</option>
+                                    <option lang="de" value=art>Art</option>
+                                    <option lang="en" value=art>Art</option>
+                                    <option lang="it" value=his>Storia</option>
+                                    <option lang="en" value=his>History</option>
+                                    <option lang="de" value=his>Geschichte</option>
+                                    <option lang="es" value=his>historia</option>
+                                    <option lang="fr" value=his>histoire</option>
+                                    <option lang="it" value=rel>Religione</option>
+                                    <option lang="en" value=rel>Religion</option>
+                                    <option lang="de" value=rel>Religion</option>
+                                    <option lang="es" value=rel>Religión</option>
+                                    <option lang="fr" value=rel>Religion</option>
+                                    <option lang="it" value=oth>Altro</option>
+                                    <option lang="en" value=oth>Other</option>
+                                    <option lang="de" value=oth>mehr</option>
+                                    <option lang="es" value=oth>más</option>
+                                    <option lang="fr" value=oth>Autre</option>
+                                </select>
+                            </div>
                         <input class="search-directions-extra" type="text" id="pos" required="required"
                             placeholder="sposta marker" size="30" />
                         <input class="search-directions" type="button" id="reset-map" value="Reset map" />
@@ -302,237 +348,12 @@
                 </div>
             </div>
             -->
-        <!--FILTRO-->
-        <div class="container" id="divfiltro" style="display: none;">
-            <div class="row m-5 filter-block">
-                <h3 id="gotofilter" style="text-align: center">
-                    <span lang="it">Filtra clip per: </span>
-                    <span lang="en">Filter clips by: </span>
-                    <span lang="fr">Filtrer les clips par: </span>
-                    <span lang="de">Clips filtern nach: </span>
-                    <span lang="es">Filtrar clips por: </span>
-                </h3>
-                <div class="col-md-4">
-                    <div>
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="selectDetail">
-                            <span lang="en">Language</span>
-                            <span lang="it">Lingua</span>
-                            <span lang="es">Idioma</span>
-                            <span lang="de">Sprache</span>
-                            <span lang="fr">Langue</span>
-                            </label>
-                        </div>
-                        <select id="selectDetail" class="form-control" required>
-                            <option lang="it" value="">Seleziona un'opzione</option>
-                            <option lang="en" value="">Select an option</option>
-                            <option lang="es" value="">Seleccione una opción</option>
-                            <option lang="de" value="">Wähle eine Option</option>
-                            <option lang="fr" value="">Sélectionnez une option</option>
-                            <option lang="it" value="ita">Italiano</option>
-                            <option lang="en" value="ita">Italian</option>
-                            <option lang="es" value="ita">italiano</option>
-                            <option lang="de" value="ita">Italienische</option>
-                            <option lang="fr" value="ita">italienne</option>
-                            <option lang="it" value="eng">Inglese</option>
-                            <option lang="en" value="eng">English</option>
-                            <option lang="es" value="eng">Ingles</option>
-                            <option lang="de" value="eng">Englische</option>
-                            <option lang="fr" value="eng">Anglaise</option>
-                            <option lang="it" value="deu">Tedesco</option>
-                            <option lang="en" value="deu">German</option>
-                            <option lang="es" value="deu">Alemán</option>
-                            <option lang="de" value="deu">Deutsch</option>
-                            <option lang="fr" value="deu">Allemand</option>
-                            <option lang="it" value="fra">Francese</option>
-                            <option lang="en" value="fra">French</option>
-                            <option lang="es" value="fra">francés</option>
-                            <option lang="de" value="fra">Französisch</option>
-                            <option lang="fr" value="fra">Français</option>
-                            <option lang="it" value="esp">Spagnolo</option>
-                            <option lang="en" value="esp">Spanish</option>
-                            <option lang="es" value="esp">Español</option>
-                            <option lang="de" value="esp">Spanische </option>
-                            <option lang="fr" value="esp">Spagnolo</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div>
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="selectAudience">
-                            <span lang="en">Audience</span>
-                            <span lang="it">Pubblico</span>
-                            <span lang="es">Audiencia</span>
-                            <span lang="de">Publikum</span>
-                            <span lang="fr">Public</span>
-                            </label>
-                        </div>
-                        <select id="selectAudience" class="form-control">
-                            <option lang="it" value="">Seleziona un'opzione</option>
-                            <option lang="en" value="">Select an option</option>
-                            <option lang="es" value="">Seleccione una opción</option>
-                            <option lang="de" value="">Wähle eine Option</option>
-                            <option lang="fr" value="">Sélectionnez une option</option>
-                            <option lang="it" value="gen">Generico</option>
-                            <option lang="en" value="gen">General</option>
-                            <option lang="es" value="gen">General</option>
-                            <option lang="de" value="gen">Allgemeine </option>
-                            <option lang="fr" value="gen">Générale</option>
-                            <option lang="it" value="pre">Pre-scolare</option>
-                            <option lang="en" value="pre">Preschool</option>
-                            <option lang="es" value="pre">preescolar</option>
-                            <option lang="de" value="pre">vorschulisch</option>
-                            <option lang="fr" value="pre">préscolaire</option>
-                            <option lang="it" value="elm">Elementari</option>
-                            <option lang="en" value="elm">Elementary</option>
-                            <option lang="es" value="elm">elemental</option>
-                            <option lang="de" value="elm">elementar</option>
-                            <option lang="fr" value="elm">élémentaire</option>
-                            <option lang="it" value="mid">Scuola media</option>
-                            <option lang="en" value="mid">Secondary school</option>
-                            <option lang="es" value="mid">Escuela media</option>
-                            <option lang="de" value="mid">Mittelschule</option>
-                            <option lang="fr" value="mid">Premier cycle du secondaire</option>
-                            <option lang="it" value="scl">Specializzato</option>
-                            <option lang="en" value="scl">Specialized</option>
-                            <option lang="es" value="scl">especializado</option>
-                            <option lang="de" value="scl">spezialisiert</option>
-                            <option lang="fr" value="scl">spécialisé</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="row m-5 filter-block">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="testo">
-                        <span lang="it">Scopo</span>
-                        <span lang="en">Purpose</span>
-                        <span lang="es">Propósito</span>
-                        <span lang="de">Zweck</span>
-                        <span lang="fr">But</span>
-                        </label>
-                        <select class="form-control is-valid custom-select" name="scopo" id="scopo" required>
-                            <option lang="it" value="">Seleziona un'opzione</option>
-                            <option lang="en" value="">Select an option</option>
-                            <option lang="es" value="">Seleccione una opción</option>
-                            <option lang="de" value="">Wähle eine Option</option>
-                            <option lang="fr" value="">Sélectionnez une option</option>
-                            <option value="1" lang="it">All </option>
-                            <option value="1" lang="en">Tutte </option>
-                            <option value="1" lang="es">Todos</option>
-                            <option value="1" lang="de">Alle </option>
-                            <option value="1" lang="fr">Toute</option>
-                            <option value="2" lang="it">Come </option>
-                            <option value="2" lang="en">How </option>
-                            <option value="2" lang="es">Cómo</option>
-                            <option value="2" lang="de">Wie </option>
-                            <option value="2" lang="fr">Comment</option>
-                            <option value="3" lang="it">Perché </option>
-                            <option value="3" lang="en">Why </option>
-                            <option value="3" lang="es">Por qué </option>
-                            <option value="3" lang="de">Warum </option>
-                            <option value="3" lang="fr">Pourquoi </option>
-                            <option value="4" lang="it">Cosa</option>
-                            <option value="4" lang="en">What</option>
-                            <option value="4" lang="es">Qué</option>
-                            <option value="4" lang="de">Was</option>
-                            <option value="4" lang="fr">Quel</option>
-                        </select>
-                    </div>
-                    <!-- <div class="input-group-prepend">
-                        <label for="testo">
-                            <span lang="it">Scopo</span>
-                            <span lang="en">Purpose</span>
-                            <span lang="es">propósito</span>
-                            <span lang="de">Zweck</span>
-                            <span lang="fr">but</span>
-                        </label>
-                        </div>
-                        <div style="display:flex; justify-content: space-between;">
-                        <div class="form-check form-check">
-                            <input class="input-group-text" type="radio" name="scopo" id="scopo" value="all">
-                            <label class="form-check-label" for="scopo">
-                                <span lang="en">All</span>
-                                <span lang="it">Tutte</span>
-                                <span lang="es">Todos</span>
-                                <span lang="de">Alle</span>
-                                <span lang="fr">Toute</span>
-                            </label>
-                        </div>
-                        <div class="form-check form-check">
-                            <input class="form-check-input" type="radio" name="scopo" id="scopo" value="come">
-                            <label class="form-check-label" for="scopo">
-                                <span lang="it">Come</span>
-                                <span lang="en">How</span>
-                                <span lang="es">Cómo</span>
-                                <span lang="de">Wie</span>
-                                <span lang="fr">Comment</span>
-                            </label>
-                        </div>
-                        <div class="form-check form-check">
-                            <input class="form-check-input" type="radio" name="scopo" id="scopo" value="perche">
-                            <label class="form-check-label" for="scopo">
-                                <span lang="it">Perché</span>
-                                <span lang="en">Why</span>
-                                <span lang="es">Por qué</span>
-                                <span lang="de">Warum</span>
-                                <span lang="fr">Pourquoi</span>
-                            </label>
-                        </div>
-                        <div class="form-check form-check">
-                            <input class="form-check-input" type="radio" name="scopo" id="scopo" value="cosa">
-                            <label class="form-check-label" for="scopo">
-                                <span lang="it">Cosa</span>
-                                <span lang="en">What</span>
-                                <span lang="es">Qué</span>
-                                <span lang="de">Was</span>
-                                <span lang="fr">Quel</span>
-                            </label>
-                        </div> -->
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="dettagli">
-                            <span lang="en"> Detail</span>
-                            <span lang="it"> Dettagli </span>
-                            <span lang="fr">Détails</span>
-                            <span lang="de"> Einzelheiten </span>
-                            <span lang="es"> Detalles</span>
-                            <!-- [<span id="num_dettagli"></span>] -->
-                        </label>
-                        <select id="dettagli" class="form-control is-valid custom-select" required>
-                            <option lang="it" value="">Seleziona un'opzione</option>
-                            <option lang="en" value="">Select an option</option>
-                            <option lang="es" value="">Seleccione una opción</option>
-                            <option lang="de" value="">Wähle eine Option</option>
-                            <option lang="fr" value="">Sélectionnez une option</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-4" style="text-align: center">
-                    <button class="btn btn-primary waves-effect waves-light" style="margin-top: 6%" onclick=filtro()>
-                    <span lang="it">Filtra!</span>
-                    <span lang="en">Filter!</span>
-                    <span lang="es">Filtro</span>
-                    <span lang="de">Filter!</span>
-                    <span lang="fr">Filtrer!</span>
-                    </button>
-                </div>
-            </div>
-            <hr style="border:1px solid grey;">
-        </div>
+       
         <!--PLAYER-->
         <div class="background-image-map" id="divplayer" style="display: none;">
             <div class="container">
                 <div class="row clips-box">
-                    <h3 class="clips-text" style="text-align: center;padding: 18px 14px;">
+                    <h3 class="clips-text" id="gotoclips" style="text-align: center;padding: 18px 14px;">
                         CLIPS PLAYER
                     </h3>
                     <!-- TODO: ADD THE ARRAY THAT GIVES THE LOOPS OFF DATA  -->
@@ -618,6 +439,235 @@
                 </div>
             </div>
         </div>
+       
+         <!--FILTRO-->
+         <div class="container" id="divfiltro" style="display: none;">
+                <!-- <hr style="border:1px solid grey;"> -->
+                <div class="row m-5 filter-block">
+                    <h3 id="gotofilter" style="text-align: center">
+                        <span lang="it">Filtra clip per: </span>
+                        <span lang="en">Filter clips by: </span>
+                        <span lang="fr">Filtrer les clips par: </span>
+                        <span lang="de">Clips filtern nach: </span>
+                        <span lang="es">Filtrar clips por: </span>
+                    </h3>
+                    <div class="col-md-4">
+                        <div>
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="selectDetail">
+                                <span lang="en">Language</span>
+                                <span lang="it">Lingua</span>
+                                <span lang="es">Idioma</span>
+                                <span lang="de">Sprache</span>
+                                <span lang="fr">Langue</span>
+                                </label>
+                            </div>
+                            <select id="selectDetail" class="form-control" required>
+                                <option lang="it" value="">Seleziona un'opzione</option>
+                                <option lang="en" value="">Select an option</option>
+                                <option lang="es" value="">Seleccione una opción</option>
+                                <option lang="de" value="">Wähle eine Option</option>
+                                <option lang="fr" value="">Sélectionnez une option</option>
+                                <option lang="it" value="ita">Italiano</option>
+                                <option lang="en" value="ita">Italian</option>
+                                <option lang="es" value="ita">italiano</option>
+                                <option lang="de" value="ita">Italienische</option>
+                                <option lang="fr" value="ita">italienne</option>
+                                <option lang="it" value="eng">Inglese</option>
+                                <option lang="en" value="eng">English</option>
+                                <option lang="es" value="eng">Ingles</option>
+                                <option lang="de" value="eng">Englische</option>
+                                <option lang="fr" value="eng">Anglaise</option>
+                                <option lang="it" value="deu">Tedesco</option>
+                                <option lang="en" value="deu">German</option>
+                                <option lang="es" value="deu">Alemán</option>
+                                <option lang="de" value="deu">Deutsch</option>
+                                <option lang="fr" value="deu">Allemand</option>
+                                <option lang="it" value="fra">Francese</option>
+                                <option lang="en" value="fra">French</option>
+                                <option lang="es" value="fra">francés</option>
+                                <option lang="de" value="fra">Französisch</option>
+                                <option lang="fr" value="fra">Français</option>
+                                <option lang="it" value="esp">Spagnolo</option>
+                                <option lang="en" value="esp">Spanish</option>
+                                <option lang="es" value="esp">Español</option>
+                                <option lang="de" value="esp">Spanische </option>
+                                <option lang="fr" value="esp">Spagnolo</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div>
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="selectAudience">
+                                <span lang="en">Audience</span>
+                                <span lang="it">Pubblico</span>
+                                <span lang="es">Audiencia</span>
+                                <span lang="de">Publikum</span>
+                                <span lang="fr">Public</span>
+                                </label>
+                            </div>
+                            <select id="selectAudience" class="form-control">
+                                <option lang="it" value="">Seleziona un'opzione</option>
+                                <option lang="en" value="">Select an option</option>
+                                <option lang="es" value="">Seleccione una opción</option>
+                                <option lang="de" value="">Wähle eine Option</option>
+                                <option lang="fr" value="">Sélectionnez une option</option>
+                                <option lang="it" value="gen">Generico</option>
+                                <option lang="en" value="gen">General</option>
+                                <option lang="es" value="gen">General</option>
+                                <option lang="de" value="gen">Allgemeine </option>
+                                <option lang="fr" value="gen">Générale</option>
+                                <option lang="it" value="pre">Pre-scolare</option>
+                                <option lang="en" value="pre">Preschool</option>
+                                <option lang="es" value="pre">preescolar</option>
+                                <option lang="de" value="pre">vorschulisch</option>
+                                <option lang="fr" value="pre">préscolaire</option>
+                                <option lang="it" value="elm">Elementari</option>
+                                <option lang="en" value="elm">Elementary</option>
+                                <option lang="es" value="elm">elemental</option>
+                                <option lang="de" value="elm">elementar</option>
+                                <option lang="fr" value="elm">élémentaire</option>
+                                <option lang="it" value="mid">Scuola media</option>
+                                <option lang="en" value="mid">Secondary school</option>
+                                <option lang="es" value="mid">Escuela media</option>
+                                <option lang="de" value="mid">Mittelschule</option>
+                                <option lang="fr" value="mid">Premier cycle du secondaire</option>
+                                <option lang="it" value="scl">Specializzato</option>
+                                <option lang="en" value="scl">Specialized</option>
+                                <option lang="es" value="scl">especializado</option>
+                                <option lang="de" value="scl">spezialisiert</option>
+                                <option lang="fr" value="scl">spécialisé</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-5 filter-block">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="testo">
+                            <span lang="it">Scopo</span>
+                            <span lang="en">Purpose</span>
+                            <span lang="es">Propósito</span>
+                            <span lang="de">Zweck</span>
+                            <span lang="fr">But</span>
+                            </label>
+                            <select class="form-control is-valid custom-select" name="scopo" id="scopo" required>
+                                <option lang="it" value="">Seleziona un'opzione</option>
+                                <option lang="en" value="">Select an option</option>
+                                <option lang="es" value="">Seleccione una opción</option>
+                                <option lang="de" value="">Wähle eine Option</option>
+                                <option lang="fr" value="">Sélectionnez une option</option>
+                                <option value="1" lang="it">All </option>
+                                <option value="1" lang="en">Tutte </option>
+                                <option value="1" lang="es">Todos</option>
+                                <option value="1" lang="de">Alle </option>
+                                <option value="1" lang="fr">Toute</option>
+                                <option value="2" lang="it">Come </option>
+                                <option value="2" lang="en">How </option>
+                                <option value="2" lang="es">Cómo</option>
+                                <option value="2" lang="de">Wie </option>
+                                <option value="2" lang="fr">Comment</option>
+                                <option value="3" lang="it">Perché </option>
+                                <option value="3" lang="en">Why </option>
+                                <option value="3" lang="es">Por qué </option>
+                                <option value="3" lang="de">Warum </option>
+                                <option value="3" lang="fr">Pourquoi </option>
+                                <option value="4" lang="it">Cosa</option>
+                                <option value="4" lang="en">What</option>
+                                <option value="4" lang="es">Qué</option>
+                                <option value="4" lang="de">Was</option>
+                                <option value="4" lang="fr">Quel</option>
+                            </select>
+                        </div>
+                        <!-- <div class="input-group-prepend">
+                            <label for="testo">
+                                <span lang="it">Scopo</span>
+                                <span lang="en">Purpose</span>
+                                <span lang="es">propósito</span>
+                                <span lang="de">Zweck</span>
+                                <span lang="fr">but</span>
+                            </label>
+                            </div>
+                            <div style="display:flex; justify-content: space-between;">
+                            <div class="form-check form-check">
+                                <input class="input-group-text" type="radio" name="scopo" id="scopo" value="all">
+                                <label class="form-check-label" for="scopo">
+                                    <span lang="en">All</span>
+                                    <span lang="it">Tutte</span>
+                                    <span lang="es">Todos</span>
+                                    <span lang="de">Alle</span>
+                                    <span lang="fr">Toute</span>
+                                </label>
+                            </div>
+                            <div class="form-check form-check">
+                                <input class="form-check-input" type="radio" name="scopo" id="scopo" value="come">
+                                <label class="form-check-label" for="scopo">
+                                    <span lang="it">Come</span>
+                                    <span lang="en">How</span>
+                                    <span lang="es">Cómo</span>
+                                    <span lang="de">Wie</span>
+                                    <span lang="fr">Comment</span>
+                                </label>
+                            </div>
+                            <div class="form-check form-check">
+                                <input class="form-check-input" type="radio" name="scopo" id="scopo" value="perche">
+                                <label class="form-check-label" for="scopo">
+                                    <span lang="it">Perché</span>
+                                    <span lang="en">Why</span>
+                                    <span lang="es">Por qué</span>
+                                    <span lang="de">Warum</span>
+                                    <span lang="fr">Pourquoi</span>
+                                </label>
+                            </div>
+                            <div class="form-check form-check">
+                                <input class="form-check-input" type="radio" name="scopo" id="scopo" value="cosa">
+                                <label class="form-check-label" for="scopo">
+                                    <span lang="it">Cosa</span>
+                                    <span lang="en">What</span>
+                                    <span lang="es">Qué</span>
+                                    <span lang="de">Was</span>
+                                    <span lang="fr">Quel</span>
+                                </label>
+                            </div> -->
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="dettagli">
+                                <span lang="en"> Detail</span>
+                                <span lang="it"> Dettagli </span>
+                                <span lang="fr">Détails</span>
+                                <span lang="de"> Einzelheiten </span>
+                                <span lang="es"> Detalles</span>
+                                <!-- [<span id="num_dettagli"></span>] -->
+                            </label>
+                            <select id="dettagli" class="form-control is-valid custom-select" required>
+                                <option lang="it" value="">Seleziona un'opzione</option>
+                                <option lang="en" value="">Select an option</option>
+                                <option lang="es" value="">Seleccione una opción</option>
+                                <option lang="de" value="">Wähle eine Option</option>
+                                <option lang="fr" value="">Sélectionnez une option</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="text-align: center">
+                        <button class="btn btn-primary waves-effect waves-light" style="margin-top: 6%" onclick=filtro()>
+                        <span lang="it">Filtra!</span>
+                        <span lang="en">Filter!</span>
+                        <span lang="es">Filtro</span>
+                        <span lang="de">Filter!</span>
+                        <span lang="fr">Filtrer!</span>
+                        </button>
+                    </div>
+                </div>
+              
+            </div>
+
         </div>
         <!-- LOGIN SCRIPT -->
         <script type="text/javascript" src="../media/Javascript/login.js"></script>
