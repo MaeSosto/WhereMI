@@ -773,6 +773,7 @@ svg:not(:root).svg-inline--fa {
 .arrows{
   width:100%;     width: 100%;
   max-width: 61px;cursor: pointer; object-fit: contain;
+  margin-top: -17px;
 }
 .flex-des{
   display: flex; justify-content: space-between; object-fit: contain;
@@ -800,6 +801,7 @@ svg:not(:root).svg-inline--fa {
   border-top-right-radius: 10px;
   margin-top: 0;
   margin-bottom: 3px;
+  padding: 18px 0px;
 }
 
 .background-image-map {
