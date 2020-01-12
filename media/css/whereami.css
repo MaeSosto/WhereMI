@@ -849,10 +849,21 @@ color: #0a0a0a;
     max-width: fit-content;
     box-shadow: 5px 5px 3px 4px black;
     border-radius: 11px;
+    margin: auto;
+    margin-top: 35px;
+    min-width: 300px;
+    max-width: 400px;
 }
 .saved-list li{
   border-bottom: 1px solid black;
 }
+.saved-list li button{
+ background-color: white;
+ border: 3px solid #04b4cc;
+ color: black;
+ border-radius: 4px;
+}
+.saved-l
 
 /* LOADER CSS */
 #loading {
