@@ -461,14 +461,20 @@ $("#upload").click(function () {
 	// divMetadati.style.display = 'none';
 	// uploadedBox.style.display= 'block';
 	//TODO: refreshare i campi 
-	validate();
-	uploadYoutube();
+	if (validate()){
+			uploadYoutube();
+	}
+	// else alert("Please fill all the gaps")
 });
 
 $("#salva").click(function () {
- validate();
+	if (validate()){
+		uploadYoutube();
+		uploadYoutubePrivate();
+}
+else alert("unsuccessful event")
 	//TODO: refreshare i campi 
-	uploadYoutubePrivate();
+
 	// divMetadati.style.display = 'none';
 	// uploadedBox.style.display= 'block';
 });
