@@ -22,9 +22,9 @@ function initCoords() {
 	LuoghiAlCaricamento = getJson();
 	if (confirm("Vuoi usare la Geolocalizzazione?")) {
 		navigator.geolocation.getCurrentPosition(initAutocomplete);
-		document.getElementById('set-position').style.display = 'none';
+		
 	} else {
-		document.getElementById('set-position').style.display = 'block';
+		
 		var position = {
 			coords: {
 				latitude: 44.4936714,
@@ -496,21 +496,21 @@ function onYouTubeIframeAPIReady() {
 		togglePlayButton(true);
 	});
 
-
+	var directionsRenderer = new google.maps.DirectionsRenderer;
 
 	$("#skipbutton").click(function () {
 
 
-		//var directionsRenderer = new google.maps.DirectionsRenderer;
-		//var directionsService = new google.maps.DirectionsService;
-		//directionsRenderer.set('directions', null);
+		
+		var directionsService = new google.maps.DirectionsService;
+		directionsRenderer.set('directions', null);
 		var lat = document.getElementById("skipbutton").value;
 		var lng = document.getElementById("skipbutton").name;
-		//posizioneattuale = new google.maps.LatLng(lat, lng);
+		posizioneattuale = new google.maps.LatLng(lat, lng);
 		var nxt = nextLuogo(lat, lng); 
-		//var coord = new google.maps.LatLng(nxt.coord.lat, nxt.coord.long)
-		//calculateAndDisplayRoute(directionsService, directionsRenderer, posizioneattuale, coord);
-		//directionsRenderer.setMap(map);
+		var coord = new google.maps.LatLng(nxt.coord.lat, nxt.coord.long)
+		calculateAndDisplayRoute(directionsService, directionsRenderer, posizioneattuale, coord);
+		directionsRenderer.setMap(map);
 		addToPlayer(nxt);
 		document.getElementById("skipbutton").value = nxt.coord.lat;
 		document.getElementById("skipbutton").name = nxt.coord.long;
@@ -522,13 +522,19 @@ function onYouTubeIframeAPIReady() {
 
 	$("#prevbutton").click(function(){
 
-
+	
+		var directionsService = new google.maps.DirectionsService;
+		directionsRenderer.set('directions', null);
+		var posizioneprecedente=arrayposizionivisitate[arrayposizionivisitate.length-1]
 		if (arrayposizionivisitate.length==0 ||arrayposizionivisitate.length==1){
 			return 0;
 		}
 		for (luogo in LuoghiAlCaricamento){
 			if (LuoghiAlCaricamento[luogo].coord.lat==arrayposizionivisitate[arrayposizionivisitate.length - 2].lat()&&LuoghiAlCaricamento[luogo].coord.long==arrayposizionivisitate[arrayposizionivisitate.length -2].lng()){
 				addToPlayer(LuoghiAlCaricamento[luogo]);
+				posizioneattuale = new google.maps.LatLng(LuoghiAlCaricamento[luogo].coord.lat, LuoghiAlCaricamento[luogo].coord.long);
+				calculateAndDisplayRoute(directionsService, directionsRenderer, posizioneattuale, posizioneprecedente);
+				directionsRenderer.setMap(map);
 				document.getElementById("skipbutton").value = LuoghiAlCaricamento[luogo].coord.lat;
 			document.getElementById("skipbutton").name = LuoghiAlCaricamento[luogo].coord.long;
 			}
