@@ -535,6 +535,7 @@ function onYouTubeIframeAPIReady() {
 		}
 		
 		arrayposizionivisitate.pop();
+		
 	});
 
 

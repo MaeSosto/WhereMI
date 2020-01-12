@@ -800,7 +800,6 @@ svg:not(:root).svg-inline--fa {
 }
 
 .background-image-map {
-  background-image: url(https://cdn.pixabay.com/photo/2016/03/22/04/23/map-1272165_1280.png);
   /* background-repeat: no-repeat; */
   /* background-color: #ededee; */
   background-size: contain;
