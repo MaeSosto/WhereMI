@@ -8,7 +8,6 @@ let lang = 'en';
 lang = localStorage.getItem("lang") || 'en';
 //SETTO LO STILE CON VALORE DELLA LINGUA SCELTA
 setLangStyles(lang);
-
 function setStyles(styles) {
 	var elementId = '__lang_styles';
 	var element = document.getElementById(elementId);
@@ -29,44 +28,46 @@ function setStyles(styles) {
 }
 
 function setLang(lang) {
-
 	setLangStyles(lang);
 	localStorage.setItem("lang", lang);
-
+	$("select option[lang!=" + lang + "]").attr('disabled', 'disabled');
+	$("select option[lang!=" + lang + "]").hide();
+	$("select option[lang=" + lang + "]").removeAttr('disabled').show();
 }
 
 function setLangStyles(lang) {
 	let styles = langs
 		.filter(function (l) {
 			return l != lang;
-
 		})
 		.map(function (l) {
-			return ':lang(' + l + ') { display: none; }';
 
+			$("select option[lang=" + l + "]").removeAttr('disabled').show();
+			$("select option[lang=" + l + "]").attr('disabled', 'disabled');
+			$("select option[lang=" + l + "]").hide();
+			// $("select option[lang!=" + l + "]").prop('selected',true);
+			return ':lang(' + l + ') { display: none; }';
 		})
 		.join(' ');
-
 	setStyles(styles);
 }
-
 
 /**************LOADER CONFIGURATION*************/
 //Wait until the body is ready
 function onReady(callback) {
-	var intervalId = window.setInterval(function() {
-	  if (document.getElementsByTagName('body')[0] !== undefined) {
-		window.clearInterval(intervalId);
-		callback.call(this);
-	  }
+	var intervalId = window.setInterval(function () {
+		if (document.getElementsByTagName('body')[0] !== undefined) {
+			window.clearInterval(intervalId);
+			callback.call(this);
+		}
 	}, 1000);
-  }
-  
-  function setVisible(selector, visible) {
+}
+
+function setVisible(selector, visible) {
 	document.querySelector(selector).style.display = visible ? 'block' : 'none';
-  }
-  
-  onReady(function() {
+}
+
+onReady(function () {
 	setVisible('.page', true);
 	setVisible('#loading', false);
-  });
+});

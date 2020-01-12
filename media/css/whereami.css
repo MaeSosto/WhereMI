@@ -379,9 +379,11 @@ a:hover {
   padding-bottom: 20px;
   height: 95px;
   border-bottom: 2px solid black;
-  text-shadow: 1px 1px 1px black;
+  /* text-shadow: 1px 1px 1px black; */
+  color: black;
 }
 .desc-part li{
+  line-height:26px;
   overflow-y: scroll;
 }
 .form_col {
@@ -430,7 +432,13 @@ a:hover {
   border-radius: 19px;
   padding: 10px;
 }
-
+::-webkit-scrollbar {
+  display: none;
+}
+::-webkit-scrollbar {
+  width: 0px;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
 @media (min-width: 360px) {
   .login-button {
     width: 100%;
@@ -467,6 +475,7 @@ a:hover {
   border-radius: 6px;
   margin-right: 10px;
   margin-bottom: 10px;
+  
 }
 
 .search-directions-extra {
