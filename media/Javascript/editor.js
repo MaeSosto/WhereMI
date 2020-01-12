@@ -1,5 +1,3 @@
-
-
 var audSave = document.getElementById('aud2'); //tag dove viene salvato l'audio registrato
 var titolo, scopo, lingua, categoria, descrizione, audience, dettagli;
 var player;
@@ -129,7 +127,7 @@ recorder.addEventListener('change', function (e) {
 	recorder.src = url;
 
 	divMetadati.style.display = 'block';
-	uploadedBox.style.display= 'none';
+	uploadedBox.style.display = 'none';
 
 });
 
@@ -137,8 +135,10 @@ recorder.addEventListener('change', function (e) {
 
 
 function callbackgoogle() {
-    var autocomplete = new google.maps.places.Autocomplete(
-        document.getElementById('luogo'), {types: ['geocode']});
+	var autocomplete = new google.maps.places.Autocomplete(
+		document.getElementById('luogo'), {
+			types: ['geocode']
+		});
 }
 
 
@@ -151,31 +151,38 @@ async function uploadYoutube() {
 	categoria = document.getElementById("categoria").value;
 	audience = document.getElementById("audience").value;
 	dettagli = document.getElementById("dettagli").value;
-	nomeluogo=document.getElementById("nomeluogo").value;
+	nomeluogo = document.getElementById("nomeluogo").value;
 
-	
-	var geocoder = new google.maps.Geocoder();
-    var address = document.getElementById('luogo').value;
-    geocoder.geocode({ 'address': address}, function (results) {
-		var latlong= new Object;
-		var x=results[0].geometry.location;
-		latlong.lat=x.lat();
-		latlong.lng=x.lng();
-
-		var metadatiClip = latlong.lat + ":" + latlong.lng + ":" + titolo +":"+ descrizione + ":" + scopo + ":" + lingua + ":" + categoria + ":" + audience + ":" + dettagli + ":" +nomeluogo;
-		console.log(metadatiClip);
-
-		var success =  window.uploadToYoutube(audSave.src || recorder.src, titolo, metadatiClip);
-		if (success) {
-			alert("caricato");
-			uploadedBox.style.display= 'block';
-		}
-	
-		
-	});
+	if (titolo == "" || descrizione == "" || scopo == "" || lingua == "" || categoria == "" || audience == "" || dettagli == "" || nomeluogo == "") {
+		alert("Compile all the fields!");
+	} else {
 
 
-	
+
+		var geocoder = new google.maps.Geocoder();
+		var address = document.getElementById('luogo').value;
+		geocoder.geocode({
+			'address': address
+		}, function (results) {
+			var latlong = new Object;
+			var x = results[0].geometry.location;
+			latlong.lat = x.lat();
+			latlong.lng = x.lng();
+
+			var metadatiClip = latlong.lat + ":" + latlong.lng + ":" + titolo + ":" + descrizione + ":" + scopo + ":" + lingua + ":" + categoria + ":" + audience + ":" + dettagli + ":" + nomeluogo;
+			console.log(metadatiClip);
+
+			var success = window.uploadToYoutube(audSave.src || recorder.src, titolo, metadatiClip);
+			if (success) {
+				divMetadati.style.display = 'none';
+				uploadedBox.style.display = 'block';
+			}
+
+
+		});
+
+	}
+
 }
 
 window.uploadToYoutube = async function (urlClip, titolo, metadati) {
@@ -248,25 +255,33 @@ async function uploadYoutubePrivate() {
 	categoria = document.getElementById("categoria").value;
 	audience = document.getElementById("audience").value;
 	dettagli = document.getElementById("dettagli").value;
-	nomeluogo=document.getElementById("nomeluogo").value;
-	
-	var geocoder = new google.maps.Geocoder();
-    var address = document.getElementById('luogo').value;
-    geocoder.geocode({ 'address': address}, function (results) {
-		var latlong= new Object;
-		var x=results[0].geometry.location;
-		latlong.lat=x.lat();
-		latlong.lng=x.lng();
-		var metadatiClip = latlong.lat + ":" + latlong.lng + ":" + titolo +":"+ descrizione + ":" + scopo + ":" + lingua + ":" + categoria + ":" + audience + ":" + dettagli+":"+ nomeluogo;
-		console.log(metadatiClip);
-/*
-		var success = window.uploadToYoutubePrivate(audSave.src || recorder.src, titolo, metadatiClip);
-		if (success) {
-			alert("caricato");
-		}
-*/
-		
-	});
+	nomeluogo = document.getElementById("nomeluogo").value;
+
+	if (titolo == "" || descrizione == "" || scopo == "" || lingua == "" || categoria == "" || audience == "" || dettagli == "" || nomeluogo == "") {
+		alert("Compile all the fields!");
+	} else {
+
+		var geocoder = new google.maps.Geocoder();
+		var address = document.getElementById('luogo').value;
+		geocoder.geocode({
+			'address': address
+		}, function (results) {
+			var latlong = new Object;
+			var x = results[0].geometry.location;
+			latlong.lat = x.lat();
+			latlong.lng = x.lng();
+			var metadatiClip = latlong.lat + ":" + latlong.lng + ":" + titolo + ":" + descrizione + ":" + scopo + ":" + lingua + ":" + categoria + ":" + audience + ":" + dettagli + ":" + nomeluogo;
+			console.log(metadatiClip);
+			
+					var success = window.uploadToYoutubePrivate(audSave.src || recorder.src, titolo, metadatiClip);
+					if (success) {
+						divMetadati.style.display = 'none';
+						uploadedBox.style.display = 'block';
+					}
+			
+
+		});
+	}
 
 }
 
@@ -329,155 +344,119 @@ async function uploadRawFilePrivate(videoclip, titolo, metadatiClip) {
 
 }
 /////aggiorna JSON e carica video
-function getJson(){ //funzione che ritorna il json con i luoghi
-	var Path="/config/general.json";
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", Path, false);                 ///////////ERA FALSE QUANDO FUNZIONAVA
-    xmlhttp.send();
-    if (xmlhttp.status==200) {
-      var rresult = JSON.parse(xmlhttp.responseText);
+function getJson() { //funzione che ritorna il json con i luoghi
+	var Path = "/config/general.json";
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("GET", Path, false); ///////////ERA FALSE QUANDO FUNZIONAVA
+	xmlhttp.send();
+	if (xmlhttp.status == 200) {
+		var rresult = JSON.parse(xmlhttp.responseText);
 	}
-	
+
 	return rresult;
 }
 
-function getCoords(code){ // converte plus code in coordinate
-	var urlCodereverse = "https://plus.codes/api?address=" + code+ "&ekey=AIzaSyAisQVJRCJqUAW-wICyJbshSxg_jPL-Y-A"; //URL API di OLC(Plus code)
-	let stringa=[];
+
+
+function getOLC(lat, long) { // converte coordinate in plus code
+	var urlCodereverse = "https://plus.codes/api?address=" + lat + "," + long + "&ekey=AIzaSyAisQVJRCJqUAW-wICyJbshSxg_jPL-Y-A"; //URL API di OLC(Plus code)
+	let stringa = "non ha convertito in olc";
 	$.ajax({
 		type: "GET",
 		async: false,
 		url: urlCodereverse,
-		success: function(code){
-			console.log(code);
-			stringa[0] = code.plus_code.geometry.location.lat;
-			stringa[1] = code.plus_code.geometry.location.lng;
-		}
-	 });
-	 
-	return stringa;
-}
-
-
-function getOLC(lat, long){ // converte coordinate in plus code
-	var urlCodereverse = "https://plus.codes/api?address=" + lat +","+ long + "&ekey=AIzaSyAisQVJRCJqUAW-wICyJbshSxg_jPL-Y-A"; //URL API di OLC(Plus code)
-	let stringa="non ha convertito in olc";
-	$.ajax({
-		type: "GET",
-		async: false,
-		url: urlCodereverse,
-		success: function(code){
+		success: function (code) {
 			console.log(code);
 			stringa = code.plus_code.global_code;
 		}
-	 });
-	 
+	});
+
 	return stringa;
 }
 
-function generateRandomString(iLen) {
-    var sRnd = '';
-    var sChrs = "ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
-    for (var i = 0; i < iLen; i++) {
-      var randomPoz = Math.floor(Math.random() * sChrs.length);
-      sRnd += sChrs.substring(randomPoz, randomPoz + 1);
-    }
-    return sRnd;
-  }
 
 
-
-function aggiornaJson(oggetto){ //funzione che aggiorna il json con il nuovo oggetto
+function aggiornaJson(oggetto) { //funzione che aggiorna il json con il nuovo oggetto
 	$.ajax({
 		type: "POST",
 		url: "/config/general.json",
 		data: oggetto,
-	 });
+	});
 
 }
 
 var check = null; // controllo per la funzione
 
-function isPresente(metadati, urlvideo){ //funzione che controlla se quel luogo esiste già e aggiunge i dati di conseguenza
-	var luoghi=getJson();
-	var metadatisplit=metadati.split(":");
-	for(let luogo in luoghi){
-		
-		if (luoghi[luogo].coord.lat==metadatisplit[0] && luoghi[luogo].coord.long==metadatisplit[1]){
-			check= luogo; // salvo il luogo dove inserire i dati
+function isPresente(metadati, urlvideo) { //funzione che controlla se quel luogo esiste già e aggiunge i dati di conseguenza
+	var luoghi = getJson();
+	var metadatisplit = metadati.split(":");
+	for (let luogo in luoghi) {
+
+		if (luoghi[luogo].coord.lat == metadatisplit[0] && luoghi[luogo].coord.long == metadatisplit[1]) {
+			check = luogo; // salvo il luogo dove inserire i dati
 		}
 	}
-		
-	if (check!=null){
-		insertHere(check, urlvideo, luoghi, metadatisplit); 
-	}
-	else{
+
+	if (check != null) {
+		insertHere(check, urlvideo, luoghi, metadatisplit);
+	} else {
 		creaNuovo(metadatisplit, urlvideo, luoghi);
 	}
-	check=null;
+	check = null;
 }
 
 
-function insertHere(nome, urlvideo, luoghi, metadatisplit){
+function insertHere(nome, urlvideo, luoghi, metadatisplit) {
 	var temp = new Object;
-	temp.url=urlvideo;
-	temp.titolo=metadatisplit[2];
-	temp.descrizione=metadatisplit[3];
-	temp.scopo=metadatisplit[4];
-	temp.lingua=metadatisplit[5];
-	temp.audience=metadatisplit[7];
-	temp.dettagli=metadatisplit[8];
+	temp.url = urlvideo;
+	temp.titolo = metadatisplit[2];
+	temp.descrizione = metadatisplit[3];
+	temp.scopo = metadatisplit[4];
+	temp.lingua = metadatisplit[5];
+	temp.audience = metadatisplit[7];
+	temp.dettagli = metadatisplit[8];
 	luoghi[nome].video.push(temp);
 
 	aggiornaJson(luoghi);
 }
 
-function creaNuovo(metadatisplit, urlvideo, luoghi){
+function creaNuovo(metadatisplit, urlvideo, luoghi) {
 	//var code = generateRandomString(10);
-	var code= getOLC(metadatisplit[0], metadatisplit[1]);
-	luoghi[code]=new Object;
-	luoghi[code].categoria=metadatisplit[6];
-	luoghi[code].nome=metadatisplit[9];
-	luoghi[code].coord= new Object;
-	luoghi[code].coord.lat=metadatisplit[0];
-	luoghi[code].coord.long=metadatisplit[1];
-	luoghi[code].video= new Array;
+	var code = getOLC(metadatisplit[0], metadatisplit[1]);
+	luoghi[code] = new Object;
+	luoghi[code].categoria = metadatisplit[6];
+	luoghi[code].nome = metadatisplit[9];
+	luoghi[code].coord = new Object;
+	luoghi[code].coord.lat = metadatisplit[0];
+	luoghi[code].coord.long = metadatisplit[1];
+	luoghi[code].video = new Array;
 
 	var temp = new Object;
-	temp.url=urlvideo;
-	temp.titolo=metadatisplit[2];
-	temp.descrizione=metadatisplit[3];
-	temp.scopo=metadatisplit[4];
-	temp.lingua=metadatisplit[5];
-	temp.audience=metadatisplit[7];
-	temp.dettagli=metadatisplit[8];
+	temp.url = urlvideo;
+	temp.titolo = metadatisplit[2];
+	temp.descrizione = metadatisplit[3];
+	temp.scopo = metadatisplit[4];
+	temp.lingua = metadatisplit[5];
+	temp.audience = metadatisplit[7];
+	temp.dettagli = metadatisplit[8];
 
 	luoghi[code].video.push(temp);
 	aggiornaJson(luoghi);
-	
+
 }
 
 $("#upload").click(function () {
-	// divMetadati.style.display = 'none';
-	// uploadedBox.style.display= 'block';
-	if (validate()){
-			uploadYoutube();
-			createForm.reset()
-	}
-	// else alert("Please fill all the gaps")
+
+
+	uploadYoutube();
+	
+
+
 });
 
 $("#salva").click(function () {
-	if (validate()){
-		uploadYoutube();
-		uploadYoutubePrivate();
-
-		createForm.reset()
-}
-// else alert("unsuccessful event")
-
-	// divMetadati.style.display = 'none';
-	// uploadedBox.style.display= 'block';
+	uploadYoutubePrivate();
+	
 });
 
 
@@ -514,9 +493,9 @@ function getVids(videos) { //funzione che crea la lista di video salvati
 		},
 		function (data) {
 			$.each(data.items, function (i, item) {
-				var titolo= item.snippet.title;
-				arrStr=titolo.split("+");       //ogni video privato caricato col nostro sito ha "whereami" nel titolo seguito da un + perciò divito la stringa
-				if (item.status.privacyStatus == "unlisted" && arrStr[0]=="whereami") { //seleziono solo i video unlisted del canale
+				var titolo = item.snippet.title;
+				arrStr = titolo.split("+"); //ogni video privato caricato col nostro sito ha "whereami" nel titolo seguito da un + perciò divito la stringa
+				if (item.status.privacyStatus == "unlisted" && arrStr[0] == "whereami") { //seleziono solo i video unlisted del canale
 					output = '<li id="' + item.snippet.resourceId.videoId + item.snippet.resourceId.videoId + '">' + arrStr[1] + '</li>' +
 						'<button type= "button"  id="' + item.snippet.resourceId.videoId + item.snippet.resourceId.videoId + item.snippet.resourceId.videoId + '">Play</button>' +
 						'<button type= "button" id="' + item.snippet.resourceId.videoId + '">Carica</button>';
@@ -551,7 +530,7 @@ function getVids(videos) { //funzione che crea la lista di video salvati
 								$("#" + caricaId).remove();
 
 								var metadati = item.snippet.description;
-								isPresente(metadati, item.snippet.resourceId.videoId); 
+								isPresente(metadati, item.snippet.resourceId.videoId);
 								console.log("il video è publico");
 							})
 					}
@@ -564,6 +543,7 @@ function getVids(videos) { //funzione che crea la lista di video salvati
 $("#tastovideosalvati").click(function () {
 
 	getPlaylist();
+	document.getElementById("videosalvatilist").style.display= "block";
 
 });
 
@@ -585,7 +565,7 @@ window.onYouTubeIframeAPIReady = function () {
 		playerVars: {
 			autoplay: 0,
 			loop: 0,
-			origin:'https://site181964.tw.cs.unibo.it'
+			origin: 'https://site181964.tw.cs.unibo.it'
 		},
 	});
 
@@ -606,78 +586,62 @@ function addToPlayer(id) {
 
 
 // CREATE CLIP VALIDATOR
-function validate()
-{
-    if(document.getElementById('titolo').value=='')
-        {
-				alert('Please fill up the title!! ');
-				document.getElementById("titolo").style.borderWidth=3;
-        document.getElementById("titolo").style.borderColor="red";
-				window.location.href = "#createClip";
-        return false;
-        }
-    
-    else if (nomeluogo.value=='')
-        {
-					alert('Please fill up the name of the place!!');
-       nomeluogo.style.borderColor="red";
-			nomeluogo.style.borderWidth=3;
-				window.location.href = "#createClip";
-        return false;
-        }
-    else if (luogo.value=='')
-        {
-					alert('Please fill up the place!!');
-        luogo.style.borderColor="red";
-        // document.getElementById("luogo").style.backgroundColor="yellow";
-			  luogo.style.borderWidth=3;
-				window.location.href = "#createClip";
-        return false;
-        }
-    else if (descrizione.value== '  ')
-        {
-      		alert('Please fill up the description!!');
-        descrizione.style.borderColor="red";
-				descrizione.style.borderWidth=3;
-				window.location.href = "#createClip";
-        return false;
-				}
-				else if (scopo.value=='')  
-     {  
-        alert('Please fill up the scope!!');
-       scopo.style.borderColor="red";
-			scopo.style.borderWidth=3;
-				window.location.href = "#createClip";
-       return false;  
-     } 
-				else if (lingua.value=='')
-        {
-      		alert('Please fill up the language!!');
-				lingua.style.borderColor="red";
-				window.location.href("#titolo");
-        lingua.style.borderWidth=3;
-        return false;
-        }
-    else if (categoria.value=='')
-    {
-			alert('Please fill up the category!!');
-        categoria.style.borderColor="red";
-        categoria.style.borderWidth=3;
-        return false;
-		}
-		else if (audience.value=='')
-    {
-			alert('Please fill up the audience !!');
-       audience.style.borderColor="red";
-        audience.style.borderWidth=3;
-        return false;
-		}
-		else  (dettagli.value=='')
-    {
-			alert('Please fill up the level of the details!!');
-        dettagli.style.borderColor="red";
-        dettagli.style.borderWidth=3;
-        return false;
-    }
+
+/*
+function validate() {
+	if (document.getElementById('titolo').value == '') {
+		alert('Please fill up the title!! ');
+		document.getElementById("titolo").style.borderWidth = 3;
+		document.getElementById("titolo").style.borderColor = "red";
+		window.location.href = "#createClip";
+		return false;
+	} else if (nomeluogo.value == '') {
+		alert('Please fill up the name of the place!!');
+		nomeluogo.style.borderColor = "red";
+		nomeluogo.style.borderWidth = 3;
+		window.location.href = "#createClip";
+		return false;
+	} else if (luogo.value == '') {
+		alert('Please fill up the place!!');
+		luogo.style.borderColor = "red";
+		// document.getElementById("luogo").style.backgroundColor="yellow";
+		luogo.style.borderWidth = 3;
+		window.location.href = "#createClip";
+		return false;
+	} else if (descrizione.value == '  ') {
+		alert('Please fill up the description!!');
+		descrizione.style.borderColor = "red";
+		descrizione.style.borderWidth = 3;
+		window.location.href = "#createClip";
+		return false;
+	} else if (scopo.value == '') {
+		alert('Please fill up the scope!!');
+		scopo.style.borderColor = "red";
+		scopo.style.borderWidth = 3;
+		window.location.href = "#createClip";
+		return false;
+	} else if (lingua.value == '') {
+		alert('Please fill up the language!!');
+		lingua.style.borderColor = "red";
+		window.location.href("#titolo");
+		lingua.style.borderWidth = 3;
+		return false;
+	} else if (categoria.value == '') {
+		alert('Please fill up the category!!');
+		categoria.style.borderColor = "red";
+		categoria.style.borderWidth = 3;
+		return false;
+	} else if (audience.value == '') {
+		alert('Please fill up the audience !!');
+		audience.style.borderColor = "red";
+		audience.style.borderWidth = 3;
+		return false;
+	} else(dettagli.value == '') {
+		alert('Please fill up the level of the details!!');
+		dettagli.style.borderColor = "red";
+		dettagli.style.borderWidth = 3;
+		return false;
+	}
 
 }
+*/
