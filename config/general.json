@@ -118,6 +118,33 @@
             "audience": "elm",
             "dettagli": "2"
         }]
+    },
+
+    
+    "8FPHF8J2+76": {
+        "nome": "San Luca",
+        "categoria": "rel",
+        "coord": {
+            "lat": "44.4807486",
+            "long": "11.3005994"
+        },
+        "video": [{
+            "url": "UPjq6Zac-7Q",
+            "titolo": "whereami+San Luca in breve",
+            "descrizione": "Il santuario della Madonna di San Luca (San Lócca in bolognese) è una basilica dedicata al culto cattolico mariano e si eleva sul colle della Guardia, uno sperone in parte boschivo a 280 m s.l.m. a sud-ovest del centro storico di Bologna.",
+            "scopo": "what",
+            "lingua": "ita",
+            "audience": "gen",
+            "dettagli": "2"
+        },{
+            "url": "PXpXwbPQ8QY",
+            "titolo": "whereami+Señora de San Luca",
+            "descrizione": "El santuario de Nuestra Señora de San Luca (en italiano Santuario della Madonna di San Luca ) es un santuario dedicado al culto católico mariano ubicado sobre el Colle della Guardia, un promontorio cubierto parcialmente por bosques alrededor de 300 msnm al suroeste del centro histórico de la ciudad de Bolonia, Italia.",
+            "scopo": "how",
+            "lingua": "esp",
+            "audience": "gen",
+            "dettagli": "2"
+        }]
     }
 
 
