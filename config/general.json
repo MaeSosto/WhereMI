@@ -60,77 +60,66 @@
     },
 
 
-
-
-
-
+    "8FPHF8VV+67": {
+        "nome": "Basilica di San Petronio",
+        "categoria": "art",
+        "coord": {
+            "lat": "44.4930273",
+            "long": "11.34321"
+        },
+        "video": [{
+            "url": "gMxWCOVT3kY",
+            "titolo": "whereami+Orari Basilica di San Petronio",
+            "descrizione": "Orari 07.45–13.30 e 14.30–18.30",
+            "scopo": "what",
+            "lingua": "ita",
+            "audience": "gen",
+            "dettagli": "3"
+        },{
+            "url": "4Anb5VFm57A",
+            "titolo": "whereami+Tutto su Basilica di San Petronio",
+            "descrizione": "La Basilica di San Petronio, dedicata al patrono cittadino (ottavo vescovo di Bologna dal 431 al 450), è la più grande e importante chiesa bolognese (m 132 di lunghezza, 66 di larghezza totale, 47 di altezza). La costruzione fu iniziata nel 1390 sotto la direzione di Antonio di Vincenzo. Nel 1514 Arduino degli Arriguzzi propone un nuovo modello a croce latina che avrebbe superato in grandezza la chiesa di San Pietro a Roma. Secondo la leggenda Pio IV bloccò la realizzazione di questo sogno megalomane, sollecitando i lavori per la costruzione dell'Archiginnasio.",
+            "scopo": "why",
+            "lingua": "ita",
+            "audience": "gen",
+            "dettagli": "5"
+        },{
+            "url": "mnA4D_hfkgs",
+            "titolo": "whereami+La Basílica de San Petronio",
+            "descrizione": "La Basílica de San Petronio es la iglesia principal de la ciudad italiana de Bolonia, de la que domina la Plaza Mayor. Sus imponentes dimensiones (132 metros de largo por 60 de ancho, y una altura de la cúpula de 45 metros) hacen de ella la quinta iglesia más grande del mundo.",
+            "scopo": "how",
+            "lingua": "esp",
+            "audience": "gen",
+            "dettagli": "2"
+        }]
+    },
+    
+    "8FPHF8VV+P4": {
+        "nome": "Fontana del Nettuno",
+        "categoria": "art",
+        "coord": {
+            "lat": "44.4943643",
+            "long": "11.3428603"
+        },
+        "video": [{
+            "url": "zUL_gNXnoT4",
+            "titolo": "whereami+Fontana del Nettuno in breve",
+            "descrizione": "La fontana del Nettuno, soprannominata al Żigànt in dialetto ('il gigante' in italiano) dai bolognesi per via delle dimensioni della statua di Nettuno, si trova a Bologna in piazza del Nettuno.",
+            "scopo": "what",
+            "lingua": "ita",
+            "audience": "gen",
+            "dettagli": "2"
+        },{
+            "url": "AtQSnaPQDVk",
+            "titolo": "whereami+The Fountain of Neptune",
+            "descrizione": "The Fountain of Neptune (in Italian Fontana di Nettuno) is a monumental civic fountain located in the eponymous square, Piazza del Nettuno, next to Piazza Maggiore, in Bologna, Italy[1] The fountain is a model example of Mannerist taste of the Italian courtly elite in the mid-sixteenth century.",
+            "scopo": "how",
+            "lingua": "eng",
+            "audience": "elm",
+            "dettagli": "2"
+        }]
+    }
 
 
     
-    "4RRH46J5+FP": {
-        "categoria": "his",
-        "coord": {
-            "lat": "-33.8688197",
-            "long": "151.20929550000005"
-        },
-        "video": [{
-            "url": "tiprego",
-            "titolo": "whereami+fsfsdf",
-            "descrizione": "                           dfsdfsdf         ",
-            "scopo": "all",
-            "lingua": "ita",
-            "audience": "pre",
-            "dettagli": "3"
-        }]
-    },
-    "8FQFF57Q+MX": {
-        "categoria": "his",
-        "coord": {
-            "lat": "45.4642035",
-            "long": "9.189981999999986"
-        },
-        "video": [{
-            "url": "s482hF5pBXk",
-            "titolo": "whereami+dsdf",
-            "descrizione": "                                    dfasf",
-            "scopo": "all",
-            "lingua": "ita",
-            "audience": "gen",
-            "dettagli": "3"
-        }]
-    },
-    "8FPHF9W2+6C": {
-        "categoria": "nat",
-        "nome": "Petroni's Basilica",
-        "coord": {
-            "lat": "44.4955156",
-            "long": "11.3510968"
-        },
-        "video": [{
-            "url": "hiPQ6-6OtiE",
-            "titolo": "whereami+plis",
-            "descrizione": "  description petroni",
-            "scopo": "all",
-            "lingua": "ita",
-            "audience": "gen",
-            "dettagli": "3"
-        }]
-    },
-    "849VQHFJ+X6": {
-        "categoria": "nat",
-        "nome": "dfsdfs",
-        "coord": {
-            "lat": "37.7749295",
-            "long": "-122.4194155"
-        },
-        "video": [{
-            "url": "_bXIbNYZNrg",
-            "titolo": "whereami+fdsdsf",
-            "descrizione": "  fsdf",
-            "scopo": "2",
-            "lingua": "esp",
-            "audience": "pre",
-            "dettagli": "4"
-        }]
-    }
 }
