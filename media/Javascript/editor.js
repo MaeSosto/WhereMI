@@ -24,12 +24,12 @@ function showAudio(show) { //mostra o nasconde il tag audio
 		// audio.style.visibility = 'visible';
 		audSave.style.display = 'block';
 		divMetadati.style.display = "block";
-		uploadedBox.style.display= 'none';
+		// uploadedBox.style.display= 'none';
 	} else {
 		// audio.style.visibility = 'hidden';
 		audSave.style.display = 'none';
 		divMetadati.style.display = "none";
-		uploadedBox.style.display= 'block';
+		// uploadedBox.style.display= 'block';
 	}
 
 }
@@ -458,17 +458,18 @@ function creaNuovo(metadatisplit, urlvideo, luoghi){
 }
 
 $("#upload").click(function () {
-	divMetadati.style.display = 'none';
+	// divMetadati.style.display = 'none';
 	// uploadedBox.style.display= 'block';
 	//TODO: refreshare i campi 
+	validate();
 	uploadYoutube();
 });
 
 $("#salva").click(function () {
-
+ validate();
 	//TODO: refreshare i campi 
 	uploadYoutubePrivate();
-	divMetadati.style.display = 'none';
+	// divMetadati.style.display = 'none';
 	// uploadedBox.style.display= 'block';
 });
 
@@ -596,3 +597,94 @@ function addToPlayer(id) {
 }
 
 
+
+// CREATE CLIP VALIDATOR
+function validate()
+{
+    if(document.getElementById('titolo').value=='')
+        {
+				alert('Please fill up the title!! ');
+			
+				document.getElementById("titolo").style.borderWidth=3;
+        document.getElementById("titolo").style.borderColor="red";
+				// document.getElementById("titolo").style.backgroundColor="yellow";
+				window.location.href = "#createClip";
+       
+        return false;
+        }
+    
+    else if (document.getElementById('nomeluogo').value=='')
+        {
+					alert('Please fill up the name of the place!!');
+        document.getElementById("nomeluogo").style.borderColor="red";
+        // document.getElementById("nomeluogo").style.backgroundColor="yellow";
+				document.getElementById("nomeluogo").style.borderWidth=3;
+				window.location.href = "#createClip";
+        return false;
+        }
+    else if (document.getElementById('luogo').value=='')
+        {
+					alert('Please fill up the place!!');
+        document.getElementById("luogo").style.borderColor="red";
+        // document.getElementById("luogo").style.backgroundColor="yellow";
+				document.getElementById("luogo").style.borderWidth=3;
+				window.location.href = "#createClip";
+        return false;
+        }
+    else if (document.getElementById('descrizione').value== '  ')
+        {
+      		alert('Please fill up the description!!');
+        document.getElementById("descrizione").style.borderColor="red";
+        // document.getElementById("descrizione").style.backgroundColor="yellow";
+				document.getElementById("descrizione").style.borderWidth=3;
+				window.location.href = "#createClip";
+        return false;
+				}
+				else if (document.getElementById('scopo').value=='')  
+     {  
+        alert('Please fill up the scope!!');
+        document.getElementById("scopo").style.borderColor="red";
+        // document.getElementById("scopo").style.backgroundColor="yellow";
+				document.getElementById("scopo").style.borderWidth=3;
+				window.location.href = "#createClip";
+       return false;  
+     } 
+				else if (document.getElementById('lingua').value=='')
+        {
+      		alert('Please fill up the language!!');
+				document.getElementById("lingua").style.borderColor="red";
+				window.location.href("#titolo");
+        // document.getElementById("lingua").style.backgroundColor="yellow";
+        document.getElementById("lingua").style.borderWidth=3;
+        return false;
+        }
+    else if (document.getElementById('categoria').value=='')
+    {
+			alert('Please fill up the category!!');
+        document.getElementById("categoria").style.borderColor="red";
+        // document.getElementById("categoria").style.backgroundColor="yellow";
+        document.getElementById("categoria").style.borderWidth=3;
+        return false;
+		}
+		else if (document.getElementById('audience').value=='')
+    {
+			alert('Please fill up the audience !!');
+        document.getElementById("audience").style.borderColor="red";
+        // document.getElementById("audience").style.backgroundColor="yellow";
+        document.getElementById("audience").style.borderWidth=3;
+        return false;
+		}
+		else  (document.getElementById('dettagli"').value=='')
+    {
+			alert('Please fill up the level of the details!!');
+        document.getElementById("dettagli").style.borderColor="red";
+        // document.getElementById("dettagli").style.backgroundColor="yellow";
+        document.getElementById("dettagli").style.borderWidth=3;
+        return false;
+    }
+    // else
+    //     {
+    //     confirm('Are you sure??');
+    //     }
+
+}
