@@ -438,7 +438,7 @@ function onYouTubeIframeAPIReady() {
 			if (!id) {
 				player.loadVideoById(urlvideo[0]);
 				for (var i = 0; i < urlvideo.length; i++) {
-					document.getElementById(urlvideo[i]).style.color = "white";
+					document.getElementById(urlvideo[i]).style.color = "black";
 				}
 				document.getElementById(urlvideo[0]).style.color = "red";
 			}
@@ -459,9 +459,9 @@ function onYouTubeIframeAPIReady() {
 
 
 
-	function makeAllWhite() {
+	function makeAllBlack() {
 		for (var i = 0; i < urlvideo.length; i++) {
-			document.getElementById(urlvideo[i]).style.color = "white";
+			document.getElementById(urlvideo[i]).style.color = "black";
 		}
 
 	}
@@ -469,12 +469,12 @@ function onYouTubeIframeAPIReady() {
 		var index = urlvideo.indexOf(player.getVideoData()['video_id']); //prendo l'indice del video che è in esecuzione
 		if (index == urlvideo.length - 1) { //se siamo sull'ultimo video
 			player.loadVideoById(urlvideo[0]);
-			makeAllWhite();
+			makeAllBlack();
 			document.getElementById(urlvideo[0]).style.color = "red";
 
 		} else {
 			player.loadVideoById(urlvideo[index + 1]);
-			makeAllWhite();
+			makeAllBlack();
 			document.getElementById(urlvideo[index + 1]).style.color = "red";
 		}
 		player.playVideo;
@@ -485,11 +485,11 @@ function onYouTubeIframeAPIReady() {
 		var index = urlvideo.indexOf(player.getVideoData()['video_id']);
 		if (index - 1 < 0) { //se siamo sul primo video
 			player.loadVideoById(urlvideo[0]);
-			makeAllWhite();
+			makeAllBlack();
 			document.getElementById(urlvideo[0]).style.color = "red";
 		} else {
 			player.loadVideoById(urlvideo[index - 1]);
-			makeAllWhite();
+			makeAllBlack();
 			document.getElementById(urlvideo[index - 1]).style.color = "red";
 		}
 		player.playVideo;

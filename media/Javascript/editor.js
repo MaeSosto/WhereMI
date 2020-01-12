@@ -35,7 +35,7 @@ function showAudio(show) { //mostra o nasconde il tag audio
 }
 
 function toggleRegistra(registra) { // cambia tasto registra
-	document.getElementById("btnStart").innerHTML = registra ? "Registra" : "Stop";
+	document.getElementById("btnStart").innerHTML = registra ? "Record" : "Stop";
 
 }
 
