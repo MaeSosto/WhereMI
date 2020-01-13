@@ -936,6 +936,22 @@ color: #0a0a0a;
   background-repeat: no-repeat;
   background-position: center;
 }
+.loading {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  background: rgb(255,255,255);
+/* background: radial-gradient(circle, rgba(255,255,255,1) 17%, rgba(56,56,56,1) 66%, rgba(59,239,255,1) 100%); */
+  background-image: url("https://s3-eu-west-1.amazonaws.com/outsavvy/website/loading.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .page    { display: none; }
 
 @media screen and (max-width: 700px) {

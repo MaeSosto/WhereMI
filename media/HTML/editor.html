@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <div id="loading"></div>
+    <div class="loading" id="loading"></div>
     <div class="page">
         <div>
             <div>
@@ -33,9 +33,7 @@
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                 </button>
-                                <!-- <div class="flex-center left-on-mobile">
-                                        <a href="../../../index.html"><img class="logo" src="../img/logo.png"> <span class="logo-text">Where MI</span></a>
-                                        </div> -->
+
                                 <div class="left-on-mobile logo-title-s">
                                     <a href="../../../index.html"> <img class="logo" src="../img/logo.png"><span
                                             class="logo-title-s logo-text">Where MI</a></span>
@@ -49,19 +47,6 @@
                                                 font-size: 18px;
                                                 margin-top: 7px;" href="../../../index.html">Home</a>
                                     </li>
-                                    <!-- <a class="button" href="#popup1">Sign in</a> -->
-                                    <!-- <button type="button"  id="authorize_button" > Sign-in with Google</button> -->
-                                    <!-- SIGN IN POPUP -->
-                                    <!-- <div id="popup1" class="overlay">
-                                            <div class="popup">
-                                              
-                                              <a class="close" href="#">&times;</a>
-                                              <div class="content">
-                                                 
-                                                   <button type="button"  id="authorize_button" class="btn btn-Google btn-lg"> Google+</button>
-                                              </div>
-                                            </div>
-                                            </div> -->
                                     <li class="dropdown">
                                         <a style="    color: #ffffff;
                                                 font-size: 17px;
@@ -85,10 +70,6 @@
                                                         class="flags" src="../../media/img/germany.png">German</a></li>
                                             <li> <a href="#" hreflang="de" onclick="setLang('fr'); return false"><img
                                                         class="flags" src="../../media/img/france.png">French</a></li>
-                                            <!-- <li class="divider"></li>
-                                                    <li><a href="#">Separated link</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="#">One more separated link</a></li> -->
                                         </ul>
                                     </li>
                                     <li>
@@ -156,11 +137,27 @@
                                     <audio id="aud2" style="display: none;" controls></audio>
                                     <!-- tag dove viene visualizzato l'audio-->
                                 </div>
+                                
                             </div>
-                            <!-- <button type="button"  id="authorize_button" > Sign-in with Google</button>
-                                    <button type="button" class="btn btn-default btn-sm" id="signout_button" style="display: none; font-size: 14px">
-                                      <span class="glyphicon glyphicon-log-in"></span> Sign-out
-                                    </button> -->
+                            <div class="row" style="text-align: center">
+                                    <div style="text-align: center" class="col-md-6">
+                                        <button type="button" class="btn btn-primary" id="tastovideosalvati"> 
+                                                <span lang="it"> Video Salvati</span>
+                                                <span lang="en">Saved videos</span>
+                                                <span lang="es"> Subir</span>
+                                                <span lang="de"> Gespeicherte Videos</span>
+                                                <span lang="fr">Videos guardados</span>
+                                           
+                                        </button>
+                                        <div id="videosalvati" style="display: block; ">
+                                            <div id="youtube-player2"></div>
+                                            <!--player invisibile che riproduce video salvati-->
+                                            <ul style="display: none;" class="saved-list" id="videosalvatilist">
+                                            </ul>
+                                            <!--lista video salvati-->
+                                        </div>
+                                    </div>
+                                </div>
                             <div class="col-md-6 form-content border-mob" id="uploadedCheck" style="display: none;">
                                 <h2 style="color: white">Il tuo clip è stato creato con successo!</h2>
                             </div>
@@ -244,7 +241,7 @@
                                             <span lang="fr">But</span>
                                         </label>
                                         <select class="form-control custom-select" name="scopo" id="scopo" required>
-                                            <option value selected disabled hidden> ---------</option>
+                                            <option value selected disabled hidden></option>
                                             <option value="how" lang="it">Come </option>
                                             <option value="how" lang="en">How </option>
                                             <option value="how" lang="es">Cómo</option>
@@ -271,7 +268,7 @@
                                             <span lang="fr">Langue</span>
                                         </label>
                                         <select required id="lingua" class="form-control is-valid custom-select">
-                                            <option value selected disabled hidden> ---------</option>
+                                            <option value selected disabled hidden></option>
                                             <option lang="it" value="ita">Italiano</option>
                                             <option lang="en" value="ita">Italian</option>
                                             <option lang="es" value="ita">italiano</option>
@@ -308,7 +305,7 @@
                                             <span lang="fr">Catégorie</span>
                                         </label>
                                         <select required id="categoria" class="form-control is-valid custom-select">
-                                            <option value selected disabled hidden> ---------</option>
+                                            <option value selected disabled hidden></option>
                                             <option lang="it" value=nat>Natura</option>
                                             <option lang="es" value=nat>Naturaleza</option>
                                             <option lang="en" value=nat>Nature</option>
@@ -345,7 +342,7 @@
                                             <span lang="fr">Public</span>
                                         </label>
                                         <select required id="audience" class="form-control is-valid custom-select">
-                                            <option value selected disabled hidden> ---------</option>
+                                            <option value selected disabled hidden></option>
                                             <option lang="it" value="gen">Generico</option>
                                             <option lang="en" value="gen">General</option>
                                             <option lang="es" value="gen">General</option>
@@ -373,16 +370,7 @@
                                             <option lang="fr" value="scl">spécialisé</option>
                                         </select>
                                     </div>
-                                    <!-- <div class="form-group">
-                                            <label for="dettagli">
-                                                    <span lang="en"> Detail</span>  
-                                                    <span lang="it"> Dettagli </span>  
-                                                    <span lang="fr">Détails</span>  
-                                                    <span lang="de"> Einzelheiten </span>  
-                                                    <span lang="es"> Detalles</span>  
-                                                [<span id="num_dettagli"></span>]</label>
-                                            <input type="range" class="form-control-range form-control is-valid slider" id="dettagli" min="1" max="5" value="3">
-                                            </div> -->
+                            
                                     <div class="form-group">
                                         <label for="dettagli">
                                             <span lang="en"> Detail</span>
@@ -393,7 +381,7 @@
                                             <!-- [<span id="num_dettagli"></span>] -->
                                         </label>
                                         <select id="dettagli" class="form-control is-valid custom-select" required>
-                                            <option value selected disabled hidden> ---------</option>
+                                            <option value selected disabled hidden></option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -422,25 +410,7 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="row" style="text-align: center">
-                            <div class="col-md-6">
-                                <button type="button" class="btn btn-primary" id="tastovideosalvati"> 
-                                        <span lang="it"> Video Salvati</span>
-                                        <span lang="en">Saved videos</span>
-                                        <span lang="es"> Subir</span>
-                                        <span lang="de"> Gespeicherte Videos</span>
-                                        <span lang="fr">Videos guardados</span>
-                                   
-                                </button>
-                                <div id="videosalvati" style="display: block; ">
-                                    <div id="youtube-player2"></div>
-                                    <!--player invisibile che riproduce video salvati-->
-                                    <ul style="display: none;" class="saved-list" id="videosalvatilist">
-                                    </ul>
-                                    <!--lista video salvati-->
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
