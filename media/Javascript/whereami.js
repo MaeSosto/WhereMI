@@ -15,24 +15,24 @@ var posizioneattuale;
 var posizionearrivo;
 var LuoghiAlCaricamento;
 var tuttiMarker = new Array;
-var tuttiMarkerFiltrati=new Array;
+var tuttiMarkerFiltrati = new Array;
 
 
 function initCoords() {
 	LuoghiAlCaricamento = getJson();
-	if (confirm("Vuoi usare la Geolocalizzazione?")) {
-		navigator.geolocation.getCurrentPosition(initAutocomplete);
-		
-	} else {
-		
-		var position = {
-			coords: {
-				latitude: 44.4936714,
-				longitude: 11.3430347
-			}
-		};
-		initAutocomplete(position);
-	}
+	navigator.geolocation.getCurrentPosition(initAutocomplete, function (error) {
+		if (error.code == error.PERMISSION_DENIED) {
+			var position = {
+				coords: {
+					latitude: 44.4936714,
+					longitude: 11.3430347
+				}
+			};
+			initAutocomplete(position);
+		}
+	});
+
+
 }
 
 
@@ -261,19 +261,20 @@ function Evicino(position) {
 var arrayposizionivisitate = new Array();
 
 
-var flag=true;
+var flag = true;
+
 function nextLuogo(lat, lng) { //trova il luogo più vicino
 	var position = new google.maps.LatLng(lat, lng); //luogo da cui fai skip
 	var luogopiuvicino;
 	var arraydistanza = new Array();
 	var luoghi = getJson();
 	var spherical = google.maps.geometry.spherical;
-	
-		if(arrayposizionivisitate.length==0){
+
+	if (arrayposizionivisitate.length == 0) {
 
 		arrayposizionivisitate.push(position); //metto luogo da cui fai skip tra i visitati
-		
-		}
+
+	}
 	for (let luogo in luoghi) {
 		var t = true;
 		var temp = new google.maps.LatLng(luoghi[luogo].coord.lat, luoghi[luogo].coord.long); //luogo nel json
@@ -297,17 +298,17 @@ function nextLuogo(lat, lng) { //trova il luogo più vicino
 
 	if (luogopiuvicino) { //finché non sono finiti i luoghi non visitati continuo
 		var posizioneluogogiavisitato = new google.maps.LatLng(luogopiuvicino.coord.lat, luogopiuvicino.coord.long);
-		for(var i=0; i<arrayposizionivisitate.length;i++){
-			if(arrayposizionivisitate[i].lat()==posizioneluogogiavisitato.lat()&&arrayposizionivisitate[i].lng()==posizioneluogogiavisitato.lng()){
-				flag=false;
+		for (var i = 0; i < arrayposizionivisitate.length; i++) {
+			if (arrayposizionivisitate[i].lat() == posizioneluogogiavisitato.lat() && arrayposizionivisitate[i].lng() == posizioneluogogiavisitato.lng()) {
+				flag = false;
 			}
 
 		}
-	if (flag){
-		arrayposizionivisitate.push(posizioneluogogiavisitato);
-		
-	}
-		
+		if (flag) {
+			arrayposizionivisitate.push(posizioneluogogiavisitato);
+
+		}
+
 	} else { //altrimenti riparto dal primo luogo e svuoto l'array
 		luogopiuvicino = luoghi[Object.keys(luoghi)[0]]; //quando finiscono i luoghi ricomincia dal primo nel json
 		arrayposizionivisitate = []; //e svuota l'array delle posizini visitate
@@ -501,47 +502,47 @@ function onYouTubeIframeAPIReady() {
 	$("#skipbutton").click(function () {
 
 
-		
+
 		var directionsService = new google.maps.DirectionsService;
 		directionsRenderer.set('directions', null);
 		var lat = document.getElementById("skipbutton").value;
 		var lng = document.getElementById("skipbutton").name;
 		posizioneattuale = new google.maps.LatLng(lat, lng);
-		var nxt = nextLuogo(lat, lng); 
+		var nxt = nextLuogo(lat, lng);
 		var coord = new google.maps.LatLng(nxt.coord.lat, nxt.coord.long)
 		calculateAndDisplayRoute(directionsService, directionsRenderer, posizioneattuale, coord);
 		directionsRenderer.setMap(map);
 		addToPlayer(nxt);
 		document.getElementById("skipbutton").value = nxt.coord.lat;
 		document.getElementById("skipbutton").name = nxt.coord.long;
-		
+
 		console.log(arrayposizionivisitate);
-		
+
 	});
 
 
-	$("#prevbutton").click(function(){
+	$("#prevbutton").click(function () {
 
-	
+
 		var directionsService = new google.maps.DirectionsService;
 		directionsRenderer.set('directions', null);
-		var posizioneprecedente=arrayposizionivisitate[arrayposizionivisitate.length-1]
-		if (arrayposizionivisitate.length==0 ||arrayposizionivisitate.length==1){
+		var posizioneprecedente = arrayposizionivisitate[arrayposizionivisitate.length - 1]
+		if (arrayposizionivisitate.length == 0 || arrayposizionivisitate.length == 1) {
 			return 0;
 		}
-		for (luogo in LuoghiAlCaricamento){
-			if (LuoghiAlCaricamento[luogo].coord.lat==arrayposizionivisitate[arrayposizionivisitate.length - 2].lat()&&LuoghiAlCaricamento[luogo].coord.long==arrayposizionivisitate[arrayposizionivisitate.length -2].lng()){
+		for (luogo in LuoghiAlCaricamento) {
+			if (LuoghiAlCaricamento[luogo].coord.lat == arrayposizionivisitate[arrayposizionivisitate.length - 2].lat() && LuoghiAlCaricamento[luogo].coord.long == arrayposizionivisitate[arrayposizionivisitate.length - 2].lng()) {
 				addToPlayer(LuoghiAlCaricamento[luogo]);
 				posizioneattuale = new google.maps.LatLng(LuoghiAlCaricamento[luogo].coord.lat, LuoghiAlCaricamento[luogo].coord.long);
 				calculateAndDisplayRoute(directionsService, directionsRenderer, posizioneattuale, posizioneprecedente);
 				directionsRenderer.setMap(map);
 				document.getElementById("skipbutton").value = LuoghiAlCaricamento[luogo].coord.lat;
-			document.getElementById("skipbutton").name = LuoghiAlCaricamento[luogo].coord.long;
+				document.getElementById("skipbutton").name = LuoghiAlCaricamento[luogo].coord.long;
 			}
 		}
-		
+
 		arrayposizionivisitate.pop();
-		
+
 	});
 
 
@@ -564,33 +565,76 @@ function getJson() { //funzione che ritorna il json con i luoghi
 
 
 
-function creaOggettofiltro() {
+function getValuesFiltro() { //crea un oggetto con i campi 
 
 	var A = {
-		lingua: document.getElementById("selectDetail").value,
+		lingua: document.getElementById("selectlingua").value,
 		audience: document.getElementById("selectAudience").value,
 		scopo: document.getElementById("scopo").value,
-		dettagli: document.getElementById("dettagli").value
+		//dettagli: document.getElementById("dettagli").value
 	};
+	console.log(A);
 	return A;
 }
 
 
-function SendFiltro(luogoInCuiSono) {
+function filtraVideo(luogoInCuiSono) {
 	var newObject = new Object;
 	newObject.nome = luogoInCuiSono.nome;
 	newObject.categoria = luogoInCuiSono.categoria;
 	newObject.video = new Array;
-	var oggfiltro = creaOggettofiltro();
+	var oggfiltro = getValuesFiltro();
+	for(campo in oggfiltro){
+
+	}
 
 	var arrayvideo = luogoInCuiSono.video;
 
 	for (var i = 0; i < arrayvideo.length; i++) {
-
-		if (oggfiltro.lingua == arrayvideo[i].lingua && oggfiltro.audience == arrayvideo[i].audience && oggfiltro.scopo == arrayvideo[i].scopo && oggfiltro.dettagli == arrayvideo[i].dettagli) {
-
+		//caso in cui tutti i campi sono vuoti
+		if(oggfiltro.lingua=="" && oggfiltro.audience==""&&oggfiltro.scopo==""){
 			newObject.video.push(arrayvideo[i]);
 		}
+		//casi in cui due dei tre campi sono vuoti
+		else if(oggfiltro.audience==""&&oggfiltro.scopo==""&&oggfiltro.lingua!=""){
+			if (oggfiltro.lingua == arrayvideo[i].lingua) {
+				newObject.video.push(arrayvideo[i]);
+			}
+		}
+		else if(oggfiltro.lingua==""&&oggfiltro.scopo==""&&oggfiltro.audience!=""){
+			if (oggfiltro.audience == arrayvideo[i].audience) {
+				newObject.video.push(arrayvideo[i]);
+			}
+		}
+		else if(oggfiltro.audience==""&&oggfiltro.lingua==""&&oggfiltro.scopo!=""){
+			if (oggfiltro.scopo == arrayvideo[i].scopo) {
+				newObject.video.push(arrayvideo[i]);
+			}
+		}
+		//casi in cui solo un campo dei tre è vuoto
+		else if(oggfiltro.audience==""&&oggfiltro.lingua!=""&&oggfiltro.scopo!=""){
+			if (oggfiltro.scopo == arrayvideo[i].scopo&&oggfiltro.lingua == arrayvideo[i].lingua) {
+				newObject.video.push(arrayvideo[i]);
+			}
+		}
+
+		else if(oggfiltro.audience!=""&&oggfiltro.lingua==""&&oggfiltro.scopo!=""){
+			if (oggfiltro.scopo == arrayvideo[i].scopo&&oggfiltro.audience == arrayvideo[i].audience) {
+				newObject.video.push(arrayvideo[i]);
+			}
+		}
+		else if(oggfiltro.audience!=""&&oggfiltro.lingua!=""&&oggfiltro.scopo==""){
+			if (oggfiltro.lingua == arrayvideo[i].lingua&&oggfiltro.audience == arrayvideo[i].audience) {
+				newObject.video.push(arrayvideo[i]);
+			}
+		}
+		//caso in cui tutti i campi sono compilati
+		else if(oggfiltro.audience!=""&&oggfiltro.lingua!=""&&oggfiltro.scopo!=""){
+			if (oggfiltro.lingua == arrayvideo[i].lingua && oggfiltro.audience == arrayvideo[i].audience && oggfiltro.scopo == arrayvideo[i].scopo) {
+				newObject.video.push(arrayvideo[i]);
+			}
+		}
+		
 
 	}
 	addToPlayer(newObject);
@@ -599,34 +643,35 @@ function SendFiltro(luogoInCuiSono) {
 
 }
 
-function filtro() {
-	var luogoInCuiSono;
-	var lat = document.getElementById("skipbutton").value;
-	var lng = document.getElementById("skipbutton").name;
-	obj = getJson();
-	//console.log(LuoghiAlCaricamento["87928GF2+4F"]);
-	for (let luogo in obj) {
-		if (obj[luogo].coord.lat == lat && obj[luogo].coord.long == lng) {
-
-			luogoInCuiSono = obj[luogo];
-			console.log(luogoInCuiSono)
-		}
-	}
-
-	SendFiltro(luogoInCuiSono);
-}
-
 
 
 window.onload = function () {
 	var categoria = document.getElementById("categoria");
-	categoria.addEventListener("change", function () {    //se cambio categoria filtro i marker
+	categoria.addEventListener("change", function () { //se cambio categoria filtro i marker
 
 		filtraLuoghi(categoria.value);
 	});
+
+
+
+	$("#filtraButton").click(function () {
+		var luogoInCuiSono;
+		var lat = document.getElementById("skipbutton").value;
+		var lng = document.getElementById("skipbutton").name;
+		obj = getJson();
+		for (let luogo in obj) {
+			if (obj[luogo].coord.lat == lat && obj[luogo].coord.long == lng) { //cerco il luogo con quelle coordinate
+
+				luogoInCuiSono = obj[luogo];
+			}
+		}
+
+		filtraVideo(luogoInCuiSono);
+	});
+
 }
 
-function filtraLuoghi(cat) {
+function filtraLuoghi(cat) { //filtra i marker in base alla categoria
 	var luoghi = LuoghiAlCaricamento;
 
 	for (var i = 0; i < tuttiMarker.length; i++) { //elimino tutti i marker 
@@ -638,12 +683,12 @@ function filtraLuoghi(cat) {
 
 	}
 
-	if (cat=="all"){ //stampo tutti i luoghi 
+	if (cat == "all") { //stampo tutti i luoghi 
 		for (let luogo in luoghi) {
 			cord = new google.maps.LatLng(luoghi[luogo].coord.lat, luoghi[luogo].coord.long);
 			creaMarkerFiltrati(cord).setMap(map);
-	
-	
+
+
 		}
 	}
 

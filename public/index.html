@@ -280,8 +280,8 @@
                                 </select>
                             </div>
                             <input class="search-directions-extra add-margin-on-desk" type="text" id="pos" required="required"
-                                placeholder="sposta marker" size="30" />
-                            <input class="search-directions add-margin-on-desk" type="button" id="reset-map" value="Reset map" />
+                                placeholder="..." size="30" />
+                            <input class="search-directions add-margin-on-desk" type="button" id="reset-map" value="Reset" />
                         </div>
                         <div id="map" class="map">
                         </div>
@@ -355,7 +355,7 @@
                     <div class="col-md-4">
                         <div>
                             <div class="input-group-prepend">
-                                <label class="input-group-text" for="selectDetail">
+                                <label class="input-group-text" for="selectlingua">
                                 <span lang="en">Language</span>
                                 <span lang="it">Lingua</span>
                                 <span lang="es">Idioma</span>
@@ -363,7 +363,7 @@
                                 <span lang="fr">Langue</span>
                                 </label>
                             </div>
-                            <select id="selectDetail" class="form-control" required>
+                            <select id="selectlingua" class="form-control" required>
                                 <option value selected disabled hidden> ---------</option>
                                 <option lang="it" value="ita">Italiano</option>
                                 <option lang="it" value="eng">Inglese</option>
@@ -520,7 +520,7 @@
                                 </label>
                             </div> -->
                     </div>
-                    <div class="col-md-4">
+                   <!-- <div class="col-md-4">
                         <div class="form-group">
                             <label for="dettagli">
                                 <span lang="en"> Detail</span>
@@ -528,7 +528,7 @@
                                 <span lang="fr">Détails</span>
                                 <span lang="de"> Einzelheiten </span>
                                 <span lang="es"> Detalles</span>
-                                <!-- [<span id="num_dettagli"></span>] -->
+                              
                             </label>
                             <select id="dettagli" class="form-control is-valid custom-select" required>
                                 <option value selected disabled hidden> ---------</option>
@@ -540,8 +540,9 @@
                             </select>
                         </div>
                     </div>
+                -->
                     <div class="col-md-4" style="text-align: center">
-                        <button class="btn btn-primary waves-effect waves-light" style="margin-top: 6%" onclick=filtro()>
+                        <button class="btn btn-primary waves-effect waves-light" style="margin-top: 6%" id="filtraButton">
                         <span lang="it">Filtra!</span>
                         <span lang="en">Filter!</span>
                         <span lang="es">Filtro</span>
