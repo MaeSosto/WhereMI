@@ -664,6 +664,15 @@ window.onload = function () {
 		filtraVideo(luogoInCuiSono);
 	});
 
+	$("#buttonfiltro").click(function () {
+		var display = document.getElementById("openFilter").style.display;
+		if (display == "none"){
+			document.getElementById("openFilter").style.display="block";
+		}else{
+			document.getElementById("openFilter").style.display="none";
+		}
+	});
+
 }
 
 function filtraLuoghi(cat) { //filtra i marker in base alla categoria
@@ -739,12 +748,3 @@ function creaMarkerFiltrati(coords) { //crea marker dei luoghi che sono stati fi
 	return marker;
 }
 
-
-$("#divfiltro").click(function () {
-	var display = document.getElementById("openFilter").style.display;
-	if (display == "none"){
-		display.style.display="block";
-	}else{
-		display.style.display="none";
-	}
-});
