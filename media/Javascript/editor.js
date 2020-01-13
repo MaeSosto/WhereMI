@@ -541,12 +541,14 @@ function getVids(videos) { //funzione che crea la lista di video salvati
 	)
 }
 $("#tastovideosalvati").click(function () {
-
-	getPlaylist();
-	document.getElementById("videosalvatilist").style.display= "block";
-
+    var display=document.getElementById("videosalvatilist").style.display;
+    if (display=="none"){
+        getPlaylist();
+        document.getElementById("videosalvatilist").style.display="block";
+    }else{
+        document.getElementById("videosalvatilist").style.display="none";
+    }
 });
-
 
 ////////PLAYER PER SENTIRE VIDEO SALVATI////////
 

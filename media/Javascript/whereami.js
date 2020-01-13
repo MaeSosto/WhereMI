@@ -384,6 +384,8 @@ function showPlayerDiv(show) { //mostra o nasconde la finestra del player e audi
 
 }
 
+
+
 function showBar(show) { //mostra o nasconde la finestra del player e audio
 
 	var bottone = document.getElementById('set-position');
@@ -702,9 +704,6 @@ function filtraLuoghi(cat) { //filtra i marker in base alla categoria
 }
 
 
-
-
-
 function creaMarkerFiltrati(coords) { //crea marker dei luoghi che sono stati filtrati 
 	var marker = new google.maps.Marker({
 		position: coords,
@@ -744,3 +743,13 @@ function creaMarkerFiltrati(coords) { //crea marker dei luoghi che sono stati fi
 	tuttiMarkerFiltrati.push(marker);
 	return marker;
 }
+
+
+$("#divfiltro").click(function () {
+	var display = document.getElementById("openFilter").style.display;
+	if (display == "none"){
+		display.style.display="block";
+	}else{
+		display.style.display="none";
+	}
+});
