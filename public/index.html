@@ -197,15 +197,7 @@
                 </div>
             </div>
             
-            <div class="col-md-4" style="text-align: center; display:none;" id="divfiltro">
-                <button class="btn btn-primary waves-effect waves-light" style="margin-top: 6%" id="buttonfiltro">
-                <span lang="it">Filtra!</span>
-                <span lang="en">Filter!</span>
-                <span lang="es">Filtro</span>
-                <span lang="de">Filter!</span>
-                <span lang="fr">Filtrer!</span>
-                </button>
-            </div>
+           
                 
                    <!--FILTRO-->
                    <div class="container" id="openFilter"  style="display:none;">
@@ -419,19 +411,26 @@
                      
                     </div>
                 </div>
-
+           
             <!--PLAYER-->
             <div class="background-image-map" id="divplayer" style="display: none;">
                 <div class="container">
                     <div class="row clips-box">
-                        <h3 class="clips-text" id="gotoclips" style="text-align: center;padding: 18px 14px;">
-                                <img style="float:left;" class="arrows" id="prevbutton" src="../media/img/back.png">
-                                CLIPS PLAYER 
-                                <img style="float:right" id="skipbutton" src="../media/img/next.png" class="arrows">
+                        <h3 class="clips-text" id="gotoclips" style="text-align: center;">
+                                <div style="text-align: center; display:none; text-shadow: 1px 1px 1px black;" id="divfiltro">
+                                    <button class="filtra-clips" id="buttonfiltro">
+                                    <span lang="it">Clicca per filtrare<img style="width: 30px;" src="../media/img/filter.png"></span>
+                                    <span lang="en">Click to Filter Clips <img style="width: 30px;" src="../media/img/filter.png"></span>
+                                    <span lang="es">Haga clic para filtrar<img style="width: 30px;" src="../media/img/filter.png"></span>
+                                    <span lang="de">Klicken Sie, um zu filtern.<img style="width: 30px;" src="../media/img/filter.png"></span>
+                                    <span lang="fr">Cliquez pour filtrer<img style="width: 30px;" src="../media/img/filter.png"></span>
+                                    </button>
+                                </div> 
                         </h3>
                         <div>
-                          
+                            <img style="float:left;" class="arrows" id="prevbutton" src="../media/img/back.png">
                             <h3 id="titololuogo" style="text-align: center; color:white;">Titolo Luogo</h3>
+                            <img style="float:right; margin-top:-34px;" id="skipbutton" src="../media/img/next.png" class="arrows">
                             <div class="buttonsdiv bottom-box">
                                 <button class="btn-primary audio-buttons" type="button" id="backbutton">back</button>
                                 <button class="btn-primary audio-buttons" type="button" id="playbutton">play</button>
