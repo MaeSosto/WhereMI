@@ -928,11 +928,11 @@ color: #0a0a0a;
   margin-right: 10px;
 }
 .position-style{
-position: absolute;
-                                text-align: 7px;
-                                font-size: 11px;
-                                top: 244px;
-                                margin-left: -22px;
+    position: absolute;
+    text-align: 7px;
+    font-size: 11px;
+    top: 244px;
+    margin-left: -22px;
 }
 @media only screen and (max-width: 767px) {
   .wrap {
@@ -947,6 +947,9 @@ position: absolute;
   }
   .position-style{
     margin-left: -11px;
+  }
+  .register-section{
+    border-radius: unset;
   }
   /* .border-mob{
     border-top-left-radius: 90px;
