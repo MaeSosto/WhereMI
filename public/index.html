@@ -39,63 +39,6 @@
     <body>
         <div id="loading"></div>
         <div class="page">
-            <!-- BARRA DI RICERCA
-                <div class="inner-form">
-                  <div class="input-field second-wrap col-sm-1">
-                    <input id="search" type="text" placeholder="Cerca.." />
-                  </div>
-                </div>
-                -->
-            <!-- <nav class="navbar navbar-expand-lg nav-personal-style ">
-                <div class="flex-center">
-                        <img class="logo" src="../media/img/logo.png"> <a class="navbar-brand" href="#">Where MI</a>
-                    </div>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mr-auto" style="margin:auto">
-                    <li class="nav-item active">
-                            <div class="direction flex-center">
-                
-                                    <input class="search-directions" type="text" id="end" name="to" required="required"
-                                        placeholder="Dove vuoi andare?" size="30" />
-                
-                                    <input value="Go" class="search-directions" type="submit" />
-                
-                                </div>
-                    </li>
-                  </ul>
-                 
-                    <ul class="nav navbar-nav navbar-right">
-                            <li id="userStatus">
-                                <a style="color: white;
-                                        font-size: 20px;
-                                        margin-top: 9px;" href="../media/html/editor.html">Editor</a>
-                          
-                            <li>
-                                <button style="display: none; " type="button" id="authorize_button"
-                                    class="btn btn-Google btn-lg google-button">Sign in with Google+</button>
-                                <button type="button" class="btn btn-default btn-sm" id="signout_button"
-                                    style="display: none; font-size: 14px; margin-top:17px;">
-                                    <span class="glyphicon glyphicon-log-in"></span> Sign-out
-                                </button>
-                            </li>
-                        </ul>
-                </div>
-                </nav> -->
-            <a href="#gotofilter">
-                <div style="display: none;" id="gotoFilter" class="fixed-filter-button applied">
-                    <svg class="svg-inline--fa fa-filter fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="filter"
-                        role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                        <path fill="currentColor"
-                            d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z">
-                        </path>
-                    </svg>
-                    <!-- <i class="fas fa-filter"></i> -->
-                </div>
-            </a>
             <div class="background-image">
                 <nav class="navbar navbar-inverse" role="navigation">
                     <div class="container">
@@ -114,47 +57,12 @@
                         </div>
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav">
-                                <!-- <li> <button type="button" onclick="showPlayerDiv(false)">hide</button></li> -->
-                                <!-- <li class="active remove-position">
-                                    <div class="wrap">
-                                        <div class="direction flex-center">
-                                               <label class="text-center" lang="en">Where do you want to go?</label> 
-                                              <label  class="text-center" lang="es">¿a donde quieres ir?</label>  
-                                              <label  class="text-center"  lang="it">Dove vorresti andare?</label>  
-                                              <label  class="text-center"  lang="fr">Où veux-tu aller?</label>  
-                                              <label  class="text-center"  lang="de">Wohin willst du gehen?</label>  
-                                    
-                                            <input class="search-directions" type="text" id="end" name="to" required="required"
-                                                placeholder="...?" size="30" />
-                                            <input value="Go" class="search-directions" type="submit" />
-                                    
-                                        </div>
-                                        <div>
-                                    
-                                        </div>
-                                    </div>
-                                    </li> -->
-                            </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li id="userStatus">
                                     <a style="color: white;
                                         font-size: 18px;
                                         margin-top: 7px;" href="../media/html/editor.html">Editor</a>
                                 </li>
-                                <!-- <a class="button" href="#popup1">Sign in</a> -->
-                                <!-- <button type="button"  id="authorize_button" > Sign-in with Google</button> -->
-                                <!-- SIGN IN POPUP -->
-                                <!-- <div id="popup1" class="overlay">
-                                    <div class="popup">
-                                    	
-                                    	<a class="close" href="#">&times;</a>
-                                    	<div class="content">
-                                         
-                                           <button type="button"  id="authorize_button" class="btn btn-Google btn-lg"> Google+</button>
-                                    	</div>
-                                    </div>
-                                    </div> -->
                                 <li class="dropdown">
                                     <a style="    color: #ffffff;
                                         font-size: 17px;
@@ -236,8 +144,8 @@
                             <span lang="de">Position setzen</span>
                             <span lang="fr">Définir la position</span>
                             </button>
-                            <div class="form-group">
-                                <label for="categoria">
+                            <div  class="form-group">
+                                <label class="position-style" style="" for="categoria">
                                 <span lang="it"> Filtra luoghi per categoria</span>
                                 <span lang="en">Filter the places by category</span>
                                 <span lang="es">Filtrar lugares por categoría</span>
@@ -292,19 +200,13 @@
             <div class="background-image-map" id="divplayer" style="display: none;">
                 <div class="container">
                     <div class="row clips-box">
-                        <h3 class="clips-text" style="" id="gotoclips" style="text-align: center;padding: 18px 14px;">
+                        <h3 class="clips-text" id="gotoclips" style="text-align: center;padding: 18px 14px;">
                                 <img style="float:left;" class="arrows" id="prevbutton" src="../media/img/back.png">
                                 CLIPS PLAYER 
                                 <img style="float:right" id="skipbutton" src="../media/img/next.png" class="arrows">
                         </h3>
                         <div>
-                            <!-- <div class="places-buttons">
-                                <div class="flex-des">
-                                     <img class="arrows" id="prevbutton" src="../media/img/back.png"
-                                    style="">
-                                    <img id="skipbutton" src="../media/img/next.png" class="arrows">
-                                </div>
-                            </div> -->
+                          
                             <h3 id="titololuogo" style="text-align: center; color:white;">Titolo Luogo</h3>
                             <div class="buttonsdiv bottom-box">
                                 <button class="btn-primary audio-buttons" type="button" id="backbutton">back</button>
@@ -327,16 +229,6 @@
                                     </ul>
                                 </div>
                             </div>
-                            <!-- <button class="btn-primary" type="button" id="backbutton">indietro</button>
-                                <button class="btn-primary" type="button"
-                                    id="playbutton">play</button><button  class="btn-primary"type="button" id="nextbutton">next</button>
-                                <button class="btn-primary" type="button" id="skipbutton">skip</button>
-                                <div></div>
-                                <div id="youtube-player"></div>
-                                </div>
-                                <div>
-                                <ul id="listavideodariprodurre"></ul>
-                                </div> -->
                         </div>
                     </div>
                 </div>
@@ -550,6 +442,7 @@
                         <span lang="fr">Filtrer!</span>
                         </button>
                     </div>
+                 
                 </div>
             </div>
         </div>

@@ -377,11 +377,9 @@ function showPlayerDiv(show) { //mostra o nasconde la finestra del player e audi
 	if (show == true) {
 		divfiltro.style.display = 'block';
 		divplayer.style.display = 'block';
-		gotoFilter.style.display = 'block';
 	} else {
 		divfiltro.style.display = 'none';
 		divplayer.style.display = 'none';
-		gotoFilter.style.display = 'none';
 	}
 
 }

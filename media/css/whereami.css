@@ -467,9 +467,7 @@ a:hover {
   padding-left: 8px;
   padding-right: 12px;
   border-radius: 6px;
-  margin-right: 10px;
   margin-bottom: 10px;
-  
 }
 
 .search-directions-extra {
@@ -929,6 +927,13 @@ color: #0a0a0a;
   max-width: 100px;
   margin-right: 10px;
 }
+.position-style{
+position: absolute;
+                                text-align: 7px;
+                                font-size: 11px;
+                                top: 244px;
+                                margin-left: -22px;
+}
 @media only screen and (max-width: 767px) {
   .wrap {
     position: unset;
@@ -939,6 +944,9 @@ color: #0a0a0a;
   }
   .clips-text {
     border-radius: unset;
+  }
+  .position-style{
+    margin-left: -11px;
   }
   /* .border-mob{
     border-top-left-radius: 90px;
