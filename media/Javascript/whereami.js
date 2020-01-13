@@ -85,7 +85,10 @@ function initAutocomplete(position) {
 	var directionsRenderer = new google.maps.DirectionsRenderer;
 	var directionsService = new google.maps.DirectionsService;
 	var geocoder = new google.maps.Geocoder();
-	map = creamappa(coords);
+	map = new google.maps.Map(document.getElementById('map'), {
+		zoom: 15,
+		center: coords,
+	});
 
 
 	//marker della tua posizione
@@ -100,14 +103,6 @@ function initAutocomplete(position) {
 
 	}
 
-
-	function creamappa(coords) {
-		var map = new google.maps.Map(document.getElementById('map'), {
-			zoom: 15,
-			center: coords,
-		});
-		return (map);
-	}
 
 	function creaMarkerLuoghi(coords) { //crea marker dei luoghi
 		var marker = new google.maps.Marker({
