@@ -608,7 +608,9 @@ background-color: black;
 label {
   color: white;
 }
-
+.navbar-nav {
+  margin: 7.5px 0px;
+}
 .btn.btn-Google {
   background-color: #000000c7;
   color: #fff;
