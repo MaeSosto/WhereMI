@@ -1,33 +1,20 @@
 var audSave = document.getElementById('aud2'); //tag dove viene salvato l'audio registrato
-var titolo, scopo, lingua, categoria, descrizione, audience, dettagli;
+var titolo, scopo, lingua, categoria, descrizione, audience, dettagli; //metadati
 var player;
 var divMetadati = document.getElementById("metadatiupload");
-var uploadedBox = document.getElementById("uploadedCheck");
+var uploadedBox = document.getElementById("uploadedCheck"); // success/fail caricamento icona
 
 var createForm = document.getElementById("myForm");
-// Controllo sullo slider
-/*
-var slider = document.getElementById("dettagli");
-var output = document.getElementById("num_dettagli");
-output.innerHTML = slider.value;
-slider.oninput = function () {
-	output.innerHTML = this.value;
-}
-*/
 
 
 function showAudio(show) { //mostra o nasconde il tag audio
 
 	if (show == true) {
-		// audio.style.visibility = 'visible';
 		audSave.style.display = 'block';
 		divMetadati.style.display = "block";
-		// uploadedBox.style.display= 'none';
 	} else {
-		// audio.style.visibility = 'hidden';
 		audSave.style.display = 'none';
 		divMetadati.style.display = "none";
-		// uploadedBox.style.display= 'block';
 	}
 
 }
@@ -66,6 +53,8 @@ if (navigator.mediaDevices === undefined) {
 			console.log(err.name, err.message);
 		})
 }
+
+
 navigator.mediaDevices.getUserMedia(constraintObj)
 	.then(function (mediaStreamObj) {
 		//connect the media stream to the first audio element
@@ -134,15 +123,10 @@ recorder.addEventListener('change', function (e) {
 /////////////////UPLOAD VIDEO PUBBLICI///////////////////
 
 
-function callbackgoogle() {
-	var autocomplete = new google.maps.places.Autocomplete(
-		document.getElementById('luogo'), {
-			types: ['geocode']
-		});
-}
 
 
-async function uploadYoutube() {
+
+async function getDataAndUpload() { //lettura dei dati nell'editor e caricamento
 
 	titolo = "whereami+" + document.getElementById("titolo").value;
 	descrizione = document.getElementById("descrizione").value;
@@ -233,12 +217,13 @@ async function uploadRawFile(videoclip, titolo, metadatiClip) {
 		})
 		.done(function (response) {
 			console.log("Caricamento completato! YouTube:", response)
- 			document.getElementById("imgToChange").src = "https://image.flaticon.com/icons/svg/443/443138.svg";  
+			document.getElementById("imgToChange").src = "https://image.flaticon.com/icons/svg/443/443138.svg";
 			isPresente(metadatiClip, response.id);
 			return true;
 		})
 		.fail(function (response) {
 			var errors = response.responseJSON.error.errors[0];
+			document.getElementById("imgToChange").src = "https://image.flaticon.com/icons/svg/1828/1828665.svg";
 			console.log("Errore API per Upload YT!", errors);
 			return false;
 		});
@@ -247,7 +232,7 @@ async function uploadRawFile(videoclip, titolo, metadatiClip) {
 }
 /////////////////UPLOAD VIDEO PRIVATI//////////////////////////////////////
 
-async function uploadYoutubePrivate() {
+async function getDataAndUploadPrivate() {
 
 	titolo = "whereami+" + document.getElementById("titolo").value;
 	descrizione = document.getElementById("descrizione").value;
@@ -273,14 +258,12 @@ async function uploadYoutubePrivate() {
 			latlong.lng = x.lng();
 			var metadatiClip = latlong.lat + ":" + latlong.lng + ":" + titolo + ":" + descrizione + ":" + scopo + ":" + lingua + ":" + categoria + ":" + audience + ":" + dettagli + ":" + nomeluogo;
 			console.log(metadatiClip);
-			
-					var success = window.uploadToYoutubePrivate(audSave.src || recorder.src, titolo, metadatiClip);
-					if (success) {
-						divMetadati.style.display = 'none';
-						uploadedBox.style.display = 'block';
-					}
-			
 
+			var success = window.uploadToYoutubePrivate(audSave.src || recorder.src, titolo, metadatiClip);
+			if (success) {
+				divMetadati.style.display = 'none';
+				uploadedBox.style.display = 'block';
+			}
 		});
 	}
 
@@ -340,12 +323,17 @@ async function uploadRawFilePrivate(videoclip, titolo, metadatiClip) {
 		.fail(function (response) {
 			var errors = response.responseJSON.error.errors[0];
 			console.log("Errore API per Upload YT!", errors);
+			document.getElementById("imgToChange").src = "https://image.flaticon.com/icons/svg/1828/1828665.svg";
 			return false;
 		});
 
 
 }
-/////aggiorna JSON e carica video
+
+
+/////////////GESTIONE JSON//////////////
+
+
 function getJson() { //funzione che ritorna il json con i luoghi
 	var Path = "/config/general.json";
 	var xmlhttp = new XMLHttpRequest();
@@ -408,7 +396,7 @@ function isPresente(metadati, urlvideo) { //funzione che controlla se quel luogo
 }
 
 
-function insertHere(nome, urlvideo, luoghi, metadatisplit) {
+function insertHere(nome, urlvideo, luoghi, metadatisplit) { //inserisce il video nel luogo già presente
 	var temp = new Object;
 	temp.url = urlvideo;
 	temp.titolo = metadatisplit[2];
@@ -422,8 +410,7 @@ function insertHere(nome, urlvideo, luoghi, metadatisplit) {
 	aggiornaJson(luoghi);
 }
 
-function creaNuovo(metadatisplit, urlvideo, luoghi) {
-	//var code = generateRandomString(10);
+function creaNuovo(metadatisplit, urlvideo, luoghi) { //crea nuovo logo
 	var code = getOLC(metadatisplit[0], metadatisplit[1]);
 	luoghi[code] = new Object;
 	luoghi[code].categoria = metadatisplit[6];
@@ -449,16 +436,12 @@ function creaNuovo(metadatisplit, urlvideo, luoghi) {
 
 $("#upload").click(function () {
 
-
-	uploadYoutube();
-	
-
+	getDataAndUpload();
 
 });
 
 $("#salva").click(function () {
-	uploadYoutubePrivate();
-	
+	getDataAndUploadPrivate();
 });
 
 
@@ -480,7 +463,6 @@ function getPlaylist() {
 			})
 		}
 	)
-
 
 }
 
@@ -542,17 +524,21 @@ function getVids(videos) { //funzione che crea la lista di video salvati
 		}
 	)
 }
+
+
+////////PLAYER e VIDEO SALVATI////////
+
 $("#tastovideosalvati").click(function () {
-    var display=document.getElementById("videosalvatilist").style.display;
-    if (display=="none"){
-        getPlaylist();
-        document.getElementById("videosalvatilist").style.display="block";
-    }else{
-        document.getElementById("videosalvatilist").style.display="none";
-    }
+	var display = document.getElementById("videosalvatilist").style.display;
+	if (display == "none") {
+		getPlaylist();
+		document.getElementById("videosalvatilist").style.display = "block";
+	} else {
+		document.getElementById("videosalvatilist").style.display = "none";
+	}
 });
 
-////////PLAYER PER SENTIRE VIDEO SALVATI////////
+
 
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
@@ -588,64 +574,10 @@ function addToPlayer(id) {
 }
 
 
-
-// CREATE CLIP VALIDATOR
-
-/*
-function validate() {
-	if (document.getElementById('titolo').value == '') {
-		alert('Please fill up the title!! ');
-		document.getElementById("titolo").style.borderWidth = 3;
-		document.getElementById("titolo").style.borderColor = "red";
-		window.location.href = "#createClip";
-		return false;
-	} else if (nomeluogo.value == '') {
-		alert('Please fill up the name of the place!!');
-		nomeluogo.style.borderColor = "red";
-		nomeluogo.style.borderWidth = 3;
-		window.location.href = "#createClip";
-		return false;
-	} else if (luogo.value == '') {
-		alert('Please fill up the place!!');
-		luogo.style.borderColor = "red";
-		// document.getElementById("luogo").style.backgroundColor="yellow";
-		luogo.style.borderWidth = 3;
-		window.location.href = "#createClip";
-		return false;
-	} else if (descrizione.value == '  ') {
-		alert('Please fill up the description!!');
-		descrizione.style.borderColor = "red";
-		descrizione.style.borderWidth = 3;
-		window.location.href = "#createClip";
-		return false;
-	} else if (scopo.value == '') {
-		alert('Please fill up the scope!!');
-		scopo.style.borderColor = "red";
-		scopo.style.borderWidth = 3;
-		window.location.href = "#createClip";
-		return false;
-	} else if (lingua.value == '') {
-		alert('Please fill up the language!!');
-		lingua.style.borderColor = "red";
-		window.location.href("#titolo");
-		lingua.style.borderWidth = 3;
-		return false;
-	} else if (categoria.value == '') {
-		alert('Please fill up the category!!');
-		categoria.style.borderColor = "red";
-		categoria.style.borderWidth = 3;
-		return false;
-	} else if (audience.value == '') {
-		alert('Please fill up the audience !!');
-		audience.style.borderColor = "red";
-		audience.style.borderWidth = 3;
-		return false;
-	} else(dettagli.value == '') {
-		alert('Please fill up the level of the details!!');
-		dettagli.style.borderColor = "red";
-		dettagli.style.borderWidth = 3;
-		return false;
-	}
-
+/////CALLBACK FUNCTION/////
+function callbackgoogle() {
+	var autocomplete = new google.maps.places.Autocomplete(
+		document.getElementById('luogo'), {
+			types: ['geocode']
+		});
 }
-*/

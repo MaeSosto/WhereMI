@@ -1,39 +1,31 @@
 <html>
     <head>
+        <title>Where MI</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--includo libreria jquery tramite CDN, niente download-->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-        <title>Where MI</title>
+      
         <link rel="shortcut icon" href="https://site181964.tw.cs.unibo.it/media/img/logo.png" />
-        <!--includo libreria jquery tramite CDN, niente download-->
+        
         <!--Api youtube audio-->
         <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <!-- Link to the script-->
         <script type="text/javascript" src="../media/Javascript/whereami.js"></script>
         <!--Link to CSS-->
         <link rel="stylesheet" href="../media/css/whereami.css">
-        <!--stili della barra di ricerca-->
-        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
         <!-- FONT-FAMILY -->
         <link href="https://fonts.googleapis.com/css?family=Alatsi&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Baloo+Bhai&display=swap" rel="stylesheet">
         <!--LOGIN GOOGLE-->
         <!-- Maps Javascript API-->
-        <script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAisQVJRCJqUAW-wICyJbshSxg_jPL-Y-A&libraries=geometry,places&callback=initCoords"
-            async defer></script>
-        <!-- <meta name="google-signin-scope" content="profile email">
-            <meta name="google-signin-client_id" content="899376088276-hufn1h9oj01vc5u9ui9ithdku5iln5rg.apps.googleusercontent.com"> -->
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        
+       <script src="https://apis.google.com/js/platform.js" async defer></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
             integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </head>
@@ -86,10 +78,6 @@
                                             class="flags" src="../media/img/germany.png">German</a></li>
                                         <li> <a href="#" hreflang="de" onclick="setLang('fr'); return false"><img
                                             class="flags" src="../media/img/france.png">French</a></li>
-                                        <!-- <li class="divider"></li>
-                                            <li><a href="#">Separated link</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">One more separated link</a></li> -->
                                     </ul>
                                 </li>
                                 <li>
@@ -264,12 +252,7 @@
                                     </label>
                                 </div>
                                 <select id="selectAudience" class="form-control">
-                                    <!-- <option lang="it" value data-isdefault="true">Seleziona un'opzione</option>
-                                        <option lang="en" value data-isdefault="true">Select an option</option>
-                                        <option lang="es" value data-isdefault="true">Seleccione una opción</option>
-                                        <option lang="de" value data-isdefault="true">Wähle eine Option</option>
-                                        <option lang="fr" value data-isdefault="true">Sélectionnez une option</option> -->
-                                    <option value selected disabled hidden></option>
+                                   <option value selected disabled hidden></option>
                                     <option lang="it" value="gen">Generico</option>
                                     <option lang="it" value="pre">Pre-scolare</option>
                                     <option lang="it" value="elm">Elementari</option>
@@ -328,78 +311,8 @@
                                     <option value="what" lang="fr">Quel</option>
                                 </select>
                             </div>
-                            <!-- <div class="input-group-prepend">
-                                <label for="testo">
-                                    <span lang="it">Scopo</span>
-                                    <span lang="en">Purpose</span>
-                                    <span lang="es">propósito</span>
-                                    <span lang="de">Zweck</span>
-                                    <span lang="fr">but</span>
-                                </label>
-                                </div>
-                                <div style="display:flex; justify-content: space-between;">
-                                <div class="form-check form-check">
-                                    <input class="input-group-text" type="radio" name="scopo" id="scopo" value="all">
-                                    <label class="form-check-label" for="scopo">
-                                        <span lang="en">All</span>
-                                        <span lang="it">Tutte</span>
-                                        <span lang="es">Todos</span>
-                                        <span lang="de">Alle</span>
-                                        <span lang="fr">Toute</span>
-                                    </label>
-                                </div>
-                                <div class="form-check form-check">
-                                    <input class="form-check-input" type="radio" name="scopo" id="scopo" value="come">
-                                    <label class="form-check-label" for="scopo">
-                                        <span lang="it">Come</span>
-                                        <span lang="en">How</span>
-                                        <span lang="es">Cómo</span>
-                                        <span lang="de">Wie</span>
-                                        <span lang="fr">Comment</span>
-                                    </label>
-                                </div>
-                                <div class="form-check form-check">
-                                    <input class="form-check-input" type="radio" name="scopo" id="scopo" value="perche">
-                                    <label class="form-check-label" for="scopo">
-                                        <span lang="it">Perché</span>
-                                        <span lang="en">Why</span>
-                                        <span lang="es">Por qué</span>
-                                        <span lang="de">Warum</span>
-                                        <span lang="fr">Pourquoi</span>
-                                    </label>
-                                </div>
-                                <div class="form-check form-check">
-                                    <input class="form-check-input" type="radio" name="scopo" id="scopo" value="cosa">
-                                    <label class="form-check-label" for="scopo">
-                                        <span lang="it">Cosa</span>
-                                        <span lang="en">What</span>
-                                        <span lang="es">Qué</span>
-                                        <span lang="de">Was</span>
-                                        <span lang="fr">Quel</span>
-                                    </label>
-                                </div> -->
                         </div>
-                       <!-- <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="dettagli">
-                                    <span lang="en"> Detail</span>
-                                    <span lang="it"> Dettagli </span>
-                                    <span lang="fr">Détails</span>
-                                    <span lang="de"> Einzelheiten </span>
-                                    <span lang="es"> Detalles</span>
-                                  
-                                </label>
-                                <select id="dettagli" class="form-control is-valid custom-select" required>
-                                    <option value selected disabled hidden> ---------</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                            </div>
-                        </div>
-                    -->
+                      
                         <div class="col-md-4" style="text-align: center">
                             <button class="btn btn-primary waves-effect waves-light" style="margin-top: 6%" id="filtraButton">
                             <span lang="it">Filtra!</span>
@@ -437,7 +350,6 @@
                                 <button class="btn-primary audio-buttons" type="button" id="backbutton">back</button>
                                 <button class="btn-primary audio-buttons" type="button" id="playbutton">play</button>
                                 <button class="btn-primary audio-buttons" type="button" id="nextbutton">next</button>
-                                <!-- <button class="btn-primary" type="button" id="skipbutton">skip</button> -->
                                 <div></div>
                                 <div id="youtube-player"></div>
                             </div>
@@ -468,7 +380,9 @@
                 window.location.href = window.location.href.replace('http', 'https');
             </script> -->
         <!-- LANGUAGE actionsSCRIPT -->
- 
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAisQVJRCJqUAW-wICyJbshSxg_jPL-Y-A&libraries=geometry,places&callback=initCoords"
+            async defer></script>
         <script type="text/javascript" src="../media/Javascript/configuration.js"></script>
         <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
             onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
