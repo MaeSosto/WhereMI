@@ -11,6 +11,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- FONT-FAMILY -->
     <link href="https://fonts.googleapis.com/css?family=Alatsi&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhai&display=swap" rel="stylesheet">
     <!--Link to CSS-->
     <link rel="stylesheet" href="../css/editor.css">
     <link rel="stylesheet" href="../css/whereami.css">
@@ -22,7 +23,7 @@
     <div class="page">
         <div>
             <div>
-                <div class="background-image remove-border-radius" style="min-height: 100%;">
+                <div class="background-image remove-border-radius" style="min-height: 100%; width:100%">
                     <nav class="navbar navbar-inverse" role="navigation">
                         <div class="container">
                             <div class="navbar-header">
@@ -137,29 +138,52 @@
                                     <audio id="aud2" style="display: none;" controls></audio>
                                     <!-- tag dove viene visualizzato l'audio-->
                                 </div>
-                                
+
                             </div>
                             <div class="row" style="text-align: center">
-                                    <div style="text-align: center" class="col-md-6">
-                                        <button type="button" class="btn btn-primary" id="tastovideosalvati"> 
-                                                <span lang="it"> Video Salvati</span>
-                                                <span lang="en">Saved videos</span>
-                                                <span lang="es"> Subir</span>
-                                                <span lang="de"> Gespeicherte Videos</span>
-                                                <span lang="fr">Videos guardados</span>
-                                           
-                                        </button>
-                                        <div id="videosalvati" style="display: block; ">
-                                            <div id="youtube-player2"></div>
-                                            <!--player invisibile che riproduce video salvati-->
-                                            <ul style="display: none;" class="saved-list" id="videosalvatilist">
-                                            </ul>
-                                            <!--lista video salvati-->
-                                        </div>
+                                <div style="text-align: center" class="col-md-6">
+                                    <button type="button" class="btn btn-primary" id="tastovideosalvati">
+                                        <span lang="it"> Video Salvati</span>
+                                        <span lang="en">Saved videos</span>
+                                        <span lang="es"> Subir</span>
+                                        <span lang="de"> Gespeicherte Videos</span>
+                                        <span lang="fr">Videos guardados</span>
+
+                                    </button>
+                                    <div id="videosalvati" style="display: block; ">
+                                        <div id="youtube-player2"></div>
+                                        <!--player invisibile che riproduce video salvati-->
+                                        <ul style="display: none;" class="saved-list" id="videosalvatilist">
+                                        </ul>
+                                        <!--lista video salvati-->
                                     </div>
                                 </div>
+                            </div>
                             <div class="col-md-6 form-content border-mob" id="uploadedCheck" style="display: none;">
-                                <h2 style="color: white">Il tuo clip è stato creato con successo!</h2>
+                                <h2 style="color: white; text-align:center;">
+                                    <span lang="it">In caricamento <img id="imgToChange" style="width: 36px;
+                                        margin-left: 15px;"
+                                            src="https://media.giphy.com/media/17mNCcKU1mJlrbXodo/giphy.gif"></span>
+
+                                    <!-- TODO: MOVE TO JS -->
+                                    <!-- document.getElementById("imgToChange").src = "https://image.flaticon.com/icons/svg/443/443138.svg";  -->
+
+                                    <span lang="it">In caricamento <img id="imgToChange" style="width: 36px;
+                                        margin-left: 15px;"
+                                            src="https://media.giphy.com/media/17mNCcKU1mJlrbXodo/giphy.gif"></span>
+                                    <span lang="en">Loading <img id="imgToChange" style="width: 36px;
+                                    margin-left: 15px;"
+                                            src="https://media.giphy.com/media/17mNCcKU1mJlrbXodo/giphy.gif"></span>
+                                    <span lang="es">Cargando<img id="imgToChange" style="width: 36px;
+                                    margin-left: 15px;"
+                                            src="https://media.giphy.com/media/17mNCcKU1mJlrbXodo/giphy.gif"></span>
+                                    <span lang="de">laden <img id="imgToChange" style="width: 36px;
+                                        margin-left: 15px;"
+                                            src="https://media.giphy.com/media/17mNCcKU1mJlrbXodo/giphy.gif"></span>
+                                    <span lang="fr">Chargement<img id="imgToChange" style="width: 36px;
+                                            margin-left: 15px;"
+                                            src="https://media.giphy.com/media/17mNCcKU1mJlrbXodo/giphy.gif"></span>
+                                </h2>
                             </div>
                             <div class="col-md-6 form-content" id="metadatiupload" style="display: none;">
                                 <form id="createClip" class="was-validated">
@@ -370,7 +394,7 @@
                                             <option lang="fr" value="scl">spécialisé</option>
                                         </select>
                                     </div>
-                            
+
                                     <div class="form-group">
                                         <label for="dettagli">
                                             <span lang="en"> Detail</span>
@@ -410,7 +434,7 @@
                                 </form>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

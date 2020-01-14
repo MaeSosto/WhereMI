@@ -502,6 +502,8 @@ background-color: black;
   margin-top: 2px !important;
   color: white !important;
   font-size: 24px;
+  font-size: 25px;
+  font-family: 'Baloo Bhai', cursive;
 }
 
 .button {
@@ -538,9 +540,13 @@ background-color: black;
 
 .logo {
 
-  width: 69px;
-  border-radius: 10%;
-  margin-left: -10px;
+
+    width: 38px;
+    border-radius: 16%;
+    margin-left: -10px;
+    margin-top: 19px;
+    
+
 }
 
 .popup {
@@ -998,6 +1004,10 @@ button{
     transform: unset;
     width: 100%;
   }
+  .border-mob{
+   margin-top: 20px;
+    
+}
   .remove-margin-on-mobile{
 margin-bottom:5px;
   }
@@ -1035,6 +1045,11 @@ margin-bottom:5px;
     border-radius: 10%;
     margin-left: 0px;
     margin-top: 11px;
+      width: 38px;
+      border-radius: 16%;
+      margin-left: 15px;
+      margin-top: 19px;
+
   }
 
   .bar {

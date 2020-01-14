@@ -26,6 +26,8 @@ body {
     position: relative;
     top: 12px;
     left: 10px;
+    font-size: 25px;
+    font-family: 'Baloo Bhai', cursive;
 }
 
 .microfone {
@@ -69,5 +71,6 @@ body {
     margin-bottom: 20px;
 }
 .border-mob{
-    background-color: #000000d1;
+    background-color: #000000;
+    
 }

@@ -133,7 +133,10 @@ function initAutocomplete(position) {
 
 			}
 			//GOTO CLIPS EVENT ON CLICK
-			google.maps.event.addDomListener(marker, 'click', function () {
+			// google.maps.event.addDomListener(marker, 'click', function () {
+			// 	window.location.href = '#gotoclips';
+			// });
+			google.maps.event.addDomListener(marker, 'mousedown', function () {
 				window.location.href = '#gotoclips';
 			});
 
