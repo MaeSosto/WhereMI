@@ -233,6 +233,7 @@ async function uploadRawFile(videoclip, titolo, metadatiClip) {
 		})
 		.done(function (response) {
 			console.log("Caricamento completato! YouTube:", response)
+ 			document.getElementById("imgToChange").src = "https://image.flaticon.com/icons/svg/443/443138.svg";  
 			isPresente(metadatiClip, response.id);
 			return true;
 		})
@@ -333,6 +334,7 @@ async function uploadRawFilePrivate(videoclip, titolo, metadatiClip) {
 		})
 		.done(function (response) {
 			console.log("Caricamento completato! YouTube:", response)
+			document.getElementById("imgToChange").src = "https://image.flaticon.com/icons/svg/443/443138.svg";
 			return true;
 		})
 		.fail(function (response) {
