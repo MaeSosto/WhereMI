@@ -5,7 +5,6 @@ var LuoghiAlCaricamento; //oggetto con tutti i luoghi presenti nel json
 var tuttiMarker = new Array; //array con posizioni di tutti i marker 
 var tuttiMarkerFiltrati = new Array; //array con posizioni di marker filtrati per categoria
 
-
 function initCoords() { //geolocalizza l'utente o apre la mappa a Bologna in assenza della posizione
 	LuoghiAlCaricamento = getJson();
 	navigator.geolocation.getCurrentPosition(initAutocomplete, function (error) { //chiama initAutocomplete con la tua posizione, senza consenso alla posizione ti porta a bologna
@@ -393,12 +392,12 @@ function onYouTubeIframeAPIReady() {
 		togglePlayButton(true);
 	});
 
-	var directionsRenderer = new google.maps.DirectionsRenderer;
+	
 
 	$("#skipbutton").click(function () {
 
 
-
+		var directionsRenderer = new google.maps.DirectionsRenderer;
 		var directionsService = new google.maps.DirectionsService;
 		directionsRenderer.set('directions', null);
 		var lat = document.getElementById("skipbutton").value;
@@ -418,7 +417,7 @@ function onYouTubeIframeAPIReady() {
 
 	$("#prevbutton").click(function () {
 
-
+		var directionsRenderer = new google.maps.DirectionsRenderer;
 		var directionsService = new google.maps.DirectionsService;
 		directionsRenderer.set('directions', null);
 		var posizioneprecedente = arrayposizionivisitate[arrayposizionivisitate.length - 1]
