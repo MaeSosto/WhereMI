@@ -1,6 +1,7 @@
 /**************SETTAGGIO MAPPA*************/
 
 var posizioneattuale; //posizione iniziale
+var posizionemomentanea;
 var LuoghiAlCaricamento; //oggetto con tutti i luoghi presenti nel json
 var tuttiMarker = new Array; //array con posizioni di tutti i marker 
 var tuttiMarkerFiltrati = new Array; //array con posizioni di marker filtrati per categoria
@@ -24,12 +25,13 @@ function initCoords() { //geolocalizza l'utente o apre la mappa a Bologna in ass
 
 
 var map;
-
+var directionsRenderer;
 function initAutocomplete(position) { // crea mappa e marker con tutte le loro funzionalità
 
 	var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 	posizioneattuale = coords;
-	var directionsRenderer = new google.maps.DirectionsRenderer; //servizi di google per la creazione di strade
+	posizionemomentanea=coords;
+	directionsRenderer = new google.maps.DirectionsRenderer; //servizi di google per la creazione di strade
 	var directionsService = new google.maps.DirectionsService; //servizi di google per la creazione di strade
 	var geocoder = new google.maps.Geocoder(); //servizio di google che converte luoghi in coordinate
 
@@ -259,24 +261,6 @@ function showPlayerDiv(show) { //mostra o nasconde la finestra del player e audi
 
 
 
-/*********** LOGIN BUTTON ***********/
-
-function onSignIn(googleUser) {
-	// Useful data for your client-side scripts:
-	var profile = googleUser.getBasicProfile();
-	console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-	console.log('Full Name: ' + profile.getName());
-	console.log('Given Name: ' + profile.getGivenName());
-	console.log('Family Name: ' + profile.getFamilyName());
-	console.log("Image URL: " + profile.getImageUrl());
-	console.log("Email: " + profile.getEmail());
-
-	// The ID token you need to pass to your backend:
-	var id_token = googleUser.getAuthResponse().id_token;
-	console.log("ID Token: " + id_token);
-}
-
-
 /**********FINESTRA PLAYER E AUDIO **********/
 
 
@@ -397,15 +381,14 @@ function onYouTubeIframeAPIReady() {
 	$("#skipbutton").click(function () {
 
 
-		var directionsRenderer = new google.maps.DirectionsRenderer;
 		var directionsService = new google.maps.DirectionsService;
 		directionsRenderer.set('directions', null);
 		var lat = document.getElementById("skipbutton").value;
 		var lng = document.getElementById("skipbutton").name;
-		posizioneattuale = new google.maps.LatLng(lat, lng);
+		posizionemomentanea = new google.maps.LatLng(lat, lng);
 		var nxt = nextLuogo(lat, lng);
 		var coord = new google.maps.LatLng(nxt.coord.lat, nxt.coord.long)
-		calculateAndDisplayRoute(directionsService, directionsRenderer, posizioneattuale, coord);
+		calculateAndDisplayRoute(directionsService, directionsRenderer, posizionemomentanea, coord);
 		directionsRenderer.setMap(map);
 		addToPlayer(nxt);
 		document.getElementById("skipbutton").value = nxt.coord.lat;
@@ -417,7 +400,6 @@ function onYouTubeIframeAPIReady() {
 
 	$("#prevbutton").click(function () {
 
-		var directionsRenderer = new google.maps.DirectionsRenderer;
 		var directionsService = new google.maps.DirectionsService;
 		directionsRenderer.set('directions', null);
 		var posizioneprecedente = arrayposizionivisitate[arrayposizionivisitate.length - 1]
@@ -428,7 +410,7 @@ function onYouTubeIframeAPIReady() {
 			if (LuoghiAlCaricamento[luogo].coord.lat == arrayposizionivisitate[arrayposizionivisitate.length - 2].lat() && LuoghiAlCaricamento[luogo].coord.long == arrayposizionivisitate[arrayposizionivisitate.length - 2].lng()) {
 				addToPlayer(LuoghiAlCaricamento[luogo]);
 				posizioneattuale = new google.maps.LatLng(LuoghiAlCaricamento[luogo].coord.lat, LuoghiAlCaricamento[luogo].coord.long);
-				calculateAndDisplayRoute(directionsService, directionsRenderer, posizioneattuale, posizioneprecedente);
+				calculateAndDisplayRoute(directionsService, directionsRenderer, posizionemomentanea, posizioneprecedente);
 				directionsRenderer.setMap(map);
 				document.getElementById("skipbutton").value = LuoghiAlCaricamento[luogo].coord.lat;
 				document.getElementById("skipbutton").name = LuoghiAlCaricamento[luogo].coord.long;
