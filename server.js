@@ -20,7 +20,7 @@ server.use('/config', express.static(__dirname + '/config'));
 server.post('/config/general.json', function (req, res) {
   console.log(req.body);
   var body = JSON.stringify(req.body);
-  fs.writeFile(__dirname + 'config/general.json', body, function (err) {
+  fs.writeFile(__dirname + '/config/general.json', body, function (err) {
     if (err) {
       return console.log(err);
     }
