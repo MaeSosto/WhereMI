@@ -482,12 +482,18 @@ function getVids(videos) { //funzione che crea la lista di video salvati
 				if (item.status.privacyStatus == "unlisted" && arrStr[0] == "whereami") { //seleziono solo i video unlisted del canale
 					output = '<li id="' + item.snippet.resourceId.videoId + item.snippet.resourceId.videoId + '">' + arrStr[1] + '</li>' +
 						'<button type= "button"  id="' + item.snippet.resourceId.videoId + item.snippet.resourceId.videoId + item.snippet.resourceId.videoId + '">Play</button>' +
-						'<button type= "button" id="' + item.snippet.resourceId.videoId + '">Carica</button>';
+						'<button type= "button"  id="' + item.snippet.resourceId.videoId + item.snippet.resourceId.videoId + item.snippet.resourceId.videoId+ item.snippet.resourceId.videoId + '">Stop</button>' +
+						'<button type= "button" id="' + item.snippet.resourceId.videoId + '">Upload</button>';
 					$("#videosalvatilist").append(output); //aggiungo nomi e button alla lista dei video
-
+					//se clicco play
 					document.getElementById(item.snippet.resourceId.videoId + item.snippet.resourceId.videoId + item.snippet.resourceId.videoId).onclick = function () { //riproduco il video salvato selezionato
-						addToPlayer(item.snippet.resourceId.videoId);
+						playVideo(item.snippet.resourceId.videoId);
 					}
+					//se clicco pause
+					document.getElementById(item.snippet.resourceId.videoId + item.snippet.resourceId.videoId + item.snippet.resourceId.videoId+ item.snippet.resourceId.videoId).onclick = function () { //riproduco il video salvato selezionato
+						player.pauseVideo();
+					}
+					//se clicco carica
 					document.getElementById(item.snippet.resourceId.videoId).onclick = function () {
 
 						gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest") //aggiungo all'oggetto client la possibilità di accedere ai video di youtube
@@ -509,9 +515,12 @@ function getVids(videos) { //funzione che crea la lista di video salvati
 								var listId = item.snippet.resourceId.videoId + item.snippet.resourceId.videoId;
 								var playId = item.snippet.resourceId.videoId + item.snippet.resourceId.videoId + item.snippet.resourceId.videoId;
 								var caricaId = item.snippet.resourceId.videoId;
+								var pauseId=item.snippet.resourceId.videoId +item.snippet.resourceId.videoId +item.snippet.resourceId.videoId +item.snippet.resourceId.videoId;
+								
 								$("#" + listId).remove();
 								$("#" + playId).remove();
 								$("#" + caricaId).remove();
+								$("#" + pauseId).remove();
 
 								var metadati = item.snippet.description;
 								isPresente(metadati, item.snippet.resourceId.videoId);
@@ -563,7 +572,7 @@ window.onYouTubeIframeAPIReady = function () {
 }
 
 
-function addToPlayer(id) {
+function playVideo(id) {
 	if (player) {
 		player.loadVideoById(id);
 		player.playVideo();
