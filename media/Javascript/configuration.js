@@ -45,7 +45,6 @@ function setLangStyles(lang) {
 			$("select option[lang=" + l + "]").removeAttr('disabled').show();
 			$("select option[lang=" + l + "]").attr('disabled', 'disabled');
 			$("select option[lang=" + l + "]").hide();
-			// $("select option[lang!=" + l + "]").prop('selected',true);
 			return ':lang(' + l + ') { display: none; }';
 		})
 		.join(' ');
