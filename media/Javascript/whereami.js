@@ -1,7 +1,6 @@
 /**************SETTAGGIO MAPPA*************/
 
 var posizioneattuale; //posizione iniziale
-var posizionemomentanea;
 var LuoghiAlCaricamento; //oggetto con tutti i luoghi presenti nel json
 var tuttiMarker = new Array; //array con posizioni di tutti i marker 
 var tuttiMarkerFiltrati = new Array; //array con posizioni di marker filtrati per categoria
@@ -30,7 +29,6 @@ function initAutocomplete(position) { // crea mappa e marker con tutte le loro f
 
 	var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 	posizioneattuale = coords;
-	posizionemomentanea=coords;
 	directionsRenderer = new google.maps.DirectionsRenderer; //servizi di google per la creazione di strade
 	var directionsService = new google.maps.DirectionsService; //servizi di google per la creazione di strade
 	var geocoder = new google.maps.Geocoder(); //servizio di google che converte luoghi in coordinate
@@ -67,7 +65,11 @@ function initAutocomplete(position) { // crea mappa e marker con tutte le loro f
 		});
 
 		google.maps.event.addListener(marker, 'click', function () { // al click apre il player con i video di quel posto
+			var directionsService = new google.maps.DirectionsService;
 			getVideos(marker.position.lat(), marker.position.lng());
+			directionsRenderer.set('directions', null);
+			var posizioneclick= new google.maps.LatLng( marker.position.lat(), marker.position.lng());
+			calculateAndDisplayRoute(directionsService,directionsRenderer,posizioneattuale,posizioneclick)
 			//salvo la posizione del marker cliccato
 			document.getElementById("skipbutton").value = marker.position.lat();
 			document.getElementById("skipbutton").name = marker.position.lng();
@@ -142,14 +144,19 @@ function initAutocomplete(position) { // crea mappa e marker con tutte le loro f
 	document.getElementById('end').addEventListener('change', function () { //crea il percorso dalla tua posizione a quella desiderata
 		directionsRenderer.set('directions', null);
 		var arrivo = document.getElementById('end').value;
+		console.log(posizioneattuale)
 		calculateAndDisplayRoute(directionsService, directionsRenderer, posizioneattuale, arrivo);
+		document.getElementById("end").value="";
 	});
 
 	document.getElementById('pos').addEventListener('change', function () { //cambia il tuo luogo di partrenza
 		var address = document.getElementById('pos').value;
 		directionsRenderer.set('directions', null);
+	
 		marker = geocodeAddress(geocoder, map, address);
+		
 		marker.setMap(map);
+		map.setZoom(15)
 	});
 
 	document.getElementById('reset-map').addEventListener('click', function () { //sposta la visuale della mappa alla posizione di partenza
@@ -186,6 +193,7 @@ function compiler(input, map) { // funzione che autocompila i textbox in base al
 }
 
 function calculateAndDisplayRoute(directionsService, directionsRenderer, partenza, arrivo) { //cerca e crea il percorso per arrivare ad un posto
+	
 	directionsService.route({
 
 		origin: partenza,
@@ -201,7 +209,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer, partenz
 				suppressMarkers: true
 			});
 		} else {
-
+			alert("No route found");
 		}
 	});
 
@@ -385,7 +393,7 @@ function onYouTubeIframeAPIReady() {
 		directionsRenderer.set('directions', null);
 		var lat = document.getElementById("skipbutton").value;
 		var lng = document.getElementById("skipbutton").name;
-		posizionemomentanea = new google.maps.LatLng(lat, lng);
+		var posizionemomentanea = new google.maps.LatLng(lat, lng);
 		var nxt = nextLuogo(lat, lng);
 		var coord = new google.maps.LatLng(nxt.coord.lat, nxt.coord.long)
 		calculateAndDisplayRoute(directionsService, directionsRenderer, posizionemomentanea, coord);
@@ -409,8 +417,8 @@ function onYouTubeIframeAPIReady() {
 		for (luogo in LuoghiAlCaricamento) {
 			if (LuoghiAlCaricamento[luogo].coord.lat == arrayposizionivisitate[arrayposizionivisitate.length - 2].lat() && LuoghiAlCaricamento[luogo].coord.long == arrayposizionivisitate[arrayposizionivisitate.length - 2].lng()) {
 				addToPlayer(LuoghiAlCaricamento[luogo]);
-				posizioneattuale = new google.maps.LatLng(LuoghiAlCaricamento[luogo].coord.lat, LuoghiAlCaricamento[luogo].coord.long);
-				calculateAndDisplayRoute(directionsService, directionsRenderer, posizionemomentanea, posizioneprecedente);
+				var posizionemomentanea = new google.maps.LatLng(LuoghiAlCaricamento[luogo].coord.lat, LuoghiAlCaricamento[luogo].coord.long);
+				calculateAndDisplayRoute(directionsService, directionsRenderer, posizioneprecedente,posizionemomentanea);
 				directionsRenderer.setMap(map);
 				document.getElementById("skipbutton").value = LuoghiAlCaricamento[luogo].coord.lat;
 				document.getElementById("skipbutton").name = LuoghiAlCaricamento[luogo].coord.long;
