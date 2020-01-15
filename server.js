@@ -17,21 +17,16 @@ server.use('/media', express.static(__dirname + '/media'));
 server.use(express.static(__dirname + '/public'));
 server.use('/config', express.static(__dirname + '/config'));
 
-server.get('/config/general.json', function (req, res) {
-  var json = fs.readFileSync('/config/general.json')
-  res.send(json);
-});
 server.post('/config/general.json', function (req, res) {
   console.log(req.body);
   var body = JSON.stringify(req.body);
-  fs.writeFile("config/general.json", body, function (err) {
+  fs.writeFile(__dirname + 'config/general.json', body, function (err) {
     if (err) {
       return console.log(err);
     }
     console.log("The file was saved!");
 
   });
-
 
 });
 
