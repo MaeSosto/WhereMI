@@ -76,6 +76,8 @@ navigator.mediaDevices.getUserMedia(constraintObj)
 
 
 		start.addEventListener('click', (ev) => {
+			uploadedBox.style.display = 'none';
+			document.getElementById("imgToChange").src = "https://media.giphy.com/media/17mNCcKU1mJlrbXodo/giphy.gif";
 			if (started == false) {
 				mediaRecorder.start();
 				started = true;
@@ -114,10 +116,9 @@ recorder.addEventListener('change', function (e) {
 	const file = e.target.files[0];
 	const url = URL.createObjectURL(file);
 	recorder.src = url;
-
 	divMetadati.style.display = 'block';
 	uploadedBox.style.display = 'none';
-
+	document.getElementById("imgToChange").src = "https://media.giphy.com/media/17mNCcKU1mJlrbXodo/giphy.gif";
 });
 
 /////////////////UPLOAD VIDEO PUBBLICI///////////////////
@@ -160,6 +161,15 @@ async function getDataAndUpload() { //lettura dei dati nell'editor e caricamento
 			if (success) {
 				divMetadati.style.display = 'none';
 				uploadedBox.style.display = 'block';
+				document.getElementById("titolo").value="";
+                document.getElementById("descrizione").value="";
+                document.getElementById("scopo").value="";
+                document.getElementById("lingua").value="";
+                document.getElementById("categoria").value="";
+                document.getElementById("audience").value="";
+                document.getElementById("dettagli").value="";
+                document.getElementById("nomeluogo").value="";
+                document.getElementById('luogo').value="";
 			}
 
 
@@ -263,6 +273,15 @@ async function getDataAndUploadPrivate() {
 			if (success) {
 				divMetadati.style.display = 'none';
 				uploadedBox.style.display = 'block';
+				document.getElementById("titolo").value="";
+                document.getElementById("descrizione").value="";
+                document.getElementById("scopo").value="";
+                document.getElementById("lingua").value="";
+                document.getElementById("categoria").value="";
+                document.getElementById("audience").value="";
+                document.getElementById("dettagli").value="";
+                document.getElementById("nomeluogo").value="";
+                document.getElementById('luogo').value="";
 			}
 		});
 	}
@@ -435,8 +454,8 @@ function creaNuovo(metadatisplit, urlvideo, luoghi) { //crea nuovo logo
 }
 
 $("#upload").click(function () {
-
 	getDataAndUpload();
+
 
 });
 
