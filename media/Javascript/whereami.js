@@ -7,7 +7,7 @@ var tuttiMarkerFiltrati = new Array; //array con posizioni di marker filtrati pe
 
 function initCoords() { //geolocalizza l'utente o apre la mappa a Bologna in assenza della posizione
 	LuoghiAlCaricamento = getJson();
-	navigator.geolocation.getCurrentPosition(initAutocomplete, function (error) { //chiama initAutocomplete con la tua posizione, senza consenso alla posizione ti porta a bologna
+	navigator.geolocation.getCurrentPosition(initAutocomplete, function (error) { //chiama initAutocodramplete con la tua posizione, senza consenso alla posizione ti porta a bologna
 		if (error.code == error.PERMISSION_DENIED) {
 			var position = {
 				coords: {
@@ -167,6 +167,7 @@ function initAutocomplete(position) { // crea mappa e marker con tutte le loro f
 	google.maps.event.addListener(marker, 'dragend', function () { //setta la tua posizione dopo che hai spostato il marker
 		directionsRenderer.set('directions', null);
 		marker.setPosition(marker.getPosition());
+		posizioneattuale=marker.getPosition();
 
 	});
 
